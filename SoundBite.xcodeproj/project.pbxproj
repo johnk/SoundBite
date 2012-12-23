@@ -29,6 +29,10 @@
 		52CD1FF216878EFE004877E2 /* script.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FE916878EFE004877E2 /* script.png */; };
 		52CD1FF316878EFE004877E2 /* telephone.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FEA16878EFE004877E2 /* telephone.png */; };
 		52CD1FF416878EFE004877E2 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FEB16878EFE004877E2 /* user.png */; };
+		52CD1FF9168792F1004877E2 /* Pro Dots - iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF5168792F1004877E2 /* Pro Dots - iPad.png */; };
+		52CD1FFA168792F1004877E2 /* Pro Dots - iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF6168792F1004877E2 /* Pro Dots - iPad@2x.png */; };
+		52CD1FFB168792F1004877E2 /* Pro Dots - iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF7168792F1004877E2 /* Pro Dots - iPhone.png */; };
+		52CD1FFC168792F1004877E2 /* Pro Dots - iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF8168792F1004877E2 /* Pro Dots - iPhone@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,10 @@
 		52CD1FE916878EFE004877E2 /* script.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = script.png; sourceTree = "<group>"; };
 		52CD1FEA16878EFE004877E2 /* telephone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = telephone.png; sourceTree = "<group>"; };
 		52CD1FEB16878EFE004877E2 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		52CD1FF5168792F1004877E2 /* Pro Dots - iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPad.png"; sourceTree = "<group>"; };
+		52CD1FF6168792F1004877E2 /* Pro Dots - iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPad@2x.png"; sourceTree = "<group>"; };
+		52CD1FF7168792F1004877E2 /* Pro Dots - iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPhone.png"; sourceTree = "<group>"; };
+		52CD1FF8168792F1004877E2 /* Pro Dots - iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPhone@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,10 @@
 		52CD1FE216878EC3004877E2 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				52CD1FF5168792F1004877E2 /* Pro Dots - iPad.png */,
+				52CD1FF6168792F1004877E2 /* Pro Dots - iPad@2x.png */,
+				52CD1FF7168792F1004877E2 /* Pro Dots - iPhone.png */,
+				52CD1FF8168792F1004877E2 /* Pro Dots - iPhone@2x.png */,
 				52CD1FE316878EFE004877E2 /* brick.png */,
 				52CD1FE416878EFE004877E2 /* email.png */,
 				52CD1FE516878EFE004877E2 /* group.png */,
@@ -217,6 +229,10 @@
 				52CD1FF216878EFE004877E2 /* script.png in Resources */,
 				52CD1FF316878EFE004877E2 /* telephone.png in Resources */,
 				52CD1FF416878EFE004877E2 /* user.png in Resources */,
+				52CD1FF9168792F1004877E2 /* Pro Dots - iPad.png in Resources */,
+				52CD1FFA168792F1004877E2 /* Pro Dots - iPad@2x.png in Resources */,
+				52CD1FFB168792F1004877E2 /* Pro Dots - iPhone.png in Resources */,
+				52CD1FFC168792F1004877E2 /* Pro Dots - iPhone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
