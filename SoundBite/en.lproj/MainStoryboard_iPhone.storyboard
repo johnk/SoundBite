@@ -52,7 +52,7 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="Gdx-Bo-cg0" kind="push" id="ODs-b7-qMB"/>
+                                    <segue destination="Gdx-Bo-cg0" kind="push" identifier="ShowMainMenu" id="ODs-b7-qMB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,7 +67,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="oLD-Q2-5lC"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="woX-wh-uU7">
                             <connections>
-                                <segue destination="Bu5-bi-NND" kind="modal" modalTransitionStyle="flipHorizontal" id="BiX-As-YHW"/>
+                                <segue destination="Bu5-bi-NND" kind="modal" identifier="ShowAddUser" modalTransitionStyle="flipHorizontal" id="BiX-As-YHW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -236,7 +236,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="ihK-PU-M7w" kind="push" id="HVL-ac-SQl"/>
+                                            <segue destination="ihK-PU-M7w" kind="push" identifier="ShowCampaigns" id="HVL-ac-SQl"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuAgentsCell" textLabel="XGd-mh-apF" imageView="ynv-id-ZPn" style="IBUITableViewCellStyleDefault" id="FuQ-mD-DpO">
@@ -283,7 +283,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="IHc-W9-MC9" kind="push" id="VLs-O2-nxl"/>
+                                            <segue destination="IHc-W9-MC9" kind="push" identifier="ShowLists" id="VLs-O2-nxl"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuScriptsCell" textLabel="VtX-vh-GgF" imageView="HV1-fA-uU8" style="IBUITableViewCellStyleDefault" id="cGb-Qp-i8K">
@@ -308,7 +308,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="ypW-o9-rig" kind="push" id="lCA-XS-1g7"/>
+                                            <segue destination="ypW-o9-rig" kind="push" identifier="ShowScripts" id="lCA-XS-1g7"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuReportsCell" textLabel="KxI-L4-6Ku" imageView="Sc1-TW-Nor" style="IBUITableViewCellStyleDefault" id="Hbw-Eb-eqa">
@@ -355,7 +355,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="QON-CS-ACT" kind="push" id="fgT-Xw-1M7"/>
+                                            <segue destination="QON-CS-ACT" kind="push" identifier="ShowSystemInfo" id="fgT-Xw-1M7"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -711,14 +711,6 @@
         <image name="script.png" width="16" height="16"/>
         <image name="user.png" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SBMasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBMasterViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
