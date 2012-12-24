@@ -33,6 +33,15 @@
 		52CD1FFA168792F1004877E2 /* Pro Dots - iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF6168792F1004877E2 /* Pro Dots - iPad@2x.png */; };
 		52CD1FFB168792F1004877E2 /* Pro Dots - iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF7168792F1004877E2 /* Pro Dots - iPhone.png */; };
 		52CD1FFC168792F1004877E2 /* Pro Dots - iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FF8168792F1004877E2 /* Pro Dots - iPhone@2x.png */; };
+		52EA1B4C1688D9B900C80C42 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B4B1688D9B900C80C42 /* GDataXMLNode.m */; };
+		52EA1B501688D9F200C80C42 /* SBSoap2.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B4F1688D9F200C80C42 /* SBSoap2.m */; };
+		52EA1B531688DB5C00C80C42 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EA1B521688DB5C00C80C42 /* libxml2.dylib */; };
+		52EA1B561688DC3400C80C42 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B551688DC3400C80C42 /* User.m */; };
+		52EA1B5F1688DD6F00C80C42 /* SBList.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B581688DD6E00C80C42 /* SBList.m */; };
+		52EA1B601688DD6F00C80C42 /* SBLists.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B5A1688DD6E00C80C42 /* SBLists.m */; };
+		52EA1B611688DD6F00C80C42 /* SBScripts.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B5C1688DD6E00C80C42 /* SBScripts.m */; };
+		52EA1B621688DD6F00C80C42 /* SBSubCampaigns.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B5E1688DD6F00C80C42 /* SBSubCampaigns.m */; };
+		52EA1B651688DDDF00C80C42 /* SBCampaigns.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA1B641688DDDF00C80C42 /* SBCampaigns.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +77,24 @@
 		52CD1FF6168792F1004877E2 /* Pro Dots - iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPad@2x.png"; sourceTree = "<group>"; };
 		52CD1FF7168792F1004877E2 /* Pro Dots - iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPhone.png"; sourceTree = "<group>"; };
 		52CD1FF8168792F1004877E2 /* Pro Dots - iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pro Dots - iPhone@2x.png"; sourceTree = "<group>"; };
+		52EA1B491688D9B900C80C42 /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
+		52EA1B4A1688D9B900C80C42 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		52EA1B4B1688D9B900C80C42 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		52EA1B4E1688D9F200C80C42 /* SBSoap2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSoap2.h; sourceTree = "<group>"; };
+		52EA1B4F1688D9F200C80C42 /* SBSoap2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSoap2.m; sourceTree = "<group>"; };
+		52EA1B521688DB5C00C80C42 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		52EA1B541688DC3400C80C42 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		52EA1B551688DC3400C80C42 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		52EA1B571688DD6E00C80C42 /* SBList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBList.h; sourceTree = "<group>"; };
+		52EA1B581688DD6E00C80C42 /* SBList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBList.m; sourceTree = "<group>"; };
+		52EA1B591688DD6E00C80C42 /* SBLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLists.h; sourceTree = "<group>"; };
+		52EA1B5A1688DD6E00C80C42 /* SBLists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLists.m; sourceTree = "<group>"; };
+		52EA1B5B1688DD6E00C80C42 /* SBScripts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBScripts.h; sourceTree = "<group>"; };
+		52EA1B5C1688DD6E00C80C42 /* SBScripts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBScripts.m; sourceTree = "<group>"; };
+		52EA1B5D1688DD6F00C80C42 /* SBSubCampaigns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSubCampaigns.h; sourceTree = "<group>"; };
+		52EA1B5E1688DD6F00C80C42 /* SBSubCampaigns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSubCampaigns.m; sourceTree = "<group>"; };
+		52EA1B631688DDDF00C80C42 /* SBCampaigns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCampaigns.h; sourceTree = "<group>"; };
+		52EA1B641688DDDF00C80C42 /* SBCampaigns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCampaigns.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EA1B531688DB5C00C80C42 /* libxml2.dylib in Frameworks */,
 				52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */,
 				52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */,
 				52CD1FB71687506C004877E2 /* CoreGraphics.framework in Frameworks */,
@@ -88,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				52CD1FB81687506C004877E2 /* SoundBite */,
+				52EA1B521688DB5C00C80C42 /* libxml2.dylib */,
 				52CD1FB11687506B004877E2 /* Frameworks */,
 				52CD1FAF1687506B004877E2 /* Products */,
 			);
@@ -114,6 +143,8 @@
 		52CD1FB81687506C004877E2 /* SoundBite */ = {
 			isa = PBXGroup;
 			children = (
+				52EA1B511688D9FE00C80C42 /* model */,
+				52EA1B491688D9B900C80C42 /* CWLSynthesizeSingleton.h */,
 				52CD1FC11687506C004877E2 /* SBAppDelegate.h */,
 				52CD1FC21687506C004877E2 /* SBAppDelegate.m */,
 				52CD1FCA1687506C004877E2 /* MainStoryboard_iPhone.storyboard */,
@@ -160,6 +191,29 @@
 				52CD1FEB16878EFE004877E2 /* user.png */,
 			);
 			name = graphics;
+			sourceTree = "<group>";
+		};
+		52EA1B511688D9FE00C80C42 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				52EA1B4E1688D9F200C80C42 /* SBSoap2.h */,
+				52EA1B4F1688D9F200C80C42 /* SBSoap2.m */,
+				52EA1B541688DC3400C80C42 /* User.h */,
+				52EA1B551688DC3400C80C42 /* User.m */,
+				52EA1B631688DDDF00C80C42 /* SBCampaigns.h */,
+				52EA1B641688DDDF00C80C42 /* SBCampaigns.m */,
+				52EA1B5D1688DD6F00C80C42 /* SBSubCampaigns.h */,
+				52EA1B5E1688DD6F00C80C42 /* SBSubCampaigns.m */,
+				52EA1B591688DD6E00C80C42 /* SBLists.h */,
+				52EA1B5A1688DD6E00C80C42 /* SBLists.m */,
+				52EA1B571688DD6E00C80C42 /* SBList.h */,
+				52EA1B581688DD6E00C80C42 /* SBList.m */,
+				52EA1B5B1688DD6E00C80C42 /* SBScripts.h */,
+				52EA1B5C1688DD6E00C80C42 /* SBScripts.m */,
+				52EA1B4A1688D9B900C80C42 /* GDataXMLNode.h */,
+				52EA1B4B1688D9B900C80C42 /* GDataXMLNode.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +301,14 @@
 				52CD1FC31687506C004877E2 /* SBAppDelegate.m in Sources */,
 				52CD1FD21687506C004877E2 /* SBMasterViewController.m in Sources */,
 				52CD1FD51687506C004877E2 /* SBDetailViewController.m in Sources */,
+				52EA1B4C1688D9B900C80C42 /* GDataXMLNode.m in Sources */,
+				52EA1B501688D9F200C80C42 /* SBSoap2.m in Sources */,
+				52EA1B561688DC3400C80C42 /* User.m in Sources */,
+				52EA1B5F1688DD6F00C80C42 /* SBList.m in Sources */,
+				52EA1B601688DD6F00C80C42 /* SBLists.m in Sources */,
+				52EA1B611688DD6F00C80C42 /* SBScripts.m in Sources */,
+				52EA1B621688DD6F00C80C42 /* SBSubCampaigns.m in Sources */,
+				52EA1B651688DDDF00C80C42 /* SBCampaigns.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +399,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "SoundBite/SoundBite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -348,6 +411,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "SoundBite/SoundBite-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -373,6 +437,7 @@
 				52CD1FDA1687506C004877E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
