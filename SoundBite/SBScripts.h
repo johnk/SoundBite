@@ -21,8 +21,8 @@
 @property (nonatomic, unsafe_unretained) User *currentUser;
 
 CWL_DECLARE_SINGLETON_FOR_CLASS(SBScripts)
+//+ (SBScripts *)sharedSBScripts;
 
-+ (SBScripts *)sharedSBScripts;
 - (void)loadForUser:(User *)user withDelegate:(id)delegate;
 - (NSInteger)count;
 - (NSString *)nameForRow:(NSInteger)row;

@@ -23,7 +23,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBSubCampaigns);
     //    NSLog(@"SBSubCampaigns: user has not changed");
     //} else {
 		// New way
-#warning need to change this and the template to narrow by sub-campaign
+//TODO: change this and the template to narrow by sub-campaign
 		NSString *soapMessage = [NSString stringWithFormat:klistSubCampaignsRequestTemplate, [user userName], [user password], [user account]];
         self.currentUser = user;
         sbSoap = [[SBSoap2 alloc] init];

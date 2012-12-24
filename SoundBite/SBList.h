@@ -18,8 +18,8 @@
 @property (nonatomic, unsafe_unretained) NSString *currentListInternalId;
 
 CWL_DECLARE_SINGLETON_FOR_CLASS(SBList)
+//+ (SBList *)sharedSBList;
 
-+ (SBList *)sharedSBList;
 - (void)loadForUser:(User *)user list:(NSString *)listInternalId withDelegate:(id)delegate;
 - (NSInteger)count;
 - (NSString *)name;
