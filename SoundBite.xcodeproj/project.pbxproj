@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		526F69F41688EB5500D1D11E /* SBUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69F31688EB5500D1D11E /* SBUsersViewController.m */; };
 		52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB21687506B004877E2 /* UIKit.framework */; };
 		52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB41687506B004877E2 /* Foundation.framework */; };
 		52CD1FB71687506C004877E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB61687506C004877E2 /* CoreGraphics.framework */; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		526F69F21688EB5500D1D11E /* SBUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUsersViewController.h; sourceTree = "<group>"; };
+		526F69F31688EB5500D1D11E /* SBUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUsersViewController.m; sourceTree = "<group>"; };
 		52CD1FAE1687506B004877E2 /* SoundBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD1FB21687506B004877E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52CD1FB41687506B004877E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				52CD1FC21687506C004877E2 /* SBAppDelegate.m */,
 				52CD1FCA1687506C004877E2 /* MainStoryboard_iPhone.storyboard */,
 				52CD1FCD1687506C004877E2 /* MainStoryboard_iPad.storyboard */,
+				526F69F21688EB5500D1D11E /* SBUsersViewController.h */,
+				526F69F31688EB5500D1D11E /* SBUsersViewController.m */,
 				52CD1FD01687506C004877E2 /* SBMasterViewController.h */,
 				52CD1FD11687506C004877E2 /* SBMasterViewController.m */,
 				52CD1FD31687506C004877E2 /* SBDetailViewController.h */,
@@ -309,6 +314,7 @@
 				52EA1B611688DD6F00C80C42 /* SBScripts.m in Sources */,
 				52EA1B621688DD6F00C80C42 /* SBSubCampaigns.m in Sources */,
 				52EA1B651688DDDF00C80C42 /* SBCampaigns.m in Sources */,
+				526F69F41688EB5500D1D11E /* SBUsersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
