@@ -2,36 +2,41 @@
 //  SBUsersViewController.m
 //  SoundBite
 //
-//  Created by John Keyes on 12/24/12.
+//  Created by John Keyes on 12/23/12.
 //  Copyright (c) 2012 John Keyes. All rights reserved.
 //
 
 #import "SBUsersViewController.h"
+#import "SBAppDelegate.h"
 
-@interface SBUsersViewController ()
-
-@end
 
 @implementation SBUsersViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.clearsSelectionOnViewWillAppear = NO;
+        self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
-    return self;
+    [super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+	UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+								  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+								  target:self
+								  action:@selector(addUser:)];
+	self.navigationItem.rightBarButtonItem = addButton;
+
+    self.userEditViewController = (SBUserEditViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+	SBAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	users = appDelegate.users;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,82 +45,102 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void)addUser:(id)sender {
+	[users addNewUser];
+	NSUInteger newUserIndex = [users count] - 1;
+	NSLog(@"Adding new user with index %i", newUserIndex);
+	
+    //TODO: Need to segue to the user edit view controller.
+    
+    //SBUserEditViewController *userEditViewController = [[SBUserEditViewController alloc] initWithNibName:@"UserEditView" bundle:nil];
+	//userEditViewController.user = (users.userArray)[newUserIndex];
+	//userEditViewController.editMode = NO;
+	//[self.navigationController pushViewController:userEditViewController animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	[self.tableView reloadData];	// in case a user was edited
+	[users save];
+}
+
+
+#pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [users count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UsersCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+	NSUInteger row = [indexPath row];
+    //[cell.imageView setImage:[UIImage imageNamed:@"user.png"]];
+    cell.textLabel.text = [(users.userArray)[row] userName];
+	NSLog(@"cell %@", cell.textLabel);
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    //if (editingStyle == UITableViewCellEditingStyleDelete) {
+    //    [_objects removeObjectAtIndex:indexPath.row];
+    //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    //} else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    //}
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    //    NSDate *object = _objects[indexPath.row];
+    //    self.detailViewController.detailItem = object;
+    //}
+
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	NSUInteger row = [indexPath row];
+	if (self.editing) {
+		//SBUserEditViewController *userEditViewController = [[SBUserEditViewController alloc] initWithNibName:@"UserEditView" bundle:nil];
+		//userEditViewController.user = (users.userArray)[row];
+		//userEditViewController.editMode = YES;
+		//[self.navigationController pushViewController:userEditViewController animated:YES];
+	} else {
+		//MainMenuViewController *mainMenuViewController = [[MainMenuViewController alloc] initWithNibName:@"MainMenuView" bundle:nil];
+		//mainMenuViewController.user = (users.userArray)[row];
+		//[self.navigationController pushViewController:mainMenuViewController animated:YES];
+	}
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"SBUsersViewController: prepareForSegue");
+    
+    if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
+        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //NSDate *object = _objects[indexPath.row];
+        //[[segue destinationViewController] setDetailItem:object];
+        [segue destinationViewController];
+    } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
+        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //NSDate *object = _objects[indexPath.row];
+        //[[segue destinationViewController] setDetailItem:object];
+        [segue destinationViewController];
+
+    }
 }
 
 @end
+

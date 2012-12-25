@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Users.h"
+
 
 @interface SBAppDelegate : UIResponder <UIApplicationDelegate>
 
+
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) Users *users;
 
 @end

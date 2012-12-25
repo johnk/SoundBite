@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		526F69F41688EB5500D1D11E /* SBUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69F31688EB5500D1D11E /* SBUsersViewController.m */; };
+		526F69FB168A2F6100D1D11E /* SBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69FA168A2F6100D1D11E /* SBUserEditViewController.m */; };
+		526F69FE168A367900D1D11E /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69FD168A367900D1D11E /* Users.m */; };
 		52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB21687506B004877E2 /* UIKit.framework */; };
 		52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB41687506B004877E2 /* Foundation.framework */; };
 		52CD1FB71687506C004877E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB61687506C004877E2 /* CoreGraphics.framework */; };
@@ -19,7 +21,6 @@
 		52CD1FC91687506C004877E2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FC81687506C004877E2 /* Default-568h@2x.png */; };
 		52CD1FCC1687506C004877E2 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FCA1687506C004877E2 /* MainStoryboard_iPhone.storyboard */; };
 		52CD1FCF1687506C004877E2 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FCD1687506C004877E2 /* MainStoryboard_iPad.storyboard */; };
-		52CD1FD21687506C004877E2 /* SBMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CD1FD11687506C004877E2 /* SBMasterViewController.m */; };
 		52CD1FD51687506C004877E2 /* SBDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CD1FD41687506C004877E2 /* SBDetailViewController.m */; };
 		52CD1FEC16878EFE004877E2 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FE316878EFE004877E2 /* brick.png */; };
 		52CD1FED16878EFE004877E2 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 52CD1FE416878EFE004877E2 /* email.png */; };
@@ -48,6 +49,10 @@
 /* Begin PBXFileReference section */
 		526F69F21688EB5500D1D11E /* SBUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUsersViewController.h; sourceTree = "<group>"; };
 		526F69F31688EB5500D1D11E /* SBUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUsersViewController.m; sourceTree = "<group>"; };
+		526F69F9168A2F6100D1D11E /* SBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUserEditViewController.h; sourceTree = "<group>"; };
+		526F69FA168A2F6100D1D11E /* SBUserEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUserEditViewController.m; sourceTree = "<group>"; };
+		526F69FC168A367900D1D11E /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		526F69FD168A367900D1D11E /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		52CD1FAE1687506B004877E2 /* SoundBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD1FB21687506B004877E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52CD1FB41687506B004877E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,8 +68,6 @@
 		52CD1FC81687506C004877E2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		52CD1FCB1687506C004877E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		52CD1FCE1687506C004877E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		52CD1FD01687506C004877E2 /* SBMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBMasterViewController.h; sourceTree = "<group>"; };
-		52CD1FD11687506C004877E2 /* SBMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBMasterViewController.m; sourceTree = "<group>"; };
 		52CD1FD31687506C004877E2 /* SBDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBDetailViewController.h; sourceTree = "<group>"; };
 		52CD1FD41687506C004877E2 /* SBDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBDetailViewController.m; sourceTree = "<group>"; };
 		52CD1FE316878EFE004877E2 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
@@ -152,10 +155,10 @@
 				52CD1FC21687506C004877E2 /* SBAppDelegate.m */,
 				52CD1FCA1687506C004877E2 /* MainStoryboard_iPhone.storyboard */,
 				52CD1FCD1687506C004877E2 /* MainStoryboard_iPad.storyboard */,
+				526F69F9168A2F6100D1D11E /* SBUserEditViewController.h */,
+				526F69FA168A2F6100D1D11E /* SBUserEditViewController.m */,
 				526F69F21688EB5500D1D11E /* SBUsersViewController.h */,
 				526F69F31688EB5500D1D11E /* SBUsersViewController.m */,
-				52CD1FD01687506C004877E2 /* SBMasterViewController.h */,
-				52CD1FD11687506C004877E2 /* SBMasterViewController.m */,
 				52CD1FD31687506C004877E2 /* SBDetailViewController.h */,
 				52CD1FD41687506C004877E2 /* SBDetailViewController.m */,
 				52CD1FE216878EC3004877E2 /* graphics */,
@@ -205,6 +208,8 @@
 				52EA1B4F1688D9F200C80C42 /* SBSoap2.m */,
 				52EA1B541688DC3400C80C42 /* User.h */,
 				52EA1B551688DC3400C80C42 /* User.m */,
+				526F69FC168A367900D1D11E /* Users.h */,
+				526F69FD168A367900D1D11E /* Users.m */,
 				52EA1B631688DDDF00C80C42 /* SBCampaigns.h */,
 				52EA1B641688DDDF00C80C42 /* SBCampaigns.m */,
 				52EA1B5D1688DD6F00C80C42 /* SBSubCampaigns.h */,
@@ -304,7 +309,6 @@
 			files = (
 				52CD1FBF1687506C004877E2 /* main.m in Sources */,
 				52CD1FC31687506C004877E2 /* SBAppDelegate.m in Sources */,
-				52CD1FD21687506C004877E2 /* SBMasterViewController.m in Sources */,
 				52CD1FD51687506C004877E2 /* SBDetailViewController.m in Sources */,
 				52EA1B4C1688D9B900C80C42 /* GDataXMLNode.m in Sources */,
 				52EA1B501688D9F200C80C42 /* SBSoap2.m in Sources */,
@@ -315,6 +319,8 @@
 				52EA1B621688DD6F00C80C42 /* SBSubCampaigns.m in Sources */,
 				52EA1B651688DDDF00C80C42 /* SBCampaigns.m in Sources */,
 				526F69F41688EB5500D1D11E /* SBUsersViewController.m in Sources */,
+				526F69FB168A2F6100D1D11E /* SBUserEditViewController.m in Sources */,
+				526F69FE168A367900D1D11E /* Users.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
