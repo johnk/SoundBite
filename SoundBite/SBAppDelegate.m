@@ -12,8 +12,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.users = [[Users alloc] init];
-	[self.users load];
+    // This may not be necessary, since it should get created earlier in awakeFromNib.
+    if (!self.users) {
+        self.users = [[Users alloc] init];
+        [self.users load];
+    }
 
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {

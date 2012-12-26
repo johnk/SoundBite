@@ -10,7 +10,7 @@
 #import "SBAppDelegate.h"
 
 
-@interface SBUsersViewController ()
+@interface SBUsersViewController ()<SBUserEditViewControllerDelegate>
 
 @property (nonatomic, retain) Users *users;
 
@@ -20,11 +20,17 @@
 @implementation SBUsersViewController
 
 // Used from a storyboard.
-
 - (void)awakeFromNib
 {
     SBAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	self.users = appDelegate.users;
+    
+    if (!appDelegate.users) {
+        self.users = [[Users alloc] init];
+        appDelegate.users = self.users;
+        [self.users load];
+    } else {
+        self.users = appDelegate.users;
+    }
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
@@ -33,35 +39,18 @@
     [super awakeFromNib];
 }
 
-// Not used from a storyboard.
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    /*
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-								  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-								  target:self
-								  action:@selector(addUser:)];
-	self.navigationItem.rightBarButtonItem = addButton;
-
-    self.userEditViewController = (SBUserEditViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-
-	SBAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	self.users = appDelegate.users;
-    */
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)addUser:(id)sender {
+    NSLog(@"??? addUser ???");
 	[self.users addNewUser];
 	NSUInteger newUserIndex = [self.users count] - 1;
 	NSLog(@"Adding new user with index %i", newUserIndex);
@@ -80,6 +69,9 @@
 	[self.users save];
 }
 
+- (void)userDidDismissUserEditViewController:(SBUserEditViewController *)userEditViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Table View
 
@@ -121,40 +113,44 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-    //    NSDate *object = _objects[indexPath.row];
-    //    self.detailViewController.detailItem = object;
-    //}
+    /*
+    NSLog(@"SBUsersViewController: didSelectRowAtIndexPath");
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        //NSDate *object = _objects[indexPath.row];
+        //self.detailViewController.detailItem = object;
+    }
 
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	NSUInteger row = [indexPath row];
+    
 	if (self.editing) {
-		//SBUserEditViewController *userEditViewController = [[SBUserEditViewController alloc] initWithNibName:@"UserEditView" bundle:nil];
 		//userEditViewController.user = (users.userArray)[row];
-		//userEditViewController.editMode = YES;
-		//[self.navigationController pushViewController:userEditViewController animated:YES];
+		userEditViewController.editMode = YES;
 	} else {
-		//MainMenuViewController *mainMenuViewController = [[MainMenuViewController alloc] initWithNibName:@"MainMenuView" bundle:nil];
 		//mainMenuViewController.user = (users.userArray)[row];
 		//[self.navigationController pushViewController:mainMenuViewController animated:YES];
 	}
+    */
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"SBUsersViewController: prepareForSegue");
-    
+{    
     if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
+        NSLog(@"SBUsersViewController: prepareForSegue ShowMainMenu");
         //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        //NSDate *object = _objects[indexPath.row];
-        //[[segue destinationViewController] setDetailItem:object];
-        [segue destinationViewController];
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
-        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        //NSDate *object = _objects[indexPath.row];
-        //[[segue destinationViewController] setDetailItem:object];
-        [segue destinationViewController];
-
+        NSLog(@"SBUsersViewController: prepareForSegue ShowAddUser");
+        
+        SBUserEditViewController *userEditViewController = segue.destinationViewController;
+        
+        [self.users addNewUser];
+        NSUInteger newUserIndex = [self.users count] - 1;
+        NSLog(@"Adding new user with index %i", newUserIndex);
+        
+        //userEditViewController.user = (self.users.userArray)[newUserIndex];
+        userEditViewController.editMode = NO;
+        userEditViewController.delegate = self;
     }
 }
 

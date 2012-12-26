@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+
+@protocol SBUserEditViewControllerDelegate;
 
 @interface SBUserEditViewController : UITableViewController
+
+@property (strong, nonatomic) User *user;
+@property BOOL editMode;
+@property BOOL validated;
+@property (weak, nonatomic) id<SBUserEditViewControllerDelegate>delegate;
+
+@end
+
+@protocol SBUserEditViewControllerDelegate <NSObject>
+
+- (void)userDidDismissUserEditViewController:(SBUserEditViewController *)userEditViewController;
 
 @end
