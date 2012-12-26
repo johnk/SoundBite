@@ -13,9 +13,7 @@
 
 @class SBDetailViewController;
 
-@interface SBUsersViewController : UITableViewController {
-    Users *users;
-}
+@interface SBUsersViewController : UITableViewController
 
 @property (strong, nonatomic) SBUserEditViewController *userEditViewController;
 

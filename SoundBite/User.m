@@ -3,17 +3,12 @@
 //  SoundBite
 //
 //  Created by John Keyes on 5/13/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2012 John Keyes. All rights reserved.
 //
 
 #import "User.h"
 
 @implementation User
-
-@synthesize userName;
-@synthesize password;
-@synthesize stack;
-@synthesize account;
 
 - (id)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *) newAccount {
 	if (!(self = [super init])) return nil;
@@ -28,10 +23,10 @@
 #pragma mark NSCoding Protocol Methods
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:userName forKey:@"UserName"]; 
-	[coder encodeObject:password forKey:@"Password"]; 
-	[coder encodeObject:stack forKey:@"Stack"]; 
-	[coder encodeObject:account forKey:@"Account"]; 
+	[coder encodeObject:self.userName forKey:@"UserName"];
+	[coder encodeObject:self.password forKey:@"Password"];
+	[coder encodeObject:self.stack forKey:@"Stack"];
+	[coder encodeObject:self.account forKey:@"Account"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {

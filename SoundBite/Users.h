@@ -3,16 +3,13 @@
 //  SoundBite
 //
 //  Created by John Keyes on 5/17/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2012 John Keyes. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "User.h"
 
-
-@interface Users : NSObject <NSCoding> {
-	NSMutableArray *userArray;
-}
+@interface Users : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 

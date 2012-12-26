@@ -3,18 +3,13 @@
 //  SoundBite
 //
 //  Created by John Keyes on 5/13/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2012 John Keyes. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "CWLSynthesizeSingleton.h"
 
-@interface User : NSObject <NSCoding> {
-	NSString *userName;
-	NSString *password;
-	NSString *stack;
-	NSString *account;
-}
+@interface User : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;

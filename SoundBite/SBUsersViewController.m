@@ -10,10 +10,22 @@
 #import "SBAppDelegate.h"
 
 
+@interface SBUsersViewController ()
+
+@property (nonatomic, retain) Users *users;
+
+@end
+
+
 @implementation SBUsersViewController
+
+// Used from a storyboard.
 
 - (void)awakeFromNib
 {
+    SBAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	self.users = appDelegate.users;
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -21,10 +33,13 @@
     [super awakeFromNib];
 }
 
+// Not used from a storyboard.
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    /*
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
@@ -36,7 +51,8 @@
     self.userEditViewController = (SBUserEditViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
 	SBAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	users = appDelegate.users;
+	self.users = appDelegate.users;
+    */
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,8 +62,8 @@
 }
 
 - (void)addUser:(id)sender {
-	[users addNewUser];
-	NSUInteger newUserIndex = [users count] - 1;
+	[self.users addNewUser];
+	NSUInteger newUserIndex = [self.users count] - 1;
 	NSLog(@"Adding new user with index %i", newUserIndex);
 	
     //TODO: Need to segue to the user edit view controller.
@@ -61,7 +77,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.tableView reloadData];	// in case a user was edited
-	[users save];
+	[self.users save];
 }
 
 
@@ -74,7 +90,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [users count];
+    return [self.users count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,7 +99,7 @@
     
 	NSUInteger row = [indexPath row];
     //[cell.imageView setImage:[UIImage imageNamed:@"user.png"]];
-    cell.textLabel.text = [(users.userArray)[row] userName];
+    cell.textLabel.text = [(self.users.userArray)[row] userName];
 	NSLog(@"cell %@", cell.textLabel);
     return cell;
 }
