@@ -142,13 +142,14 @@
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
         NSLog(@"SBUsersViewController: prepareForSegue ShowAddUser");
         
-        SBUserEditViewController *userEditViewController = segue.destinationViewController;
+        UINavigationController *navController = segue.destinationViewController;
+        SBUserEditViewController *userEditViewController = [[navController viewControllers] objectAtIndex:0];
         
         [self.users addNewUser];
         NSUInteger newUserIndex = [self.users count] - 1;
         NSLog(@"Adding new user with index %i", newUserIndex);
         
-        //userEditViewController.user = (self.users.userArray)[newUserIndex];
+        userEditViewController.user = (self.users.userArray)[newUserIndex];
         userEditViewController.editMode = NO;
         userEditViewController.delegate = self;
     }
