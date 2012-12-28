@@ -10,8 +10,7 @@
 #import "SBAppDelegate.h"
 
 
-//@interface SBUsersViewController ()<SBUserEditViewControllerDelegate>
-@interface SBUsersViewController ()
+@interface SBUsersViewController ()<SBUserEditViewControllerDelegate>
 
 @property (nonatomic, retain) Users *users;
 

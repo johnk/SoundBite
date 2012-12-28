@@ -98,21 +98,20 @@
         [alert show];
 	} else {
         NSLog(@"SBUserEditViewController: good login");
-
-        
         // Good login; can tell parent to dismiss the user detail page.
 
-        // TODO: Tell the parent view controller to dismiss us.
 		self.validated = YES;
-        
+        [self.delegate userDidDismissUserEditViewController:self];
 	}
 }
 
 - (IBAction)userCancelButton:(id)sender {
     NSLog(@"SBUserEditViewController: userCancelButton");
-
+    
     // TODO: Remove the user that was created.
-    // TODO: Tell the parent view controller to dismiss us.
+    
+    self.validated = NO;
+    [self.delegate userDidDismissUserEditViewController:self];
 }
 
 @end
