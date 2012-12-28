@@ -8,6 +8,7 @@
 
 #import "User.h"
 
+
 @implementation User
 
 - (id)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *) newAccount {
