@@ -135,15 +135,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
+{
+    UINavigationController *navController = segue.destinationViewController;
+
     if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
         NSLog(@"SBUsersViewController: prepareForSegue ShowMainMenu");
         //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
         NSLog(@"SBUsersViewController: prepareForSegue ShowAddUser");
         
-        UINavigationController *navController = segue.destinationViewController;
-        SBUserEditViewController *userEditViewController = [[navController viewControllers] objectAtIndex:0];
+        SBUserEditViewController *userEditViewController = (SBUserEditViewController *)[[navController viewControllers] objectAtIndex:0];
         
         [self.users addNewUser];
         NSUInteger newUserIndex = [self.users count] - 1;

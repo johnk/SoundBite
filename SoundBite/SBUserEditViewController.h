@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "SBSoap2.h"
 
 @protocol SBUserEditViewControllerDelegate;
 
@@ -17,6 +18,11 @@
 @property BOOL editMode;
 @property BOOL validated;
 @property (weak, nonatomic) id<SBUserEditViewControllerDelegate>delegate;
+
+@property (weak, nonatomic) IBOutlet UITextField *userNameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *stackField;
+@property (weak, nonatomic) IBOutlet UITextField *accountField;
 
 @end
 

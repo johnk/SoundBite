@@ -89,6 +89,21 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SS6-wP-BLB">
+                            <rect key="frame" x="0.0" y="378" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Test">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="validateUser:" destination="yfH-yw-jmq" eventType="touchUpInside" id="RXE-lp-OcO"/>
+                            </connections>
+                        </button>
                         <sections>
                             <tableViewSection headerTitle="User name" id="YE5-hI-yP6">
                                 <cells>
@@ -201,9 +216,23 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add User" id="6kV-NF-t1v">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="axl-Dn-7bw"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YUJ-px-hpR"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="axl-Dn-7bw">
+                            <connections>
+                                <action selector="userCancelButton:" destination="yfH-yw-jmq" id="Hzm-jr-gvJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YUJ-px-hpR">
+                            <connections>
+                                <action selector="userSaveButton:" destination="yfH-yw-jmq" id="p04-O9-l6s"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accountField" destination="QfC-lV-toI" id="v4U-hf-ewD"/>
+                        <outlet property="passwordField" destination="QGw-UQ-bv7" id="Aas-29-7dE"/>
+                        <outlet property="stackField" destination="R1h-8v-Edd" id="vKg-P7-fU6"/>
+                        <outlet property="userNameField" destination="4oO-bC-0Ht" id="cDh-T3-uNz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EB7-X7-bvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
