@@ -16,6 +16,7 @@
 - (void)load;
 - (NSUInteger)count;
 - (void)addNewUser;
+- (void)removeLastUser;
 - (void)save;
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;

@@ -49,20 +49,6 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)addUser:(id)sender {
-    NSLog(@"??? addUser ???");
-	[self.users addNewUser];
-	NSUInteger newUserIndex = [self.users count] - 1;
-	NSLog(@"Adding new user with index %i", newUserIndex);
-	
-    //TODO: Need to segue to the user edit view controller.
-    
-    //SBUserEditViewController *userEditViewController = [[SBUserEditViewController alloc] initWithNibName:@"UserEditView" bundle:nil];
-	//userEditViewController.user = (users.userArray)[newUserIndex];
-	//userEditViewController.editMode = NO;
-	//[self.navigationController pushViewController:userEditViewController animated:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.tableView reloadData];	// in case a user was edited
@@ -70,6 +56,11 @@
 }
 
 - (void)userDidDismissUserEditViewController:(SBUserEditViewController *)userEditViewController {
+    if (!userEditViewController.validated) {
+        // Remove the user slot we added, unless its an existing user.
+        if (!userEditViewController.editMode)
+            [self.users removeLastUser];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -90,7 +81,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UsersCell" forIndexPath:indexPath];
     
 	NSUInteger row = [indexPath row];
-    //[cell.imageView setImage:[UIImage imageNamed:@"user.png"]];
     cell.textLabel.text = [(self.users.userArray)[row] userName];
 	NSLog(@"cell %@", cell.textLabel);
     return cell;

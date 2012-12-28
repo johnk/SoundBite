@@ -31,6 +31,5 @@
 @protocol SBUserEditViewControllerDelegate <NSObject>
 
 - (void)userDidDismissUserEditViewController:(SBUserEditViewController *)userEditViewController;
-//- (void)isUserValid:(BOOL)valid;
 
 @end

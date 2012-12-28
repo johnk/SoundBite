@@ -42,6 +42,10 @@
 	[self.userArray addObject:newUser];
 }
 
+- (void)removeLastUser {
+	[self.userArray removeLastObject];
+}
+
 - (void)save {
 	NSLog(@"saving users");
 	NSMutableData *data = [[NSMutableData alloc] init];

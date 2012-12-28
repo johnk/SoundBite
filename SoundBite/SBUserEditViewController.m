@@ -84,6 +84,7 @@
 	UIAlertView *alert = nil;
     
     //TODO: This is incorrectly reporting invalid logins as valid.
+    //TODO: No error is reported if there is a connection error (e.g. bad stack name)
     
 	if (sbSoapReady.error) {
         
