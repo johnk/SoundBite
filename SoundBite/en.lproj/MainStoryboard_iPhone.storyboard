@@ -56,7 +56,7 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="Gdx-Bo-cg0" kind="push" identifier="ShowMainMenu" id="ODs-b7-qMB"/>
+                                    <segue destination="Rjc-6M-cNL" kind="push" identifier="ShowMainMenu" id="iJv-5o-FrL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="1636" y="-379"/>
         </scene>
-        <!--Table View Controller - SoundBite-->
+        <!--Main Menu View Controller - SoundBite-->
         <scene sceneID="Ebf-cH-Esj">
             <objects>
-                <tableViewController id="Rjc-6M-cNL" sceneMemberID="viewController">
+                <tableViewController id="Rjc-6M-cNL" customClass="SBMainMenuViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="UXC-qA-G4H">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -690,22 +690,6 @@
             <point key="canvasLocation" x="2290" y="1478"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="AOp-Z2-5g1">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="Gdx-Bo-cg0" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="BML-Ju-yIG"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2is-gR-Tbx">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Rjc-6M-cNL" kind="relationship" relationship="rootViewController" id="jfj-Ib-hOd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G2S-vD-6zq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1102" y="473"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="byx-gk-u8l">
             <objects>
                 <navigationController id="8j0-Dg-xsD" sceneMemberID="viewController">
@@ -732,6 +716,26 @@
         <image name="script.png" width="16" height="16"/>
         <image name="user.png" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SBMainMenuViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBMainMenuViewController.h"/>
+        </class>
+        <class className="SBUserEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUserEditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="accountField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="stackField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SBUsersViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUsersViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

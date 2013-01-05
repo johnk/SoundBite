@@ -117,11 +117,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+
     UINavigationController *navController = segue.destinationViewController;
 
     if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
-        NSLog(@"SBUsersViewController: prepareForSegue ShowMainMenu");
-        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
         NSLog(@"SBUsersViewController: prepareForSegue ShowAddUser");
         
