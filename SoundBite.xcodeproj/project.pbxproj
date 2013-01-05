@@ -16,6 +16,7 @@
 		5286A69D1698A3FE006EE453 /* SBCampaignsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5286A69C1698A3FE006EE453 /* SBCampaignsViewController.m */; };
 		5286A6A01698A41B006EE453 /* SBSubCampaignsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5286A69F1698A41B006EE453 /* SBSubCampaignsViewController.m */; };
 		5286A6A31698A43A006EE453 /* SBSubCampaignDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5286A6A21698A43A006EE453 /* SBSubCampaignDetailViewController.m */; };
+		5286A6A61698AABA006EE453 /* SBSystemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5286A6A51698AABA006EE453 /* SBSystemInfoViewController.m */; };
 		52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB21687506B004877E2 /* UIKit.framework */; };
 		52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB41687506B004877E2 /* Foundation.framework */; };
 		52CD1FB71687506C004877E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB61687506C004877E2 /* CoreGraphics.framework */; };
@@ -70,6 +71,8 @@
 		5286A69F1698A41B006EE453 /* SBSubCampaignsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSubCampaignsViewController.m; sourceTree = "<group>"; };
 		5286A6A11698A43A006EE453 /* SBSubCampaignDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSubCampaignDetailViewController.h; sourceTree = "<group>"; };
 		5286A6A21698A43A006EE453 /* SBSubCampaignDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSubCampaignDetailViewController.m; sourceTree = "<group>"; };
+		5286A6A41698AABA006EE453 /* SBSystemInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSystemInfoViewController.h; sourceTree = "<group>"; };
+		5286A6A51698AABA006EE453 /* SBSystemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSystemInfoViewController.m; sourceTree = "<group>"; };
 		52CD1FAE1687506B004877E2 /* SoundBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD1FB21687506B004877E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52CD1FB41687506B004877E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -186,6 +189,8 @@
 				5286A69F1698A41B006EE453 /* SBSubCampaignsViewController.m */,
 				5286A6A11698A43A006EE453 /* SBSubCampaignDetailViewController.h */,
 				5286A6A21698A43A006EE453 /* SBSubCampaignDetailViewController.m */,
+				5286A6A41698AABA006EE453 /* SBSystemInfoViewController.h */,
+				5286A6A51698AABA006EE453 /* SBSystemInfoViewController.m */,
 				52CD1FE216878EC3004877E2 /* graphics */,
 				52CD1FB91687506C004877E2 /* Supporting Files */,
 			);
@@ -351,6 +356,7 @@
 				5286A69D1698A3FE006EE453 /* SBCampaignsViewController.m in Sources */,
 				5286A6A01698A41B006EE453 /* SBSubCampaignsViewController.m in Sources */,
 				5286A6A31698A43A006EE453 /* SBSubCampaignDetailViewController.m in Sources */,
+				5286A6A61698AABA006EE453 /* SBSystemInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
