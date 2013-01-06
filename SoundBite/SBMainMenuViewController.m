@@ -60,15 +60,40 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	NSString *sectionHeader = [[NSString alloc] initWithFormat:@"%@ (%@)", self.user.account, self.user.stack];
+	return sectionHeader;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSUInteger row = [indexPath row];
+	if ((row == kCampaigns) || (row == kScripts) || (row == kLists) || (row == kInfo))
+		return indexPath;
+	else
+		return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    
+    if ([[segue identifier] isEqualToString:@"ShowCampaigns"]) {
+        SBCampaignsViewController *destViewController = segue.destinationViewController;
+        //destViewController.user = self.user;
+    } else if ([[segue identifier] isEqualToString:@"ShowScripts"]) {
+        SBScriptsViewController *destViewController = segue.destinationViewController;
+        destViewController.user = self.user;
+    } else if ([[segue identifier] isEqualToString:@"ShowLists"]) {
+        SBListsViewController *destViewController = segue.destinationViewController;
+        //destViewController.user = self.user;
+    } else if ([[segue identifier] isEqualToString:@"ShowSystemInfo"]) {
+        SBSystemInfoViewController *destViewController = segue.destinationViewController;
+        destViewController.user = self.user;
+    }
 }
 
 @end
