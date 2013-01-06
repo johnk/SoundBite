@@ -89,7 +89,7 @@
         destViewController.user = self.user;
     } else if ([[segue identifier] isEqualToString:@"ShowLists"]) {
         SBListsViewController *destViewController = segue.destinationViewController;
-        //destViewController.user = self.user;
+        destViewController.user = self.user;
     } else if ([[segue identifier] isEqualToString:@"ShowSystemInfo"]) {
         SBSystemInfoViewController *destViewController = segue.destinationViewController;
         destViewController.user = self.user;

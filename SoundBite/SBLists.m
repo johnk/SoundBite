@@ -76,7 +76,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
     return @" - ";
 }
 
-// Most lists don't have a description, since the UI doesn't provide for it.
 - (NSString *)descriptionForRow:(NSInteger)row {
 	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/Data[IsDeleted='false'][%d]/Description";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];

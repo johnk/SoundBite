@@ -12,10 +12,7 @@
 #import "SBSoap2.h"
 
 
-@interface SBScripts : NSObject {
-	SBSoap2 *sbSoap;
-    User *__unsafe_unretained currentUser;
-}
+@interface SBScripts : NSObject
 
 @property (nonatomic, strong) SBSoap2 *sbSoap;
 @property (nonatomic, unsafe_unretained) User *currentUser;
