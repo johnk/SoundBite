@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Users.h"
 #import "SBUserEditViewController.h"
+#import "SBMainMenuViewController.h"
 
 
 @class SBDetailViewController;
@@ -16,5 +17,6 @@
 @interface SBUsersViewController : UITableViewController
 
 @property (strong, nonatomic) SBUserEditViewController *userEditViewController;
+@property NSInteger currentUser;
 
 @end

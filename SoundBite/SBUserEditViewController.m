@@ -32,6 +32,7 @@
 		self.stackField.text = self.user.stack;
 		self.accountField.text = self.user.account;
 	} else {
+        //TODO: BUG The title is not getting set...
 		self.navigationItem.title = @"Add User";
 		self.userNameField.text = @"";
 		self.passwordField.text = @"";
@@ -84,7 +85,7 @@
 	UIAlertView *alert = nil;
     
     //TODO: This is incorrectly reporting invalid logins as valid.
-    //TODO: No error is reported if there is a connection error (e.g. bad stack name)
+    //TODO: No error is reported if there is a connection error (e.g. xbad stack name)
     
 	if (sbSoapReady.error) {
         
@@ -109,7 +110,7 @@
 - (IBAction)userCancelButton:(id)sender {
     NSLog(@"SBUserEditViewController: userCancelButton");
     
-    // TODO: Remove the user that was created.
+    // TODO: Remove the user that was created or undo changes.
     
     self.validated = NO;
     [self.delegate userDidDismissUserEditViewController:self];

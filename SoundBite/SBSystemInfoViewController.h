@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "SBSoap2.h"
 
 @interface SBSystemInfoViewController : UITableViewController
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) SBSoap2 *sbSoap;
+
+- (void)dataIsReady:(SBSoap2 *)sbSoap;
 
 @end

@@ -92,50 +92,49 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*
-    NSLog(@"SBUsersViewController: didSelectRowAtIndexPath");
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        //NSDate *object = _objects[indexPath.row];
-        //self.detailViewController.detailItem = object;
-    }
-
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	NSUInteger row = [indexPath row];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    NSLog(@"row = %d", [indexPath row]);
     
-	if (self.editing) {
-		//userEditViewController.user = (users.userArray)[row];
-		userEditViewController.editMode = YES;
-	} else {
-		//mainMenuViewController.user = (users.userArray)[row];
-		//[self.navigationController pushViewController:mainMenuViewController animated:YES];
-	}
-    */
+    self.currentUser = [indexPath row];
+    [self performSegueWithIdentifier:@"ShowMainMenu" sender:self];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    NSLog(@"row = %d", [indexPath row]);
+    
+    self.currentUser = [indexPath row];
+    [self performSegueWithIdentifier:@"ShowEditUser" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
 
-    UINavigationController *navController = segue.destinationViewController;
-
     if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        
-    } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
-        NSLog(@"SBUsersViewController: prepareForSegue ShowAddUser");
-        
-        SBUserEditViewController *userEditViewController = (SBUserEditViewController *)[[navController viewControllers] objectAtIndex:0];
-        
+        NSLog(@"going to main menu for user %i", self.currentUser);
+
+        SBMainMenuViewController *mainMenuViewController = segue.destinationViewController;
+		mainMenuViewController.user = (self.users.userArray)[self.currentUser];
+                
+    } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {        
+        SBUserEditViewController *userEditViewController = segue.destinationViewController;
         [self.users addNewUser];
-        NSUInteger newUserIndex = [self.users count] - 1;
-        NSLog(@"Adding new user with index %i", newUserIndex);
+        self.currentUser = [self.users count] - 1;
+        NSLog(@"adding new user with index %i", self.currentUser);
         
-        userEditViewController.user = (self.users.userArray)[newUserIndex];
+        userEditViewController.user = (self.users.userArray)[self.currentUser];
         userEditViewController.editMode = NO;
+        userEditViewController.delegate = self;
+        
+    } else if ([[segue identifier] isEqualToString:@"ShowEditUser"]) {
+        NSLog(@"editing user %d", self.currentUser);
+
+        SBUserEditViewController *userEditViewController = segue.destinationViewController;
+        userEditViewController.user = (self.users.userArray)[self.currentUser];
+        userEditViewController.editMode = YES;
         userEditViewController.delegate = self;
     }
 }
@@ -174,12 +173,6 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
-
-
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-
 
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {

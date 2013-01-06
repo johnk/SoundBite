@@ -6,9 +6,24 @@
 //  Copyright (c) 2013 John Keyes. All rights reserved.
 //
 
-#import "SBMainMenuViewController.h"
+#define kCampaigns	0
+#define kAgents     1
+#define kLists		2
+#define kScripts	3
+#define	kReports	4
+#define	kInfo		5
 
-@interface SBMainMenuViewController ()
+#import "SBMainMenuViewController.h"
+#import "SBCampaignsViewController.h"
+#import "SBScriptsViewController.h"
+#import "SBListsViewController.h"
+#import "SBSystemInfoViewController.h"
+
+
+@interface SBMainMenuViewController () {
+    NSArray *mainMenuItems;
+    UITableView *tv;
+}
 
 @end
 

@@ -26,13 +26,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.sbSoap = [[SBSoap2 alloc] init];
+	[self.sbSoap request:self.user requestTemplate:kshowSystemInfoRequestTemplate urlTemplate:kshowSystemInfoUrlTemplate delegate:self];
+	NSLog(@"Initiated SBSoap request.");
 }
+
+- (void)dataIsReady:(SBSoap2 *)sbSoapReady {
+	NSLog(@"Data is ready.");
+	if (sbSoapReady.error) {
+		NSString *msg = nil;
+		if (self.user.userName.length > 0)
+			msg = [[NSString alloc] initWithFormat:@"Can't authenticate %@ on stack %@.", self.user.userName, self.user.stack];
+		else
+			msg = @"Can't authenticate using the credentials provided.";
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login error" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		
+		[alert show];
+	} else {
+		NSLog(@"Reloading data in table.");
+		[self.tableView reloadData];
+	}
+}
+
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -44,78 +65,40 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+	NSString *xpath = @"/Envelope/Body/showSystemInfoResponse/return/Data";
+    NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
+    
+    NSLog(@"ShowSystmInfoViewController: %d sysinfo attributes", [nodes count]);
+    
+    //for (GDataXMLElement *node in nodes) {
+    //    NSLog(@"%@", node.stringValue);
+    //}
+    
+    return [nodes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"SystemInfoCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+        
+	NSUInteger row = [indexPath row];
+	
+	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/Data[%d]/Name", row+1];
+	NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
+    cell.textLabel.text = [nodes[0] stringValue];
+	//cell.nameLabel.text = [nodes[0] stringValue];
+	
+	xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/Data[%d]/Value", row+1];
+    nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
+    cell.detailTextLabel.text = [nodes[0] stringValue];
+	
     return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end
