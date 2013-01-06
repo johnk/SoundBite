@@ -83,7 +83,7 @@
     
     if ([[segue identifier] isEqualToString:@"ShowCampaigns"]) {
         SBCampaignsViewController *destViewController = segue.destinationViewController;
-        //destViewController.user = self.user;
+        destViewController.user = self.user;
     } else if ([[segue identifier] isEqualToString:@"ShowScripts"]) {
         SBScriptsViewController *destViewController = segue.destinationViewController;
         destViewController.user = self.user;

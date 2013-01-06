@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBSoap2.h"
+#import "SBCampaigns.h"
 
 @interface SBCampaignsViewController : UITableViewController
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) SBSoap2 *sbSoap;
+
+- (void)dataIsReady:(SBSoap2 *)sbSoap;
 
 @end

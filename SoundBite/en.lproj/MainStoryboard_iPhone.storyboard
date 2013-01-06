@@ -438,13 +438,13 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="lAg-aC-7rO" kind="push" identifier="ShowSubCampaigns" id="4rJ-La-5nI"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Campaigns" id="xDw-uP-15v"/>
-                    <connections>
-                        <segue destination="lAg-aC-7rO" kind="push" identifier="ShowSubCampaigns" id="s25-Qi-eqq"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQD-oq-C8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -480,7 +480,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="4Zs-8C-P7o" kind="push" identifier="ShowSubCampaignDetail" id="oIz-Bg-fB1"/>
+                                    <segue destination="4Zs-8C-P7o" kind="push" identifier="ShowSubCampaignDetail" id="Die-QP-sYz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -689,6 +689,8 @@
         <class className="SBUserEditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUserEditViewController.h"/>
             <relationships>
+                <relationship kind="action" name="userCancelButton:"/>
+                <relationship kind="action" name="userSaveButton:"/>
                 <relationship kind="outlet" name="accountField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="stackField" candidateClass="UITextField"/>
