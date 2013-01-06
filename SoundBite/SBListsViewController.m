@@ -78,4 +78,9 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	NSString *sectionHeader = [[NSString alloc] initWithFormat:@"%@ (%@)", self.user.account, self.user.stack];
+	return sectionHeader;
+}
+
 @end
