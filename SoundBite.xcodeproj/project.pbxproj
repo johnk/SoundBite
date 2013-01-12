@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520A43D3169E46E9001C70B4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 520A43D0169E46E9001C70B4 /* Icon@2x.png */; };
+		520A43D4169E46E9001C70B4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 520A43D1169E46E9001C70B4 /* Icon-72.png */; };
+		520A43D5169E46E9001C70B4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 520A43D2169E46E9001C70B4 /* Icon.png */; };
+		524804E616A1FE7600455A03 /* SBSubCampaignDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524804E516A1FE7600455A03 /* SBSubCampaignDetailCell.m */; };
+		524804EA16A1FF0000455A03 /* SBPassDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524804E916A1FF0000455A03 /* SBPassDetailCell.m */; };
 		526F69F41688EB5500D1D11E /* SBUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69F31688EB5500D1D11E /* SBUsersViewController.m */; };
 		526F69FB168A2F6100D1D11E /* SBUserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69FA168A2F6100D1D11E /* SBUserEditViewController.m */; };
 		526F69FE168A367900D1D11E /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F69FD168A367900D1D11E /* Users.m */; };
@@ -53,6 +58,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520A43D0169E46E9001C70B4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		520A43D1169E46E9001C70B4 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		520A43D2169E46E9001C70B4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		524804E416A1FE7600455A03 /* SBSubCampaignDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSubCampaignDetailCell.h; sourceTree = "<group>"; };
+		524804E516A1FE7600455A03 /* SBSubCampaignDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSubCampaignDetailCell.m; sourceTree = "<group>"; };
+		524804E816A1FF0000455A03 /* SBPassDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPassDetailCell.h; sourceTree = "<group>"; };
+		524804E916A1FF0000455A03 /* SBPassDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPassDetailCell.m; sourceTree = "<group>"; };
 		526F69F21688EB5500D1D11E /* SBUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUsersViewController.h; sourceTree = "<group>"; };
 		526F69F31688EB5500D1D11E /* SBUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBUsersViewController.m; sourceTree = "<group>"; };
 		526F69F9168A2F6100D1D11E /* SBUserEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBUserEditViewController.h; sourceTree = "<group>"; };
@@ -189,6 +201,10 @@
 				5286A69F1698A41B006EE453 /* SBSubCampaignsViewController.m */,
 				5286A6A11698A43A006EE453 /* SBSubCampaignDetailViewController.h */,
 				5286A6A21698A43A006EE453 /* SBSubCampaignDetailViewController.m */,
+				524804E416A1FE7600455A03 /* SBSubCampaignDetailCell.h */,
+				524804E516A1FE7600455A03 /* SBSubCampaignDetailCell.m */,
+				524804E816A1FF0000455A03 /* SBPassDetailCell.h */,
+				524804E916A1FF0000455A03 /* SBPassDetailCell.m */,
 				5286A6A41698AABA006EE453 /* SBSystemInfoViewController.h */,
 				5286A6A51698AABA006EE453 /* SBSystemInfoViewController.m */,
 				52CD1FE216878EC3004877E2 /* graphics */,
@@ -207,6 +223,9 @@
 				52CD1FC41687506C004877E2 /* Default.png */,
 				52CD1FC61687506C004877E2 /* Default@2x.png */,
 				52CD1FC81687506C004877E2 /* Default-568h@2x.png */,
+				520A43D0169E46E9001C70B4 /* Icon@2x.png */,
+				520A43D1169E46E9001C70B4 /* Icon-72.png */,
+				520A43D2169E46E9001C70B4 /* Icon.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -327,6 +346,9 @@
 				52CD1FFA168792F1004877E2 /* Pro Dots - iPad@2x.png in Resources */,
 				52CD1FFB168792F1004877E2 /* Pro Dots - iPhone.png in Resources */,
 				52CD1FFC168792F1004877E2 /* Pro Dots - iPhone@2x.png in Resources */,
+				520A43D3169E46E9001C70B4 /* Icon@2x.png in Resources */,
+				520A43D4169E46E9001C70B4 /* Icon-72.png in Resources */,
+				520A43D5169E46E9001C70B4 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +379,8 @@
 				5286A6A01698A41B006EE453 /* SBSubCampaignsViewController.m in Sources */,
 				5286A6A31698A43A006EE453 /* SBSubCampaignDetailViewController.m in Sources */,
 				5286A6A61698AABA006EE453 /* SBSystemInfoViewController.m in Sources */,
+				524804E616A1FE7600455A03 /* SBSubCampaignDetailCell.m in Sources */,
+				524804EA16A1FF0000455A03 /* SBPassDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

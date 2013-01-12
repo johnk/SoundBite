@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SBSubCampaigns.h"
 #import "User.h"
+#import "SBSubCampaignDetailCell.h"
+#import "SBPassDetailCell.h"
 
 @interface SBSubCampaignDetailViewController : UITableViewController
 

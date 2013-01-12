@@ -56,43 +56,140 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    // TODO: This will be one main section, plus one for the passes.
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    switch (section) {
+        case 0:
+            // SubCampaignDetailCell - 1 cell total
+            return 1;
+            break;
+        
+        case 1:
+            // PassDetailCell(s) - 1 cell per pass
+            // TODO: return the number of passes
+            return 3;
+            break;
+            
+        default:
+            break;
+    }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // UITableViewCell *cell;
+    float percentAttempted, percentDelivered;
     
-    // Configure the cell...
+    //SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"sdsdsd" forIndexPath:indexPath];
     
-    return cell;
+    if (indexPath.section == 0) {
+        
+        SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"SubCampaignDetailCell" forIndexPath:indexPath];
+        
+        cell.scStatus.text = @"hello";
+
+        NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
+        
+        
+        //cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
+        /*
+         double attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
+         double notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
+         double filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
+         double pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
+         double delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
+         double failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
+         
+         double available = delivered + failed + notAttempted;
+         */
+        /*
+         NSLog(@"attempted    =       %f", attempted);
+         NSLog(@"notAttempted =       %f", notAttempted);
+         NSLog(@"filtered     =       %f", filtered);
+         NSLog(@"pending      =       %f", pending);
+         NSLog(@"delivered    =       %f", delivered);
+         NSLog(@"failed       =       %f", failed);
+         NSLog(@"available    =       %f", available);
+         */
+        /*
+         if (available > 0) {
+         percentAttempted = (delivered + failed) / available;
+         percentDelivered = delivered / available;
+         } else {
+         percentAttempted = 0.0;
+         percentDelivered = 0.0;
+         }
+         
+         self.scPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
+         self.scPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
+         
+         [self.scPctAttemptedProgress setProgress:percentAttempted animated:YES];
+         [self.scPctDeliveredProgress setProgress:percentDelivered animated:YES];
+         
+         // http://stackoverflow.com/questions/2233824/how-to-add-commas-to-number-every-3-digits-in-objective-c
+         // http://stackoverflow.com/questions/169925/how-to-do-string-conversions-in-objective-c
+         
+         self.scAllContacts.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted + filtered)] numberStyle:NSNumberFormatterDecimalStyle];
+         
+         self.scFiltered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:filtered] numberStyle:NSNumberFormatterDecimalStyle];
+         
+         self.scAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
+         
+         self.scDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+         
+         self.scNotDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:failed] numberStyle:NSNumberFormatterDecimalStyle];
+         
+         self.scNotAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:notAttempted] numberStyle:NSNumberFormatterDecimalStyle];
+         */
+        return cell;
+        
+    } else if (indexPath.section == 1) {
+        // PassDetailCell(s) - 1 cell per pass
+        SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
+        
+        // TODO: Setup the cell information for the pass.
+        
+        return cell;
+    } 
+    
+    return nil;
+}
+
+// Not sure why this is needed if a custom cell height is set in the storyboard.
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+        return 280;
+    else
+        return 44;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
-}
+    
+    NSUInteger currentUser = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
 
-#pragma mark - Table view delegate
+    switch (section) {
+        case 0:
+            //self.campaignName.text = [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
+            return [[SBSubCampaigns sharedSBSubCampaigns] nameForRow:currentUser];
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+            //return @"sub-campaign name";
+            break;
+        
+        case 1:
+            return @"Passes";
+            
+        default:
+            break;
+    }
+    return nil;
+    // return [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
 }
 
 @end
