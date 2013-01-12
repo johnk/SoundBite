@@ -82,31 +82,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // UITableViewCell *cell;
     float percentAttempted, percentDelivered;
-    
-    //SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"sdsdsd" forIndexPath:indexPath];
-    
+
     if (indexPath.section == 0) {
-        
         SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"SubCampaignDetailCell" forIndexPath:indexPath];
         
-        cell.scStatus.text = @"hello";
-
         NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
         
+        cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
         
-        //cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
-        /*
-         double attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
-         double notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
-         double filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
-         double pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
-         double delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
-         double failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
-         
-         double available = delivered + failed + notAttempted;
-         */
+        double attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
+        double notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
+        double filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
+        double pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
+        double delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
+        double failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
+        double available = delivered + failed + notAttempted;
+
         /*
          NSLog(@"attempted    =       %f", attempted);
          NSLog(@"notAttempted =       %f", notAttempted);
@@ -116,40 +108,41 @@
          NSLog(@"failed       =       %f", failed);
          NSLog(@"available    =       %f", available);
          */
-        /*
-         if (available > 0) {
-         percentAttempted = (delivered + failed) / available;
-         percentDelivered = delivered / available;
-         } else {
-         percentAttempted = 0.0;
-         percentDelivered = 0.0;
-         }
+        
+        if (available > 0) {
+            percentAttempted = (delivered + failed) / available;
+            percentDelivered = delivered / available;
+        } else {
+            percentAttempted = 0.0;
+            percentDelivered = 0.0;
+        }
          
-         self.scPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
-         self.scPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
+        cell.scPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
+        cell.scPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
          
-         [self.scPctAttemptedProgress setProgress:percentAttempted animated:YES];
-         [self.scPctDeliveredProgress setProgress:percentDelivered animated:YES];
+        [cell.scProgressAttempted setProgress:percentAttempted animated:YES];
+        [cell.scProgressDelivered setProgress:percentDelivered animated:YES];
          
-         // http://stackoverflow.com/questions/2233824/how-to-add-commas-to-number-every-3-digits-in-objective-c
-         // http://stackoverflow.com/questions/169925/how-to-do-string-conversions-in-objective-c
+        // http://stackoverflow.com/questions/2233824/how-to-add-commas-to-number-every-3-digits-in-objective-c
+        // http://stackoverflow.com/questions/169925/how-to-do-string-conversions-in-objective-c
          
-         self.scAllContacts.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted + filtered)] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scAllContacts.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted + filtered)] numberStyle:NSNumberFormatterDecimalStyle];
          
-         self.scFiltered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:filtered] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scFiltered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:filtered] numberStyle:NSNumberFormatterDecimalStyle];
          
-         self.scAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
          
-         self.scDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
          
-         self.scNotDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:failed] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scNotDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:failed] numberStyle:NSNumberFormatterDecimalStyle];
          
-         self.scNotAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:notAttempted] numberStyle:NSNumberFormatterDecimalStyle];
-         */
+        cell.scNotAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:notAttempted] numberStyle:NSNumberFormatterDecimalStyle];
+
         return cell;
         
     } else if (indexPath.section == 1) {
         // PassDetailCell(s) - 1 cell per pass
+        
         SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
         
         // TODO: Setup the cell information for the pass.
