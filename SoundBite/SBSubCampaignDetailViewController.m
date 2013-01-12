@@ -26,6 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.refreshSCTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(reloadSC:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.refreshSCTimer forMode:NSRunLoopCommonModes];
 }
 
 - (void)dataIsReady:(SBSoap2 *)sbSoapReady {
@@ -42,7 +45,7 @@
 		[alert show];
 	} else {
 		NSLog(@"Reloading SubCampaign data in table");
-		//[self loadSCDetailView];
+        [self.tableView reloadData];
 	}
 }
 
@@ -50,6 +53,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"invalidate timer");
+    [self.refreshSCTimer invalidate];
 }
 
 #pragma mark - Table view data source
@@ -91,24 +100,14 @@
         
         cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
         
-        double attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
+        //double attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
         double notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
         double filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
-        double pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
+        //double pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
         double delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
         double failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
         double available = delivered + failed + notAttempted;
 
-        /*
-         NSLog(@"attempted    =       %f", attempted);
-         NSLog(@"notAttempted =       %f", notAttempted);
-         NSLog(@"filtered     =       %f", filtered);
-         NSLog(@"pending      =       %f", pending);
-         NSLog(@"delivered    =       %f", delivered);
-         NSLog(@"failed       =       %f", failed);
-         NSLog(@"available    =       %f", available);
-         */
-        
         if (available > 0) {
             percentAttempted = (delivered + failed) / available;
             percentDelivered = delivered / available;
@@ -154,9 +153,7 @@
 }
 
 // Not sure why this is needed if a custom cell height is set in the storyboard.
-- (CGFloat)tableView:(UITableView *)tableView
-heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0)
         return 280;
     else
@@ -183,6 +180,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     }
     return nil;
     // return [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
+}
+
+- (IBAction)reloadSC:(id)sender {
+	NSLog(@"SubCampaignDetailViewController: reloadSC");
+    
+    // self.scStatus.textColor = [UIColor redColor];    
+    [[SBSubCampaigns sharedSBSubCampaigns] loadForUser:[[SBSubCampaigns sharedSBSubCampaigns] currentUser] withDelegate:self];
 }
 
 @end

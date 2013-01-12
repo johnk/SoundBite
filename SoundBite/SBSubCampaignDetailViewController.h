@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) SBSoap2 *sbSoap;
+@property (nonatomic, strong) NSTimer *refreshSCTimer;
 
 - (void)dataIsReady:(SBSoap2 *)sbSoap;
 

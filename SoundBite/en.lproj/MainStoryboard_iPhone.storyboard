@@ -727,7 +727,13 @@
                             <outlet property="delegate" destination="4Zs-8C-P7o" id="cCq-ep-OeK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sub-campaign" id="8hj-RP-Ixf"/>
+                    <navigationItem key="navigationItem" title="Sub-campaign" id="8hj-RP-Ixf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zWh-6e-0Me">
+                            <connections>
+                                <action selector="reloadSC:" destination="4Zs-8C-P7o" id="8Ql-lC-7Ya"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLj-eZ-ykG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -863,6 +869,68 @@
         <image name="script.png" width="16" height="16"/>
         <image name="user.png" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SBCampaignsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBCampaignsViewController.h"/>
+        </class>
+        <class className="SBListsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBListsViewController.h"/>
+        </class>
+        <class className="SBMainMenuViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBMainMenuViewController.h"/>
+        </class>
+        <class className="SBPassDetailCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBPassDetailCell.h"/>
+        </class>
+        <class className="SBScriptsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBScriptsViewController.h"/>
+        </class>
+        <class className="SBSubCampaignDetailCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSubCampaignDetailCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scAllContacts" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scAvailable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scDelivered" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scFiltered" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scNotAttempted" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scNotDelivered" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scPctAttempted" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scPctDelivered" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scProgressAttempted" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="scProgressDelivered" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="scStatus" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SBSubCampaignDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSubCampaignDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="reloadSC:"/>
+            </relationships>
+        </class>
+        <class className="SBSubCampaignsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSubCampaignsViewController.h"/>
+        </class>
+        <class className="SBSystemInfoViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSystemInfoViewController.h"/>
+        </class>
+        <class className="SBUserEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUserEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="userCancelButton:"/>
+                <relationship kind="action" name="userSaveButton:"/>
+                <relationship kind="outlet" name="accountField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="stackField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SBUsersViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUsersViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
