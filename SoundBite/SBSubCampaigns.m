@@ -164,9 +164,9 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
-    NSInteger channelType = [nodes[0] integerValue];
-    NSLog(@"pass channel: %d", channelType);
-    return channelType;
+    NSString *channelType = [nodes[0] stringValue];
+    NSLog(@"pass channel: %d", channelType.integerValue);
+    return channelType.integerValue;
 }
 
 

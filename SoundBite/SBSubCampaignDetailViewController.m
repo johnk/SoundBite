@@ -146,10 +146,35 @@
         // PassDetailCell(s) - 1 cell per pass
         
         SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
-        
-        // TODO: Setup the cell information for the pass.
                 
         cell.passName.text = [[SBSubCampaigns sharedSBSubCampaigns] passNameForSub:row pass:indexPath.row];
+        
+        NSInteger channelType = [[SBSubCampaigns sharedSBSubCampaigns] passChannelForSub:row pass:indexPath.row];
+        
+        NSString *channelImageName;
+        
+        switch (channelType) {
+            case 1:
+                // voice
+                channelImageName = @"66-microphone.png";
+                break;
+            case 2:
+                // email
+                channelImageName = @"18-envelope.png";
+                break;
+            case 3:
+                // text
+                channelImageName = @"32-iphone.png";
+                break;
+            default:
+                // unknown
+                channelImageName = @"22-skull-n-bones.png";
+                break;
+        }
+    
+        [cell.imageView setImage:[UIImage imageNamed:channelImageName]];
+        
+        // TODO: set the image, etc...
 
         return cell;
     } 
