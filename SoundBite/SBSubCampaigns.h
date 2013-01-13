@@ -28,6 +28,7 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 
 - (void)loadForUser:(User *)user withDelegate:(id)delegate;
 - (NSInteger)count;
+- (NSInteger)countPassesForSubCampaignInRow:(NSInteger)row;
 
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)statusForRow:(NSInteger)row;

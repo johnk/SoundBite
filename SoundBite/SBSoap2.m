@@ -121,7 +121,7 @@
 		// remove the namespaces
 		NSString *theXML = [self removeXMLNamespaces:theXMLNS];
         
-        //NSLog(@"XML: %@", theXML);
+        NSLog(@"XML: %@", theXML);
 
 		NSData *xmlData = [[NSData alloc] initWithData:[theXML dataUsingEncoding:NSUTF8StringEncoding]];
 		

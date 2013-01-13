@@ -55,6 +55,9 @@ Get all the Inbound sub names for a campaign
 /Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='baldemo' and SubCampaign/Type='Inbound']/SubCampaign/ExternalId
 
  NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@']/SubCampaign/ExternalId";
+ 
+Get the nth pass for the mth sub-campaign of the campaign named 'demo'
+/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='demo'][m]/SubCampaign/Passes[n]
 
 */
 
@@ -63,12 +66,21 @@ Get all the Inbound sub names for a campaign
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign];
     NSLog(@"SBSubCampaigns xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBSubCampaigns: %d subcampaigns", [nodes count]);    
+    NSLog(@"SBSubCampaigns: %d subcampaigns", [nodes count]);
     /*
      for (GDataXMLElement *node in nodes) {
      NSLog(@"%@", node.stringValue);
-     } 
+     }
      */
+    return [nodes count];
+}
+
+- (NSInteger)countPassesForSubCampaignInRow:(NSInteger)row {
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
+    NSLog(@"SBSubCampaigns xpath: %@", xpath);
+    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
+    NSLog(@"SBSubCampaigns: %d passes", [nodes count]);
     return [nodes count];
 }
 

@@ -26,7 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    self.refreshButtonColor = [self.refreshButton tintColor];
+
     self.refreshSCTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(reloadSC:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.refreshSCTimer forMode:NSRunLoopCommonModes];
 }
@@ -46,6 +48,7 @@
 	} else {
 		NSLog(@"Reloading SubCampaign data in table");
         [self.tableView reloadData];
+        [self.refreshButton setTintColor:self.refreshButtonColor];
 	}
 }
 
@@ -78,13 +81,12 @@
             break;
         
         case 1:
+        {
             // PassDetailCell(s) - 1 cell per pass
-            // TODO: return the number of passes
-            return 3;
-            break;
-            
-        default:
-            break;
+            NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
+            NSUInteger passCount = [[SBSubCampaigns sharedSBSubCampaigns] countPassesForSubCampaignInRow:row];
+            return passCount;
+        }
     }
     return 0;
 }
@@ -184,8 +186,8 @@
 
 - (IBAction)reloadSC:(id)sender {
 	NSLog(@"SubCampaignDetailViewController: reloadSC");
-    
-    // self.scStatus.textColor = [UIColor redColor];    
+    [self.refreshButton setTintColor:[UIColor darkGrayColor]];
+    // self.scStatus.textColor = [UIColor redColor];
     [[SBSubCampaigns sharedSBSubCampaigns] loadForUser:[[SBSubCampaigns sharedSBSubCampaigns] currentUser] withDelegate:self];
 }
 
