@@ -75,15 +75,6 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     return [nodes count];
 }
 
-- (NSInteger)countPassesForSubCampaignInRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes";
-    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
-    NSLog(@"SBSubCampaigns xpath: %@", xpath);
-    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBSubCampaigns: %d passes", [nodes count]);
-    return [nodes count];
-}
-
 - (NSString *)nameForRow:(NSInteger)row {
  	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/ExternalId", self.currentCampaign, row+1];
     NSLog(@"xpath: %@", xpath);
@@ -140,6 +131,45 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
 }
+
+// Passes
+//
+
+- (NSInteger)countPassesForSub:(NSInteger)row {
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
+    NSLog(@"SBSubCampaigns xpath: %@", xpath);
+    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
+    NSLog(@"SBSubCampaigns: %d passes", [nodes count]);
+    return [nodes count];
+}
+
+- (NSString *)passNameForSub:(NSInteger)row pass:(NSInteger)pass {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes[%d]/Name";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
+    NSLog(@"xpath: %@", xpath);
+    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
+    NSLog(@"pass name: %@", [nodes[0] stringValue]);
+    return [nodes[0] stringValue];
+}
+
+// Returns an integer representing channel type
+- (NSInteger)passChannelForSub:(NSInteger)row pass:(NSInteger)pass {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes[%d]/Channel";
+
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
+    NSLog(@"xpath: %@", xpath);
+    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
+    NSInteger channelType = [nodes[0] integerValue];
+    NSLog(@"pass channel: %d", channelType);
+    return channelType;
+}
+
+
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"current user: %@", self.currentUser];

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SBPassDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *passName;
+@property (weak, nonatomic) IBOutlet UIImageView *passTypeImage;
 
 @end

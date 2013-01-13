@@ -68,7 +68,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // TODO: This will be one main section, plus one for the passes.
+    // One main section, plus one for the passes.
     return 2;
 }
 
@@ -84,7 +84,7 @@
         {
             // PassDetailCell(s) - 1 cell per pass
             NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
-            NSUInteger passCount = [[SBSubCampaigns sharedSBSubCampaigns] countPassesForSubCampaignInRow:row];
+            NSUInteger passCount = [[SBSubCampaigns sharedSBSubCampaigns] countPassesForSub:row];
             return passCount;
         }
     }
@@ -95,10 +95,11 @@
 {
     float percentAttempted, percentDelivered;
 
+    NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
+
     if (indexPath.section == 0) {
         SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"SubCampaignDetailCell" forIndexPath:indexPath];
         
-        NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
         
         cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
         
@@ -147,7 +148,9 @@
         SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
         
         // TODO: Setup the cell information for the pass.
-        
+                
+        cell.passName.text = [[SBSubCampaigns sharedSBSubCampaigns] passNameForSub:row pass:indexPath.row];
+
         return cell;
     } 
     
@@ -156,10 +159,11 @@
 
 // Not sure why this is needed if a custom cell height is set in the storyboard.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0)
+    
+    if (indexPath.section == 0)
         return 280;
     else
-        return 44;
+        return 84;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -170,13 +174,15 @@
         case 0:
             //self.campaignName.text = [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
             return [[SBSubCampaigns sharedSBSubCampaigns] nameForRow:currentUser];
-
-            //return @"sub-campaign name";
             break;
         
         case 1:
-            return @"Passes";
-            
+        {
+            NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
+            NSUInteger passCount = [[SBSubCampaigns sharedSBSubCampaigns] countPassesForSub:row];
+            NSString *passHeader = [NSString stringWithFormat:@"Passes (%d)", passCount];
+            return passHeader;
+        }
         default:
             break;
     }
