@@ -40,7 +40,7 @@
                                     <rect key="frame" x="10" y="1" width="267" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="phq-AM-6qj">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="phq-AM-6qj">
                                             <rect key="frame" x="36" y="0.0" width="221" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -118,7 +118,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="must be a web services user" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4oO-bC-0Ht">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="must be a web services user" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4oO-bC-0Ht">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="1wj-5y-Af9"/>
                                                         <constraint firstAttribute="width" constant="275" id="NoF-0M-hS1"/>
@@ -151,7 +151,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="pNr-1V-KMI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -542,10 +542,10 @@
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-3m-GHx">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="68J-6Z-CJv"/>
+                                                <constraint firstAttribute="height" constant="21" id="mJo-GA-oIK"/>
                                                 <constraint firstAttribute="width" constant="114" id="o8y-52-i6Y"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -719,25 +719,28 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="passname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jW-qB-C7m">
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Ng6-4E-hzy"/>
+                                                <constraint firstAttribute="width" constant="242" id="caq-wm-9Zn"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="z6Y-p3-4mh">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="Mqu-QW-Rt9"/>
-                                                <constraint firstAttribute="width" constant="45" id="nxB-A8-QR9"/>
+                                                <constraint firstAttribute="height" constant="22" id="730-we-x6R"/>
+                                                <constraint firstAttribute="width" constant="24" id="xqN-0k-suV"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="4jW-qB-C7m" firstAttribute="top" secondItem="lh1-mo-WYE" secondAttribute="top" type="default" id="Cgf-sJ-OCx"/>
-                                    <constraint firstItem="4jW-qB-C7m" firstAttribute="leading" secondItem="lh1-mo-WYE" secondAttribute="leading" constant="20" type="default" id="W0G-xS-lkn"/>
-                                    <constraint firstItem="z6Y-p3-4mh" firstAttribute="leading" secondItem="lh1-mo-WYE" secondAttribute="leading" constant="20" type="default" id="aVT-jc-98t"/>
-                                    <constraint firstItem="z6Y-p3-4mh" firstAttribute="top" secondItem="4jW-qB-C7m" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gUh-jp-vzG"/>
-                                    <constraint firstAttribute="trailing" secondItem="4jW-qB-C7m" secondAttribute="trailing" constant="20" type="default" id="jHV-sU-PEt"/>
+                                    <constraint firstItem="z6Y-p3-4mh" firstAttribute="leading" secondItem="lh1-mo-WYE" secondAttribute="leading" constant="20" type="default" id="3bi-Kq-0SN"/>
+                                    <constraint firstAttribute="trailing" secondItem="4jW-qB-C7m" secondAttribute="trailing" constant="20" type="default" id="Dln-Lr-mSf"/>
+                                    <constraint firstItem="z6Y-p3-4mh" firstAttribute="top" secondItem="lh1-mo-WYE" secondAttribute="top" constant="9" id="O9T-NJ-Sif"/>
+                                    <constraint firstItem="4jW-qB-C7m" firstAttribute="top" secondItem="z6Y-p3-4mh" secondAttribute="top" type="default" id="dLh-Cq-oG5"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="passName" destination="4jW-qB-C7m" id="045-yR-1LY"/>
@@ -896,73 +899,6 @@
         <image name="script.png" width="16" height="16"/>
         <image name="user.png" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SBCampaignsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBCampaignsViewController.h"/>
-        </class>
-        <class className="SBListsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBListsViewController.h"/>
-        </class>
-        <class className="SBMainMenuViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBMainMenuViewController.h"/>
-        </class>
-        <class className="SBPassDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBPassDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="passName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passTypeImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SBScriptsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBScriptsViewController.h"/>
-        </class>
-        <class className="SBSubCampaignDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSubCampaignDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scAllContacts" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scAvailable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scDelivered" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scFiltered" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scNotAttempted" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scNotDelivered" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scPctAttempted" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scPctDelivered" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scProgressAttempted" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="scProgressDelivered" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="scStatus" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SBSubCampaignDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSubCampaignDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="reloadSC:"/>
-                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="SBSubCampaignsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSubCampaignsViewController.h"/>
-        </class>
-        <class className="SBSystemInfoViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBSystemInfoViewController.h"/>
-        </class>
-        <class className="SBUserEditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUserEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="userCancelButton:"/>
-                <relationship kind="action" name="userSaveButton:"/>
-                <relationship kind="outlet" name="accountField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="stackField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SBUsersViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBUsersViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

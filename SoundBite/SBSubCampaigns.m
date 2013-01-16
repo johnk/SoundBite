@@ -169,7 +169,59 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     return channelType.integerValue;
 }
 
+- (NSString *)passStatusForSub:(NSInteger)row pass:(NSInteger)pass {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/PassStates[%d]/State";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
+    NSLog(@"xpath: %@", xpath);
+    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
+    NSLog(@"pass status: %@", [nodes[0] stringValue]);
+    return [nodes[0] stringValue];
+}
 
+// Return a dictionary of attributes for the pass
+- (NSDictionary *)getAttributesForSub:(NSInteger)row pass:(NSInteger)pass {
+
+	// /Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='multichannel'][1]/PassStates[1]/Attributes
+	// <Attributes>
+    //     <Name>attemptedCount</Name>
+    //     <Value>3611</Value>
+    // </Attributes>
+	//
+	// See example code: http://www.raywenderlich.com/725/how-to-read-and-write-xml-documents-with-gdataxml
+	
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/PassStates[%d]/Attributes";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
+    NSLog(@"xpath: %@", xpath);
+    NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
+
+	NSLog(@"Found %d nodes:", [nodes count]);
+	for (GDataXMLElement *node in nodes) {
+		NSLog(@"%@", node.stringValue);
+		
+		NSString *name;
+		NSInteger *value;
+
+		// Name
+		NSArray *names = [node elementsForName:@"Name"];
+		if (names.count > 0) {
+			GDataXMLElement *firstName = (GDataXMLElement *) [names objectAtIndex:0];
+			name = firstName.stringValue;
+		} else continue;
+
+		// Value
+		NSArray *values = [partyMember elementsForName:@"Value"];
+		if (values.count > 0) {
+			GDataXMLElement *firstValue = (GDataXMLElement *) [values objectAtIndex:0];
+			value = firstValue.stringValue.intValue;
+		} else continue;
+		
+		[dict setObject:value forKey:name];
+	}   
+    return dict;
+}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"current user: %@", self.currentUser];

@@ -27,8 +27,10 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 //+ (SBSubCampaigns *)sharedSBSubCampaigns;
 
 - (void)loadForUser:(User *)user withDelegate:(id)delegate;
-- (NSInteger)count;
 
+// Methods for sub-campaign info
+
+- (NSInteger)count;
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)statusForRow:(NSInteger)row;
 - (NSString *)attemptedCountForRow:(NSInteger)row;
@@ -37,11 +39,14 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 - (NSString *)pendingCountForRow:(NSInteger)row;
 - (NSString *)deliveredCountForRow:(NSInteger)row;
 - (NSString *)failedCountForRow:(NSInteger)row;
-//- (void)dataIsReady:(SBSoap2 *)sbSoapReady;
+
+// Methods for pass info
 
 - (NSInteger)countPassesForSub:(NSInteger)row;
 - (NSString *)passNameForSub:(NSInteger)row pass:(NSInteger)pass;
 - (NSInteger)passChannelForSub:(NSInteger)row pass:(NSInteger)pass;
+- (NSString *)passStatusForSub:(NSInteger)row pass:(NSInteger)pass;
+- (NSDictionary *)getAttributesForSub:(NSInteger)row pass:(NSInteger)pass;
 
 - (NSString *)description;
 

@@ -7,6 +7,7 @@
 //
 
 #import "SBSubCampaignDetailViewController.h"
+#import "ChannelTypes.h"
 
 @interface SBSubCampaignDetailViewController ()
 
@@ -94,6 +95,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float percentAttempted, percentDelivered;
+	double notAttempted, filtered, delivered, failed, available;
+	//double attempted, pending;
 
     NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
 
@@ -103,13 +106,13 @@
         
         cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
         
-        //double attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
-        double notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
-        double filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
-        //double pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
-        double delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
-        double failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
-        double available = delivered + failed + notAttempted;
+        //attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
+        notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
+        filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
+        //pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
+        delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
+        failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
+        available = delivered + failed + notAttempted;
 
         if (available > 0) {
             percentAttempted = (delivered + failed) / available;
@@ -146,40 +149,99 @@
         // PassDetailCell(s) - 1 cell per pass
         
         SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
-                
-        cell.passName.text = [[SBSubCampaigns sharedSBSubCampaigns] passNameForSub:row pass:indexPath.row];
+        
+        NSString *passName = [[SBSubCampaigns sharedSBSubCampaigns] passNameForSub:row pass:indexPath.row];
+        NSString *passStatus = [[SBSubCampaigns sharedSBSubCampaigns] passStatusForSub:row pass:indexPath.row];
+        cell.passName.text = [NSString stringWithFormat:@"%@ (%@)", passName, passStatus];
         
         NSInteger channelType = [[SBSubCampaigns sharedSBSubCampaigns] passChannelForSub:row pass:indexPath.row];
-        
-        NSString *channelImageName;
-        
-        switch (channelType) {
-            case 1:
-                // voice
-                channelImageName = @"66-microphone.png";
-                break;
-            case 2:
-                // email
-                channelImageName = @"18-envelope.png";
-                break;
-            case 3:
-                // text
-                channelImageName = @"32-iphone.png";
-                break;
-            default:
-                // unknown
-                channelImageName = @"22-skull-n-bones.png";
-                break;
-        }
-    
-        [cell.imageView setImage:[UIImage imageNamed:channelImageName]];
-        
-        // TODO: set the image, etc...
+		[cell.passTypeImage setImage:[UIImage imageNamed:[self iconFileForChannelType:(NSInteger)channelType]]];
+       
+        NSDictionary *dict = [[SBSubCampaigns sharedSBSubCampaigns] getAttributesForSub:row pass:indexPath.row];
 
+		// The available attributes are:
+		
+		// attemptedCount
+		// deliveredCount
+		// failedCount
+		// pendingCount
+		// filteredCount
+		// notAttemptedCount
+		
+		// dcHandledLast15
+		// dcAverageTalkTime
+		// adjustSLA
+		// dcFailedLast15
+		// dcFailed
+		// dcHandled
+		// activeCount
+		// dcAverageTalkTimeLast15
+		// attemptedCountLast15
+		// afterContactWorkCount
+		// thisHourContacts
+		// nextHourContacts
+		// futureContacts
+
+		notAttempted = [dict objectForKey:notAttemptedCount];
+        filtered = [dict objectForKey:filteredCount];
+        delivered = [dict objectForKey:deliveredCount];
+        failed = [dict objectForKey:failedCount];
+        available = delivered + failed + notAttempted;
+
+        if (available > 0) {
+            percentAttempted = (delivered + failed) / available;
+            percentDelivered = delivered / available;
+        } else {
+            percentAttempted = 0.0;
+            percentDelivered = 0.0;
+        }
+
+        cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
+		
+        cell.passPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
+        [cell.passProgressAttempted setProgress:percentAttempted animated:YES];
+		cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed)] numberStyle:NSNumberFormatterDecimalStyle];
+
+        cell.passPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
+        [cell.passProgressDelivered setProgress:percentDelivered animated:YES];        
+        cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+         
         return cell;
     } 
     
     return nil;
+}
+
+- (NSString *)iconFileForChannelType:(NSInteger)channelType {
+	NSString *channelImageName;
+	
+	switch (channelType) {
+		case CHANNEL_TYPE_VOICE:
+			channelImageName = CHANNEL_ICON_VOICE;
+			break;
+		case CHANNEL_TYPE_EMAIL:
+			channelImageName = CHANNEL_ICON_EMAIL;
+			break;
+		case CHANNEL_TYPE_TEXT:
+			channelImageName = CHANNEL_ICON_TEXT;
+			break;
+		case CHANNEL_TYPE_DIALER:
+			channelImageName = CHANNEL_ICON_DIALER;
+			break;
+		case CHANNEL_TYPE_PREVIEW:
+			channelImageName = CHANNEL_ICON_PREVIEW;
+			break;
+		case CHANNEL_TYPE_MANUAL:
+			channelImageName = CHANNEL_ICON_MANUAL;
+			break;
+		case CHANNEL_TYPE_WEB:
+			channelImageName = CHANNEL_ICON_WEB;
+			break;
+		default:
+			channelImageName = CHANNEL_ICON_NONE;
+			break;
+	}
+	return channelImageName;
 }
 
 // Not sure why this is needed if a custom cell height is set in the storyboard.
