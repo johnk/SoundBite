@@ -182,10 +182,10 @@
 		// nextHourContacts
 		// futureContacts
 
-		notAttempted = [dict objectForKey:notAttemptedCount];
-        filtered = [dict objectForKey:filteredCount];
-        delivered = [dict objectForKey:deliveredCount];
-        failed = [dict objectForKey:failedCount];
+		notAttempted = [[dict objectForKey:@"notAttemptedCount"] doubleValue];
+        filtered = [[dict objectForKey:@"filteredCount"] doubleValue];
+        delivered = [[dict objectForKey:@"deliveredCount"] doubleValue];
+        failed = [[dict objectForKey:@"failedCount"] doubleValue];
         available = delivered + failed + notAttempted;
 
         if (available > 0) {
@@ -196,15 +196,15 @@
             percentDelivered = 0.0;
         }
 
-        cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
+        //cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
 		
-        cell.passPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
-        [cell.passProgressAttempted setProgress:percentAttempted animated:YES];
-		cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed)] numberStyle:NSNumberFormatterDecimalStyle];
+        //cell.passPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
+        //[cell.passProgressAttempted setProgress:percentAttempted animated:YES];
+		//cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed)] numberStyle:NSNumberFormatterDecimalStyle];
 
-        cell.passPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
-        [cell.passProgressDelivered setProgress:percentDelivered animated:YES];        
-        cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+        //cell.passPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
+        //[cell.passProgressDelivered setProgress:percentDelivered animated:YES];
+        //cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
          
         return cell;
     } 

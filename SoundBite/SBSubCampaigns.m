@@ -202,7 +202,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 		NSLog(@"%@", node.stringValue);
 		
 		NSString *name;
-		NSInteger *value;
+		NSString *value;
 
 		// Name
 		NSArray *names = [node elementsForName:@"Name"];
@@ -212,10 +212,10 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 		} else continue;
 
 		// Value
-		NSArray *values = [partyMember elementsForName:@"Value"];
+		NSArray *values = [node elementsForName:@"Value"];
 		if (values.count > 0) {
 			GDataXMLElement *firstValue = (GDataXMLElement *) [values objectAtIndex:0];
-			value = firstValue.stringValue.intValue;
+			value = firstValue.stringValue;
 		} else continue;
 		
 		[dict setObject:value forKey:name];
