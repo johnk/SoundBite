@@ -97,31 +97,50 @@
     float percentAttempted, percentDelivered;
 	double notAttempted, filtered, delivered, failed, available;
 	//double attempted, pending;
+	NSDictionary *dict;
 
     NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
+	
+    if (indexPath.section == 0)
+		dict = [[SBSubCampaigns sharedSBSubCampaigns] getAttributesForSub:row];
+    else if (indexPath.section == 1)
+        dict = [[SBSubCampaigns sharedSBSubCampaigns] getAttributesForSub:row pass:indexPath.row];
+	else return nil;
 
+	// The potentially available attributes are:
+	// attemptedCount, deliveredCount, failedCount, pendingCount, filteredCount, notAttemptedCount
+	// dcHandledLast15, dcAverageTalkTime, adjustSLA, dcFailedLast15, dcFailed, dcHandled, activeCount
+	// dcAverageTalkTimeLast15, attemptedCountLast15, afterContactWorkCount, thisHourContacts, nextHourContacts, futureContacts, 
+	
+	notAttempted = [[dict objectForKey:@"notAttemptedCount"] doubleValue];
+	filtered = [[dict objectForKey:@"filteredCount"] doubleValue];
+	delivered = [[dict objectForKey:@"deliveredCount"] doubleValue];
+	failed = [[dict objectForKey:@"failedCount"] doubleValue];
+	available = delivered + failed + notAttempted;
+	
+	/*
+	attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
+	notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
+	filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
+	pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
+	delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
+	failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
+	available = delivered + failed + notAttempted;
+	*/
+	
+	if (available > 0) {
+		percentAttempted = (delivered + failed) / available;
+		percentDelivered = delivered / available;
+	} else {
+		percentAttempted = 0.0;
+		percentDelivered = 0.0;
+	}
+	
     if (indexPath.section == 0) {
-        SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"SubCampaignDetailCell" forIndexPath:indexPath];
-        
-        
+		SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"SubCampaignDetailCell" forIndexPath:indexPath];
+	
         cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
         
-        //attempted = [[SBSubCampaigns sharedSBSubCampaigns] attemptedCountForRow:row].intValue;
-        notAttempted = [[SBSubCampaigns sharedSBSubCampaigns] notAttemptedCountForRow:row].intValue;
-        filtered = [[SBSubCampaigns sharedSBSubCampaigns] filteredCountForRow:row].intValue;
-        //pending = [[SBSubCampaigns sharedSBSubCampaigns] pendingCountForRow:row].intValue;
-        delivered = [[SBSubCampaigns sharedSBSubCampaigns] deliveredCountForRow:row].intValue;
-        failed = [[SBSubCampaigns sharedSBSubCampaigns] failedCountForRow:row].intValue;
-        available = delivered + failed + notAttempted;
-
-        if (available > 0) {
-            percentAttempted = (delivered + failed) / available;
-            percentDelivered = delivered / available;
-        } else {
-            percentAttempted = 0.0;
-            percentDelivered = 0.0;
-        }
-         
         cell.scPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
         cell.scPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
          
@@ -132,83 +151,45 @@
         // http://stackoverflow.com/questions/169925/how-to-do-string-conversions-in-objective-c
          
         cell.scAllContacts.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted + filtered)] numberStyle:NSNumberFormatterDecimalStyle];
-         
+        
         cell.scFiltered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:filtered] numberStyle:NSNumberFormatterDecimalStyle];
-         
+        cell.scPctFiltered.text = [NSString stringWithFormat:@"%.f%%", filtered / (delivered + failed + notAttempted + filtered) * 100];
+        
         cell.scAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
-         
+        cell.scPctAvailable.text = [NSString stringWithFormat:@"%.f%%", available / (delivered + failed + notAttempted + filtered) * 100];
+        
         cell.scDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
-         
+        cell.scPctDelivered2.text = [NSString stringWithFormat:@"%.f%%", delivered / available * 100];
+        
         cell.scNotDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:failed] numberStyle:NSNumberFormatterDecimalStyle];
-         
+        cell.scPctNotDelivered.text = [NSString stringWithFormat:@"%.f%%", failed / available * 100];
+        
         cell.scNotAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:notAttempted] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scPctNotAttempted.text = [NSString stringWithFormat:@"%.f%%", notAttempted / available * 100];
 
         return cell;
-        
     } else if (indexPath.section == 1) {
-        // PassDetailCell(s) - 1 cell per pass
-        
-        SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
-        
+		SBPassDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassDetailCell" forIndexPath:indexPath];
+
+        NSInteger channelType = [[SBSubCampaigns sharedSBSubCampaigns] passChannelForSub:row pass:indexPath.row];
+		[cell.passTypeImage setImage:[UIImage imageNamed:[self iconFileForChannelType:(NSInteger)channelType]]];
+
         NSString *passName = [[SBSubCampaigns sharedSBSubCampaigns] passNameForSub:row pass:indexPath.row];
         NSString *passStatus = [[SBSubCampaigns sharedSBSubCampaigns] passStatusForSub:row pass:indexPath.row];
         cell.passName.text = [NSString stringWithFormat:@"%@ (%@)", passName, passStatus];
         
-        NSInteger channelType = [[SBSubCampaigns sharedSBSubCampaigns] passChannelForSub:row pass:indexPath.row];
-		[cell.passTypeImage setImage:[UIImage imageNamed:[self iconFileForChannelType:(NSInteger)channelType]]];
-       
-        NSDictionary *dict = [[SBSubCampaigns sharedSBSubCampaigns] getAttributesForSub:row pass:indexPath.row];
-
-		// The available attributes are:
+        cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
 		
-		// attemptedCount
-		// deliveredCount
-		// failedCount
-		// pendingCount
-		// filteredCount
-		// notAttemptedCount
-		
-		// dcHandledLast15
-		// dcAverageTalkTime
-		// adjustSLA
-		// dcFailedLast15
-		// dcFailed
-		// dcHandled
-		// activeCount
-		// dcAverageTalkTimeLast15
-		// attemptedCountLast15
-		// afterContactWorkCount
-		// thisHourContacts
-		// nextHourContacts
-		// futureContacts
+        cell.passPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
+        [cell.passProgressAttempted setProgress:percentAttempted animated:YES];
+		cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed)] numberStyle:NSNumberFormatterDecimalStyle];
 
-		notAttempted = [[dict objectForKey:@"notAttemptedCount"] doubleValue];
-        filtered = [[dict objectForKey:@"filteredCount"] doubleValue];
-        delivered = [[dict objectForKey:@"deliveredCount"] doubleValue];
-        failed = [[dict objectForKey:@"failedCount"] doubleValue];
-        available = delivered + failed + notAttempted;
-
-        if (available > 0) {
-            percentAttempted = (delivered + failed) / available;
-            percentDelivered = delivered / available;
-        } else {
-            percentAttempted = 0.0;
-            percentDelivered = 0.0;
-        }
-
-        //cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
-		
-        //cell.passPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
-        //[cell.passProgressAttempted setProgress:percentAttempted animated:YES];
-		//cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed)] numberStyle:NSNumberFormatterDecimalStyle];
-
-        //cell.passPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
-        //[cell.passProgressDelivered setProgress:percentDelivered animated:YES];
-        //cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.passPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
+        [cell.passProgressDelivered setProgress:percentDelivered animated:YES];
+        cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
          
         return cell;
     } 
-    
     return nil;
 }
 

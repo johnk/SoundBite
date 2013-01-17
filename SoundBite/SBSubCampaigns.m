@@ -90,12 +90,14 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     return [nodes[0] stringValue];
 }
 
+/*
 - (NSString *)filteredCountForRow:(NSInteger)row {
     NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='filteredCount']/Value";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
 }
+*/
 
 - (NSString *)attemptedCountForRow:(NSInteger)row {
     NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='attemptedCount']/Value";			
@@ -104,6 +106,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     return [nodes[0] stringValue];
 }
 
+/*
 - (NSString *)notAttemptedCountForRow:(NSInteger)row {
     NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='notAttemptedCount']/Value";			
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
@@ -117,6 +120,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
 }
+*/
 
 - (NSString *)deliveredCountForRow:(NSInteger)row {
     NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='deliveredCount']/Value";			
@@ -125,12 +129,14 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     return [nodes[0] stringValue];
 }
 
+/*
 - (NSString *)failedCountForRow:(NSInteger)row {
     NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='failedCount']/Value";			
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
 }
+*/
 
 // Passes
 //
@@ -179,9 +185,23 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     return [nodes[0] stringValue];
 }
 
+- (NSDictionary *)getAttributesForSub:(NSInteger)row {
+	//  /Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='pendingCount']/Value	
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
+    NSLog(@"xpath: %@", xpath);
+    return [self getAttributesForXPath:xpath];
+}
+
 // Return a dictionary of attributes for the pass
 - (NSDictionary *)getAttributesForSub:(NSInteger)row pass:(NSInteger)pass {
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/PassStates[%d]/Attributes";
+    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
+    NSLog(@"xpath: %@", xpath); 
+    return [self getAttributesForXPath:xpath];
+}
 
+- (NSDictionary *)getAttributesForXPath:(NSString *)xpath {
 	// /Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='multichannel'][1]/PassStates[1]/Attributes
 	// <Attributes>
     //     <Name>attemptedCount</Name>
@@ -189,12 +209,8 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     // </Attributes>
 	//
 	// See example code: http://www.raywenderlich.com/725/how-to-read-and-write-xml-documents-with-gdataxml
-	
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/PassStates[%d]/Attributes";
-    NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
-    NSLog(@"xpath: %@", xpath);
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
 
 	NSLog(@"Found %d nodes:", [nodes count]);

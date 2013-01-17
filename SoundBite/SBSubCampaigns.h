@@ -34,11 +34,12 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)statusForRow:(NSInteger)row;
 - (NSString *)attemptedCountForRow:(NSInteger)row;
-- (NSString *)notAttemptedCountForRow:(NSInteger)row;
-- (NSString *)filteredCountForRow:(NSInteger)row;
-- (NSString *)pendingCountForRow:(NSInteger)row;
+//- (NSString *)notAttemptedCountForRow:(NSInteger)row;
+//- (NSString *)filteredCountForRow:(NSInteger)row;
+//- (NSString *)pendingCountForRow:(NSInteger)row;
 - (NSString *)deliveredCountForRow:(NSInteger)row;
-- (NSString *)failedCountForRow:(NSInteger)row;
+//- (NSString *)failedCountForRow:(NSInteger)row;
+- (NSDictionary *)getAttributesForSub:(NSInteger)row;
 
 // Methods for pass info
 
