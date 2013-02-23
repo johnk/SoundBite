@@ -34,6 +34,7 @@
 		52A247C016A2F97100D34B16 /* 75-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A247BB16A2F97100D34B16 /* 75-phone.png */; };
 		52A247C316A2FA4800D34B16 /* 243-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A247C116A2FA4800D34B16 /* 243-globe.png */; };
 		52A247C416A2FA4800D34B16 /* 243-globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A247C216A2FA4800D34B16 /* 243-globe@2x.png */; };
+		52C1C13816CE456E004DEEE6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C1C13716CE456E004DEEE6 /* Crashlytics.framework */; };
 		52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB21687506B004877E2 /* UIKit.framework */; };
 		52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB41687506B004877E2 /* Foundation.framework */; };
 		52CD1FB71687506C004877E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CD1FB61687506C004877E2 /* CoreGraphics.framework */; };
@@ -120,6 +121,7 @@
 		52A247BB16A2F97100D34B16 /* 75-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "75-phone.png"; sourceTree = "<group>"; };
 		52A247C116A2FA4800D34B16 /* 243-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "243-globe.png"; sourceTree = "<group>"; };
 		52A247C216A2FA4800D34B16 /* 243-globe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "243-globe@2x.png"; sourceTree = "<group>"; };
+		52C1C13716CE456E004DEEE6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		52CD1FAE1687506B004877E2 /* SoundBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD1FB21687506B004877E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52CD1FB41687506B004877E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -189,6 +191,7 @@
 				52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */,
 				52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */,
 				52CD1FB71687506C004877E2 /* CoreGraphics.framework in Frameworks */,
+				52C1C13816CE456E004DEEE6 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +219,7 @@
 		52CD1FB11687506B004877E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52C1C13716CE456E004DEEE6 /* Crashlytics.framework */,
 				52CD1FB21687506B004877E2 /* UIKit.framework */,
 				52CD1FB41687506B004877E2 /* Foundation.framework */,
 				52CD1FB61687506C004877E2 /* CoreGraphics.framework */,
@@ -274,6 +278,9 @@
 				520A43D0169E46E9001C70B4 /* Icon@2x.png */,
 				520A43D1169E46E9001C70B4 /* Icon-72.png */,
 				520A43D2169E46E9001C70B4 /* Icon.png */,
+				52D2E10216A639BD003ED1FE /* Icon-Small-50.png */,
+				52D2E10316A639BD003ED1FE /* Icon-Small.png */,
+				52D2E10416A639BD003ED1FE /* Icon-Small@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,9 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				52A247B716A2F97100D34B16 /* 18-envelope.png */,
-				52D2E10216A639BD003ED1FE /* Icon-Small-50.png */,
-				52D2E10316A639BD003ED1FE /* Icon-Small.png */,
-				52D2E10416A639BD003ED1FE /* Icon-Small@2x.png */,
 				52A247AC16A2F89C00D34B16 /* 18-envelope@2x.png */,
 				52A247B816A2F97100D34B16 /* 22-skull-n-bones.png */,
 				52A247AD16A2F89C00D34B16 /* 22-skull-n-bones@2x.png */,
@@ -356,6 +360,7 @@
 				52CD1FAA1687506B004877E2 /* Sources */,
 				52CD1FAB1687506B004877E2 /* Frameworks */,
 				52CD1FAC1687506B004877E2 /* Resources */,
+				52C1C13316CE448D004DEEE6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -447,6 +452,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52C1C13316CE448D004DEEE6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run f97a100754daa03bbc6ca11a030651edb3525d96";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		52CD1FAA1687506B004877E2 /* Sources */ = {
@@ -563,6 +584,10 @@
 		52CD1FD91687506C004877E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
@@ -575,6 +600,10 @@
 		52CD1FDA1687506C004877E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";

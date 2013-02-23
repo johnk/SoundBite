@@ -92,6 +92,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+	
+	// TODO: / BUG: Set the currentRow on sharedSBSubCampaigns here?
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

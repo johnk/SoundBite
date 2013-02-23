@@ -7,11 +7,14 @@
 //
 
 #import "SBAppDelegate.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"f97a100754daa03bbc6ca11a030651edb3525d96"];
+    
     // This may not be necessary, since it should get created earlier in awakeFromNib.
     if (!self.users) {
         self.users = [[Users alloc] init];
