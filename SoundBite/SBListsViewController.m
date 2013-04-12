@@ -7,6 +7,7 @@
 //
 
 #import "SBListsViewController.h"
+//#import <Crashlytics/Crashlytics.h>
 
 @interface SBListsViewController ()
 
@@ -27,6 +28,10 @@
 {
     [super viewDidLoad];
     [[SBLists sharedSBLists] loadForUser:self.user withDelegate:self];
+    
+    // create a crash
+    //NSLog(@"Generating a crash to test Crashlytics...");
+    //[[Crashlytics sharedInstance] crash];
 }
 
 - (void)dataIsReady:(SBSoap2 *)sbSoapReady {

@@ -20,7 +20,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBSubCampaigns);
 
 - (void)loadForUser:user withDelegate:delegate {
     //if (user == [self currentUser]) {
-    //    NSLog(@"SBSubCampaigns: user has not changed");
+    //    NSLog(@"SBSuƒnslogbCampaigns: user has not changed");
     //} else {
 		// New way
 //TODO: change this and the template to narrow by sub-campaign
