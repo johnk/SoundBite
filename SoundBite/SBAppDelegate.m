@@ -7,6 +7,7 @@
 //
 
 #import "SBAppDelegate.h"
+#import <Parse/Parse.h>
 #import <Crashlytics/Crashlytics.h>
 
 @implementation SBAppDelegate
@@ -14,6 +15,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Crashlytics startWithAPIKey:@"f97a100754daa03bbc6ca11a030651edb3525d96"];
+    
+    //[Parse setApplicationId:@"ZQxmGStpZUSotI9SicbVTDFT6ijmgdBEK0cVFFlN"
+    //              clientKey:@"bibzPHujakziOMbpZkNLYByfrYahJwjZMvlaRZhX"];
+    
+    [Parse setApplicationId:@"z8un4S6cyUhGLYh2oZn9vRo5ReU8O4j1P0wYH8WJ"
+                  clientKey:@"XYH6liNYNsKmEa3IPusqdEkhyZZFqYgjGyy0YIIE"];
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Register for push notifications
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
     
     // This may not be necessary, since it should get created earlier in awakeFromNib.
     if (!self.users) {
@@ -29,7 +44,21 @@
     }
     return YES;
 }
-							
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
