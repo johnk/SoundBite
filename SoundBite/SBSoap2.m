@@ -25,11 +25,13 @@
 - (void)request:(User *)user requestTemplate:(NSString *)requestTemplate urlTemplate:(NSString *)urlTemplate filter:(NSString *)filter delegate:(id)delegate {
 	m_Delegate = delegate;
 	
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+
 	self.error = NO;
 	self.currentUser = user;
 	
     NSString *soapMessage = [NSString stringWithFormat:requestTemplate, user.userName, user.password, user.account];
-	//NSLog(@"%@", soapMessage);
+	//NSLog(@"XML request: %@", soapMessage);
 	
 	NSString *urlString = [NSString stringWithFormat:urlTemplate, user.stack];
 	NSURL *url = [NSURL URLWithString:urlString];
@@ -57,8 +59,11 @@
 // The new way.
 - (void)request:(User *)user message:(NSString *)soapMessage urlTemplate:(NSString *)urlTemplate delegate:(id)delegate {
 	m_Delegate = delegate;
-	
-	self.error = NO;
+
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    //NSLog(@"XML request: %@", soapMessage);
+
+    self.error = NO;
 	self.currentUser = user;
 	
 	NSString *urlString = [NSString stringWithFormat:urlTemplate, user.stack];
@@ -157,7 +162,14 @@
 - (NSString *)removeXMLNamespaces:(NSString *)xmlWithNS {
 	// See http://www.torquemaya.net/code/regex.html
     
-    //NSLog(@"***** xmlWithNS: %@", xmlWithNS);
+    // remove the headers from the XML response
+    
+    NSRange startRange = [xmlWithNS rangeOfString:@"Envelope"];
+    NSRange endRange = [xmlWithNS rangeOfString:@"Envelope>"];
+    // NSString *xmlWithoutHeader = [xmlWithNS substringWithRange:NSMakeRange(startRange.location, endRange.location + 9 - startRange.location)];
+    NSString *xmlWithoutHeader = [NSString stringWithFormat:@"<%@", [xmlWithNS substringWithRange:NSMakeRange(startRange.location, endRange.location + 9 - startRange.location)]];
+    
+    NSLog(@"***** xmlWithNS: %@", xmlWithoutHeader);
     
 	// remove the xmlns attributes from main tag
 	
@@ -165,9 +177,9 @@
 	NSRegularExpression *regex1 = [NSRegularExpression regularExpressionWithPattern:@" xmlns:\\w+=['\"][^'\"]*[ '\"]"
 																		   options:NSRegularExpressionCaseInsensitive
 																			 error:&reerror];
-	NSString *tmpString1 = [NSString stringWithString:[regex1 stringByReplacingMatchesInString:xmlWithNS
+	NSString *tmpString1 = [NSString stringWithString:[regex1 stringByReplacingMatchesInString:xmlWithoutHeader
 																					   options:0
-																						 range:NSMakeRange(0, [xmlWithNS length])
+																						 range:NSMakeRange(0, [xmlWithoutHeader length])
 																				  withTemplate:@""]];
 																			 
     //NSLog(@"***** tmpString1: %@", tmpString1);

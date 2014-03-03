@@ -7,28 +7,56 @@
 //
 
 #import "SBAppDelegate.h"
-#import <Parse/Parse.h>
-#import <Crashlytics/Crashlytics.h>
+//#import <Parse/Parse.h>
+//#import <KinveyKit/KinveyKit.h>
+//#import <Crashlytics/Crashlytics.h>
 
 @implementation SBAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    [Crashlytics startWithAPIKey:@"f97a100754daa03bbc6ca11a030651edb3525d96"];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //[Crashlytics startWithAPIKey:@"f97a100754daa03bbc6ca11a030651edb3525d96"];
     
     //[Parse setApplicationId:@"ZQxmGStpZUSotI9SicbVTDFT6ijmgdBEK0cVFFlN"
     //              clientKey:@"bibzPHujakziOMbpZkNLYByfrYahJwjZMvlaRZhX"];
     
-    [Parse setApplicationId:@"z8un4S6cyUhGLYh2oZn9vRo5ReU8O4j1P0wYH8WJ"
-                  clientKey:@"XYH6liNYNsKmEa3IPusqdEkhyZZFqYgjGyy0YIIE"];
+    //[Parse setApplicationId:@"z8un4S6cyUhGLYh2oZn9vRo5ReU8O4j1P0wYH8WJ"
+    //              clientKey:@"XYH6liNYNsKmEa3IPusqdEkhyZZFqYgjGyy0YIIE"];
     
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Register for push notifications
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];
+    //[application registerForRemoteNotificationTypes:
+    // UIRemoteNotificationTypeBadge |
+     //UIRemoteNotificationTypeAlert |
+     //UIRemoteNotificationTypeSound];
+    
+    //(void) [[KCSClient sharedClient] initializeKinveyServiceForAppKey:@"kid_ePkPqHNUxJ"
+    //                                                    withAppSecret:@"7d152d447b7645bd851028a4810f42e3"
+    //                                                     usingOptions:nil];
+    
+    // TODO: take this out for production
+    //[KCSPing pingKinveyWithBlock:^(KCSPingResult *result) {
+    //    if (result.pingWasSuccessful == YES){
+    //        NSLog(@"Kinvey Ping Success");
+    //    } else {
+    //        NSLog(@"Kinvey Ping Failed");
+    //    }
+    //}];
+    
+    //NSDictionary* pushOptions = @{
+    //                              KCS_PUSH_IS_ENABLED_KEY : @"YES",
+    //                              KCS_PUSH_KEY_KEY : @"Z2tmFTPgSxi6zq-N7XRBeg",
+    //                              KCS_PUSH_SECRET_KEY : @"K-RtCoNqQymN8a5Fwd582Q",
+    //                              KCS_PUSH_MODE_KEY : KCS_PUSH_DEVELOPMENT //or KCS_PUSH_PRODUCTION for production push
+    //
+    //                          };
+    
+    //NSError *error = nil;
+    //BOOL setUp = [[KCSPush sharedPush] onLoadHelper:pushOptions error:&error];
+    //if (setUp == NO) {
+    //    NSAssert(error == nil, @"Push not set up correctly: %@", error);
+    //    //otherwise some other set-up issue
+    //}
     
     // This may not be necessary, since it should get created earlier in awakeFromNib.
     if (!self.users) {
@@ -45,18 +73,14 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
-{
-    // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:newDeviceToken];
-    [currentInstallation saveInBackground];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    //[[KCSPush sharedPush] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    // Additional registration goes here (if needed)
 }
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //[[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
+    // Additional push notification handling code should be performed here
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -85,6 +109,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
+    //[[KCSPush sharedPush] onUnloadHelper];
     [self.users save];
 }
 

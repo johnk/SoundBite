@@ -29,7 +29,7 @@
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
 
 	self.sbSoap = [[SBSoap2 alloc] init];
-	[self.sbSoap request:self.user requestTemplate:kshowSystemInfoRequestTemplate urlTemplate:kshowSystemInfoUrlTemplate delegate:self];
+	[self.sbSoap request:self.user requestTemplate:kshowSystemInfoRequestTemplateV2 urlTemplate:kshowSystemInfoUrlTemplateV2 delegate:self];
 	NSLog(@"Initiated SBSoap request.");
 }
 
@@ -70,7 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSString *xpath = @"/Envelope/Body/showSystemInfoResponse/return/Data";
+	NSString *xpath = @"/Envelope/Body/showSystemInfoResponse/return/data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     
     NSLog(@"ShowSystmInfoViewController: %d sysinfo attributes", [nodes count]);
@@ -88,13 +88,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
 	NSUInteger row = [indexPath row];
-	
-	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/Data[%d]/Name", row+1];
+
+	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/data[%d]/name", row+1];
 	NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     cell.textLabel.text = [nodes[0] stringValue];
 	//cell.nameLabel.text = [nodes[0] stringValue];
 	
-	xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/Data[%d]/Value", row+1];
+	xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/data[%d]/value", row+1];
     nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     cell.detailTextLabel.text = [nodes[0] stringValue];
 	
