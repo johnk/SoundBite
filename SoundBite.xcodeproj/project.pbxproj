@@ -98,6 +98,7 @@
 		304894B71729D165000E8568 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		304894B81729D165000E8568 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		304894B91729D165000E8568 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		30AC574218C8AFCD00038C24 /* SBSoapXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSoapXML.h; sourceTree = "<group>"; };
 		520A0B6E1723185C00FF07BB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		520A0B701723187600FF07BB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		520A0B741723189300FF07BB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -369,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				52EA1B4E1688D9F200C80C42 /* SBSoap2.h */,
+				30AC574218C8AFCD00038C24 /* SBSoapXML.h */,
 				52EA1B4F1688D9F200C80C42 /* SBSoap2.m */,
 				52EA1B541688DC3400C80C42 /* User.h */,
 				52EA1B551688DC3400C80C42 /* User.m */,
