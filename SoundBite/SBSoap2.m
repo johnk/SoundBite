@@ -11,6 +11,42 @@
 
 @implementation SBSoap2
 
++ (NSURL *)sbSoapCreateURL:(NSString *)stack service:(NSString *)service {
+	return [NSURL URLWithString:[NSString stringWithFormat:kSBSoapURL, stack, service]];
+}
+
++ (NSString *)sbSoapCreateRequest:(User *)user soapBody:(NSString *)soapBody {
+    NSString *soapHeader = [NSString stringWithFormat:ksoapHeader, user.userName, user.password];
+    NSString *soapRequest = [NSString stringWithFormat:ksoapEnvelope, soapHeader, soapBody];
+    return soapRequest;
+}
+
+- (void)sbSoapSendRequest:(NSURL *)url request:(NSString *)request delegate:(id)delegate {
+	m_Delegate = delegate;
+	
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    
+	self.error = NO;
+	// self.currentUser = user;
+		
+	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+	NSString *msgLength = [NSString stringWithFormat:@"%d", [request length]];
+	
+	[theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+	[theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+	[theRequest setHTTPMethod:@"POST"];
+	[theRequest setHTTPBody: [request dataUsingEncoding:NSUTF8StringEncoding]];
+	
+	theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+	
+	if (theConnection) {
+		self.workInProgress = YES;
+		webData = [NSMutableData data];
+	} else {
+		NSLog(@"theConnection is NULL");
+		self.error = YES;
+	}
+}
 
 - (void)setDelegate:(id)new_delegate {
     m_Delegate = new_delegate;

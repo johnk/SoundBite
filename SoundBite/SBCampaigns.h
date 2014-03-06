@@ -20,7 +20,7 @@
 CWL_DECLARE_SINGLETON_FOR_CLASS(SBCampaigns)
 //+ (SBCampaigns *)sharedSBCampaigns;
 
-- (void)loadForUser:(User *)user withDelegate:(id)delegate;
+- (void)loadForUser:(User *)sbUser withDelegate:(id)delegate;
 - (NSInteger)count;
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)startDateForRow:(NSInteger)row;

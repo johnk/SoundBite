@@ -14,13 +14,20 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
 
-- (void)loadForUser:user withDelegate:delegate {
+- (void)loadForUser:(User *)user withDelegate:(id)delegate {
     if (user == [self currentUser]) {
         NSLog(@"SBCampaigns: user has not changed");
     } else {
         self.currentUser = user;
         self.sbSoap = [[SBSoap2 alloc] init];
-        [self.sbSoap request:user requestTemplate:klistCampaignsRequestTemplate urlTemplate:klistCampaignsUrlTemplate delegate:delegate];
+        self.sbSoap.currentUser = user;
+        
+        NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kCampaignManagementService];
+        NSString *soapBody = [NSString stringWithFormat:klistCampaigns, user.account];
+        NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:soapBody];
+        
+        [self.sbSoap sbSoapSendRequest:url request:request delegate:delegate];
+    
         NSLog(@"SBCampaigns: initiated request");
     }
 }
@@ -30,7 +37,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
     //NSString *xpath = @"//Data/ExternalId";			
 	//NSString *xpath = @"/Envelope/Body/listCampaignsResponse/return/Data[@type='n1:Campaign']";
 
-	NSString *xpath = @"/Envelope/Body/listCampaignsResponse/return/Data";
+	NSString *xpath = @"/Envelope/Body/listCampaignsResponse/return/data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     
     NSLog(@"SBCampaigns: %d campaigns", [nodes count]);
@@ -48,7 +55,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
 
 	// /Envelope/Body/listCampaignsResponse/return/Data[<row>]/ExternalId
 	
-	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listCampaignsResponse/return/Data[%d]/ExternalId", row+1];
+	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listCampaignsResponse/return/data[%d]/externalId", row+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBCampaigns: campaign=%@", [nodes[0] stringValue]);
@@ -56,14 +63,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
 }
 
 - (NSString *)startDateForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listCampaignsResponse/return/Data[%d]/Attributes[Name='startDate']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listCampaignsResponse/return/data[%d]/attributes[name='startDate']/value";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
     }
 
 - (NSString *)endDateForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listCampaignsResponse/return/Data[%d]/Attributes[Name='endDate']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listCampaignsResponse/return/data[%d]/attributes[name='endDate']/value";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];

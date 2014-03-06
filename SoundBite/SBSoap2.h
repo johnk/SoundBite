@@ -25,6 +25,11 @@
 @property BOOL workInProgress;
 @property (nonatomic, strong) GDataXMLDocument *doc;
 
++ (NSURL *)sbSoapCreateURL:(NSString *)stack service:(NSString *)service;
++ (NSString *)sbSoapCreateRequest:(User *)user soapBody:(NSString *)soapBody;
+
+- (void)sbSoapSendRequest:(NSURL *)url request:(NSString *)request delegate:(id)delegate;
+
 - (void)setDelegate:(id)new_delegate;
 - (void)request:(User *)user requestTemplate:(NSString *)requestTemplate urlTemplate:(NSString *)urlTemplate delegate:(id)delegate;
 - (void)request:(User *)user message:(NSString *)soapMessage urlTemplate:(NSString *)urlTemplate delegate:(id)delegate;

@@ -30,7 +30,7 @@
 
 #define ksoapEnvelope                       @"<soapenv:Envelope xmlns:ns=\"http://www.soundbite.com/SOAPAPI2/110\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Header>%@</soapenv:Header><soapenv:Body>%@</soapenv:Body></soapenv:Envelope>"
 
-#define ksoapHeader                         @"<wsse:Security xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsse:UsernameToken wsu:Id=\"UsernameToken-34\"><wsse:Username>%@</wsse:Username><wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText”>%@</wsse:Password></wsse:UsernameToken></wsse:Security>"
+#define ksoapHeader                         @"<wsse:Security xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsse:UsernameToken wsu:Id=\"UsernameToken-34\"><wsse:Username>%@</wsse:Username><wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">%@</wsse:Password></wsse:UsernameToken></wsse:Security>"
 
 // listCampaigns: account number
 #define klistCampaigns                      @"<ns:listCampaigns><arg1><internalId>%@</internalId><type>Account</type></arg1></ns:listCampaigns>"
