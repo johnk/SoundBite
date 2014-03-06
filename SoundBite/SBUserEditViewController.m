@@ -42,6 +42,11 @@
 	}
 }
 
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     NSLog(@"SBUserEditViewController: viewWillDisappear");
 	//self.user.userName = self.userNameField.text;
@@ -57,12 +62,12 @@
 
 - (IBAction)userSaveButton:(id)sender {
     NSLog(@"SBUserEditViewController: userSaveButton");
-
+    
     self.user.userName = self.userNameField.text;
     self.user.password = self.passwordField.text;
     self.user.stack = self.stackField.text;
     self.user.account = self.accountField.text;
-  
+    
     [self validateUser:self.user delegate:self];
 }
 
@@ -72,7 +77,7 @@
     if ((user.userName.length > 2) && (user.password.length > 2) && (user.stack.length > 2)) {
         
 		sbSoap = [[SBSoap2 alloc] init];
-		[sbSoap request:user requestTemplate:kshowSystemInfoRequestTemplate urlTemplate:kshowSystemInfoUrlTemplate delegate:delegate];
+		[sbSoap request:user requestTemplate:kshowSystemInfoRequestTemplateV2 urlTemplate:kshowSystemInfoUrlTemplateV2 delegate:delegate];
 		NSLog(@"validateUser: just called request");
 	} else {
 		NSString *msg = @"Please fill in your user details.";
@@ -116,5 +121,6 @@
     self.validated = NO;
     [self.delegate userDidDismissUserEditViewController:self];
 }
+
 
 @end

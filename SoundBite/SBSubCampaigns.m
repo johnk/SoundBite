@@ -223,18 +223,18 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 		// Name
 		NSArray *names = [node elementsForName:@"Name"];
 		if (names.count > 0) {
-			GDataXMLElement *firstName = (GDataXMLElement *) [names objectAtIndex:0];
+			GDataXMLElement *firstName = (GDataXMLElement *) names[0];
 			name = firstName.stringValue;
 		} else continue;
 
 		// Value
 		NSArray *values = [node elementsForName:@"Value"];
 		if (values.count > 0) {
-			GDataXMLElement *firstValue = (GDataXMLElement *) [values objectAtIndex:0];
+			GDataXMLElement *firstValue = (GDataXMLElement *) values[0];
 			value = firstValue.stringValue;
 		} else continue;
 		
-		[dict setObject:value forKey:name];
+		dict[name] = value;
 	}   
     return dict;
 }

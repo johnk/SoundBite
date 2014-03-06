@@ -112,10 +112,10 @@
 	// dcHandledLast15, dcAverageTalkTime, adjustSLA, dcFailedLast15, dcFailed, dcHandled, activeCount
 	// dcAverageTalkTimeLast15, attemptedCountLast15, afterContactWorkCount, thisHourContacts, nextHourContacts, futureContacts, 
 	
-	notAttempted = [[dict objectForKey:@"notAttemptedCount"] doubleValue];
-	filtered = [[dict objectForKey:@"filteredCount"] doubleValue];
-	delivered = [[dict objectForKey:@"deliveredCount"] doubleValue];
-	failed = [[dict objectForKey:@"failedCount"] doubleValue];
+	notAttempted = [dict[@"notAttemptedCount"] doubleValue];
+	filtered = [dict[@"filteredCount"] doubleValue];
+	delivered = [dict[@"deliveredCount"] doubleValue];
+	failed = [dict[@"failedCount"] doubleValue];
 	available = delivered + failed + notAttempted;
 	
 	/*
@@ -150,21 +150,21 @@
         // http://stackoverflow.com/questions/2233824/how-to-add-commas-to-number-every-3-digits-in-objective-c
         // http://stackoverflow.com/questions/169925/how-to-do-string-conversions-in-objective-c
          
-        cell.scAllContacts.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted + filtered)] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scAllContacts.text = [NSNumberFormatter localizedStringFromNumber:@((int)(delivered + failed + notAttempted + filtered)) numberStyle:NSNumberFormatterDecimalStyle];
         
-        cell.scFiltered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:filtered] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scFiltered.text = [NSNumberFormatter localizedStringFromNumber:@((int)filtered) numberStyle:NSNumberFormatterDecimalStyle];
         cell.scPctFiltered.text = [NSString stringWithFormat:@"%.f%%", filtered / (delivered + failed + notAttempted + filtered) * 100];
         
-        cell.scAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scAvailable.text = [NSNumberFormatter localizedStringFromNumber:@((int)(delivered + failed + notAttempted)) numberStyle:NSNumberFormatterDecimalStyle];
         cell.scPctAvailable.text = [NSString stringWithFormat:@"%.f%%", available / (delivered + failed + notAttempted + filtered) * 100];
         
-        cell.scDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scDelivered.text = [NSNumberFormatter localizedStringFromNumber:@((int)delivered) numberStyle:NSNumberFormatterDecimalStyle];
         cell.scPctDelivered2.text = [NSString stringWithFormat:@"%.f%%", delivered / available * 100];
         
-        cell.scNotDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:failed] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scNotDelivered.text = [NSNumberFormatter localizedStringFromNumber:@((int)failed) numberStyle:NSNumberFormatterDecimalStyle];
         cell.scPctNotDelivered.text = [NSString stringWithFormat:@"%.f%%", failed / available * 100];
         
-        cell.scNotAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:notAttempted] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.scNotAttempted.text = [NSNumberFormatter localizedStringFromNumber:@((int)notAttempted) numberStyle:NSNumberFormatterDecimalStyle];
         cell.scPctNotAttempted.text = [NSString stringWithFormat:@"%.f%%", notAttempted / available * 100];
 
         return cell;
@@ -178,15 +178,15 @@
         NSString *passStatus = [[SBSubCampaigns sharedSBSubCampaigns] passStatusForSub:row pass:indexPath.row];
         cell.passName.text = [NSString stringWithFormat:@"%@ (%@)", passName, passStatus];
         
-        cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed + notAttempted)] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.passAvailable.text = [NSNumberFormatter localizedStringFromNumber:@((int)(delivered + failed + notAttempted)) numberStyle:NSNumberFormatterDecimalStyle];
 		
         cell.passPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
         [cell.passProgressAttempted setProgress:percentAttempted animated:YES];
-		cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:(delivered + failed)] numberStyle:NSNumberFormatterDecimalStyle];
+		cell.passAttempted.text = [NSNumberFormatter localizedStringFromNumber:@((int)(delivered + failed)) numberStyle:NSNumberFormatterDecimalStyle];
 
         cell.passPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
         [cell.passProgressDelivered setProgress:percentDelivered animated:YES];
-        cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithInt:delivered] numberStyle:NSNumberFormatterDecimalStyle];
+        cell.passDelivered.text = [NSNumberFormatter localizedStringFromNumber:@((int)delivered) numberStyle:NSNumberFormatterDecimalStyle];
          
         return cell;
     } 
@@ -248,7 +248,7 @@
         {
             NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
             NSUInteger passCount = [[SBSubCampaigns sharedSBSubCampaigns] countPassesForSub:row];
-            NSString *passHeader = [NSString stringWithFormat:@"Passes (%d)", passCount];
+            NSString *passHeader = [NSString stringWithFormat:@"Passes (%lu)", (unsigned long)passCount];
             return passHeader;
         }
         default:
