@@ -18,51 +18,53 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBSubCampaigns);
 
-- (void)loadForUser:user withDelegate:delegate {
+- (void)loadForUser:(User *)user withDelegate:(id)delegate {
+    
     //if (user == [self currentUser]) {
     //    NSLog(@"SBSuƒnslogbCampaigns: user has not changed");
     //} else {
-		// New way
-//TODO: change this and the template to narrow by sub-campaign
-		NSString *soapMessage = [NSString stringWithFormat:klistSubCampaignsRequestTemplate, [user userName], [user password], [user account]];
-        self.currentUser = user;
-        sbSoap = [[SBSoap2 alloc] init];
-        [sbSoap request:user message:soapMessage urlTemplate:klistSubCampaignsUrlTemplate delegate:delegate];
-		
-		// Old way
-        //self.currentUser = user;
-        //sbSoap = [[SBSoap2 alloc] init];
-        //[sbSoap request:user requestTemplate:klistSubCampaignsRequestTemplate urlTemplate:klistSubCampaignsUrlTemplate delegate:delegate];
-        //NSLog(@"SBSubCampaigns: initiated request");
-    //}
+
+    //TODO: change this and the template to narrow by sub-campaign
+
+    self.currentUser = user;
+    self.sbSoap = [[SBSoap2 alloc] init];
+    self.sbSoap.currentUser = user;
+
+    NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kCampaignManagementService];
+    NSString *soapBody = [NSString stringWithFormat:klistSubCampaignStates, user.account];
+    NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:soapBody];
+
+    [self.sbSoap sbSoapSendRequest:url request:request delegate:delegate];
+    
+    NSLog(@"SBSubCampaigns: initiated request");
 }
 
 /* Xpath examples
 
 Get all the sub names for a campaign
-/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='Default']/SubCampaign/ExternalId
+/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='Default']/subCampaign/externalId
 
 Get the nth sub name for a campaign
-/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='baldemo'][2]/SubCampaign/ExternalId
+/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='baldemo'][2]/subCampaign/externalId
 
 Get the nth sub for a campaign
-/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='baldemo'][2]
+/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='baldemo'][2]
 
 Get all the subs for a campaign
-/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='baldemo']
+/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='baldemo']
 	
 Get all the Inbound sub names for a campaign
-/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='baldemo' and SubCampaign/Type='Inbound']/SubCampaign/ExternalId
+/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='baldemo' and SubCampaign/Type='Inbound']/subCampaign/externalId
 
- NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@']/SubCampaign/ExternalId";
+ NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@']/subCampaign/externalId";
  
 Get the nth pass for the mth sub-campaign of the campaign named 'demo'
-/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='demo'][m]/SubCampaign/Passes[n]
+/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='demo'][m]/subCampaign/passes[n]
 
 */
 
 - (NSInteger)count {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@']";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@']";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign];
     NSLog(@"SBSubCampaigns xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -76,7 +78,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 }
 
 - (NSString *)nameForRow:(NSInteger)row {
- 	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/ExternalId", self.currentCampaign, row+1];
+ 	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/subCampaign/externalId", self.currentCampaign, row+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBSubCampaigns: sub-campaign=%@", [nodes[0] stringValue]);
@@ -84,7 +86,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 }
 
 - (NSString *)statusForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/State";			
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/state";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
@@ -92,7 +94,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 
 /*
 - (NSString *)filteredCountForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='filteredCount']/Value";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[Name='filteredCount']/value";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
@@ -100,7 +102,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 */
 
 - (NSString *)attemptedCountForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='attemptedCount']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[name='attemptedCount']/value";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
@@ -108,14 +110,14 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 
 /*
 - (NSString *)notAttemptedCountForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='notAttemptedCount']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[Name='notAttemptedCount']/value";			
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
 }
 
 - (NSString *)pendingCountForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='pendingCount']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[Name='pendingCount']/value";			
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
@@ -123,7 +125,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 */
 
 - (NSString *)deliveredCountForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='deliveredCount']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[name='deliveredCount']/value";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
@@ -131,7 +133,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 
 /*
 - (NSString *)failedCountForRow:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='failedCount']/Value";			
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[Name='failedCount']/value";			
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     return [nodes[0] stringValue];
@@ -142,7 +144,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 //
 
 - (NSInteger)countPassesForSub:(NSInteger)row {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/subCampaign/passes";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSLog(@"SBSubCampaigns xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -153,7 +155,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 - (NSString *)passNameForSub:(NSInteger)row pass:(NSInteger)pass {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
 
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes[%d]/Name";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/subCampaign/passes[%d]/name";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -165,7 +167,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 - (NSInteger)passChannelForSub:(NSInteger)row pass:(NSInteger)pass {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
 
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/SubCampaign/Passes[%d]/Channel";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/subCampaign/passes[%d]/channel";
 
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
     NSLog(@"xpath: %@", xpath);
@@ -177,7 +179,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 
 - (NSString *)passStatusForSub:(NSInteger)row pass:(NSInteger)pass {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/PassStates[%d]/State";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/passStates[%d]/state";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -186,8 +188,8 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 }
 
 - (NSDictionary *)getAttributesForSub:(NSInteger)row {
-	//  /Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes[Name='pendingCount']/Value	
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/Attributes";
+	//  /Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes[Name='pendingCount']/value	
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/attributes";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSLog(@"xpath: %@", xpath);
     return [self getAttributesForXPath:xpath];
@@ -195,18 +197,18 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 
 // Return a dictionary of attributes for the pass
 - (NSDictionary *)getAttributesForSub:(NSInteger)row pass:(NSInteger)pass {
-    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='%@'][%d]/PassStates[%d]/Attributes";
+    NSString *xpathTemplate = @"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/passStates[%d]/attributes";
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1, pass+1];
     NSLog(@"xpath: %@", xpath); 
     return [self getAttributesForXPath:xpath];
 }
 
 - (NSDictionary *)getAttributesForXPath:(NSString *)xpath {
-	// /Envelope/Body/listSubCampaignStatesResponse/return/Data[SubCampaign/Campaign/ExternalId='multichannel'][1]/PassStates[1]/Attributes
+	// /Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='multichannel'][1]/PassStates[1]/attributes
 	// <Attributes>
     //     <Name>attemptedCount</Name>
-    //     <Value>3611</Value>
-    // </Attributes>
+    //     <Value>3611</value>
+    // </attributes>
 	//
 	// See example code: http://www.raywenderlich.com/725/how-to-read-and-write-xml-documents-with-gdataxml
 
@@ -221,14 +223,14 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 		NSString *value;
 
 		// Name
-		NSArray *names = [node elementsForName:@"Name"];
+		NSArray *names = [node elementsForName:@"name"];
 		if (names.count > 0) {
 			GDataXMLElement *firstName = (GDataXMLElement *) names[0];
 			name = firstName.stringValue;
 		} else continue;
 
 		// Value
-		NSArray *values = [node elementsForName:@"Value"];
+		NSArray *values = [node elementsForName:@"value"];
 		if (values.count > 0) {
 			GDataXMLElement *firstValue = (GDataXMLElement *) values[0];
 			value = firstValue.stringValue;

@@ -13,19 +13,26 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
 
-- (void)loadForUser:user withDelegate:delegate {
+- (void)loadForUser:(User *)user withDelegate:(id)delegate {
     if (user == [self currentUser]) {
         NSLog(@"SBScripts: user has not changed");
     } else {
         self.currentUser = user;
         self.sbSoap = [[SBSoap2 alloc] init];
-        [self.sbSoap request:user requestTemplate:klistScriptsRequestTemplate urlTemplate:klistScriptsUrlTemplate delegate:delegate];
+        self.sbSoap.currentUser = user;
+        
+        NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kCampaignManagementService];
+        NSString *soapBody = [NSString stringWithFormat:klistScripts, user.account];
+        NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:soapBody];
+        
+        [self.sbSoap sbSoapSendRequest:url request:request delegate:delegate];
+
         NSLog(@"SBScripts: initiated request");
     }
 }
 
 - (NSInteger)count {
-	NSString *xpath = @"/Envelope/Body/listScriptsResponse/return/Data";
+	NSString *xpath = @"/Envelope/Body/listScriptsResponse/return/data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBScripts: %d scripts", [nodes count]);
     //for (GDataXMLElement *node in nodes) {
@@ -35,7 +42,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
 }
 
 - (NSString *)nameForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listScriptsResponse/return/Data[%d]/ExternalId";
+	NSString *xpathTemplate = @"/Envelope/Body/listScriptsResponse/return/data[%d]/externalId";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
@@ -45,7 +52,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
 
 // ??? missing from response
 - (NSString *)versionForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listScriptsResponse/return/Data[%d]/Version";
+	NSString *xpathTemplate = @"/Envelope/Body/listScriptsResponse/return/data[%d]/version";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
@@ -64,7 +71,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
 
 // ??? missing from response
 - (NSString *)descriptionForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listScriptsResponse/return/Data[%d]/Description";
+	NSString *xpathTemplate = @"/Envelope/Body/listScriptsResponse/return/data[%d]/description";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];

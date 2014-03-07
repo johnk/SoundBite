@@ -16,7 +16,7 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
 
-- (void)loadForUser:user withDelegate:delegate {
+- (void)loadForUser:(User *)user withDelegate:(id)delegate {
     if (user == [self currentUser]) {
         NSLog(@"SBLists: user has not changed");
     } else {

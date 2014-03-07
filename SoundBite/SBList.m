@@ -13,7 +13,7 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBList);
 
-- (void)loadForUser:user list:listInternalId withDelegate:delegate {
+- (void)loadForUser:(User *)user list:(NSString *)listInternalId withDelegate:(id)delegate {
     if (listInternalId == [self currentListInternalId]) {
         NSLog(@"SBList: list has not changed");
     } else {

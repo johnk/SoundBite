@@ -45,7 +45,7 @@
 #define klistScripts                        @"<ns:listScripts><arg1><internalId>%@</internalId><type>Account</type></arg1></ns:listScripts>"
 
 // listSubCampaignStates:
-#define klistSubCampaignStates              @""
+#define klistSubCampaignStates              @"<ns:listSubCampaignStates><arg1><internalId>%@</internalId><type>Account</type></arg1><arg2><state></state></arg2><arg3>2000-06-12T16:50:38.4952702-04:00</arg3><arg4>2100-06-12T16:50:38.4952702-04:00</arg4></ns:listSubCampaignStates>"
 
 // showCurrentSession:
 #define kshowCurrentSession                 @"<ns:showCurrentSession/>"

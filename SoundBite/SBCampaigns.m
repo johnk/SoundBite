@@ -40,7 +40,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
 	NSString *xpath = @"/Envelope/Body/listCampaignsResponse/return/data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     
-    NSLog(@"SBCampaigns: %d campaigns", [nodes count]);
+    NSLog(@"SBCampaigns: %lu campaigns", (unsigned long)[nodes count]);
 
     
     for (GDataXMLElement *node in nodes) {
