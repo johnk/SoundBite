@@ -28,9 +28,19 @@
     [super viewDidLoad];
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
 
-	self.sbSoap = [[SBSoap2 alloc] init];
-	[self.sbSoap request:self.user requestTemplate:kshowSystemInfoRequestTemplateV2 urlTemplate:kshowSystemInfoUrlTemplateV2 delegate:self];
-	NSLog(@"Initiated SBSoap request.");
+    self.sbSoap = [[SBSoap2 alloc] init];
+    self.sbSoap.currentUser = self.user;
+    
+    NSURL *url = [SBSoap2 sbSoapCreateURL:(self.user.stack) service:kPlatformManagementService];
+    NSString *request = [SBSoap2 sbSoapCreateRequest:self.user soapBody:kshowSystemInfo];
+    
+    [self.sbSoap sbSoapSendRequest:url request:request delegate:self];
+
+    NSLog(@"showSystemInfo: initiated request");
+	
+    //self.sbSoap = [[SBSoap2 alloc] init];
+	//[self.sbSoap request:self.user requestTemplate:kshowSystemInfoRequestTemplateV2 urlTemplate:kshowSystemInfoUrlTemplateV2 delegate:self];
+	//NSLog(@"Initiated SBSoap request.");
 }
 
 - (void)dataIsReady:(SBSoap2 *)sbSoapReady {

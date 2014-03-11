@@ -76,9 +76,21 @@
     
     if ((user.userName.length > 2) && (user.password.length > 2) && (user.stack.length > 2)) {
         
+        sbSoap = [[SBSoap2 alloc] init];
+        sbSoap.currentUser = self.user;
+        
+        NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kPlatformManagementService];
+        NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:kshowSystemInfo];
+        
+        [sbSoap sbSoapSendRequest:url request:request delegate:delegate];
+        
+        NSLog(@"validateUser: initiated request");
+
+        /*
 		sbSoap = [[SBSoap2 alloc] init];
 		[sbSoap request:user requestTemplate:kshowSystemInfoRequestTemplateV2 urlTemplate:kshowSystemInfoUrlTemplateV2 delegate:delegate];
 		NSLog(@"validateUser: just called request");
+        */
 	} else {
 		NSString *msg = @"Please fill in your user details.";
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login error" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

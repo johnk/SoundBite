@@ -17,10 +17,16 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBList);
     if (listInternalId == [self currentListInternalId]) {
         NSLog(@"SBList: list has not changed");
     } else {
-		NSString *soapMessage = [NSString stringWithFormat:kshowListRequestTemplate, [user userName], [user password], listInternalId];
         self.currentListInternalId = listInternalId;
         self.sbSoap = [[SBSoap2 alloc] init];
-        [self.sbSoap request:user message:soapMessage urlTemplate:kshowListUrlTemplate delegate:delegate];
+        self.sbSoap.currentUser = user;
+        
+        NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kContactManagementService];
+        NSString *soapBody = [NSString stringWithFormat:kshowList, listInternalId];
+        NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:soapBody];
+        
+        [self.sbSoap sbSoapSendRequest:url request:request delegate:delegate];
+        
         NSLog(@"SBList: initiated request");
     }
 }

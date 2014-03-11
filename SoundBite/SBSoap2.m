@@ -52,77 +52,6 @@
     m_Delegate = new_delegate;
 }	
 
-- (void)request:(User *)user requestTemplate:(NSString *)requestTemplate urlTemplate:(NSString *)urlTemplate delegate:(id)delegate {
-    [self request:user requestTemplate:requestTemplate urlTemplate:urlTemplate filter:@"" delegate:delegate];
-}
-
-
-// The old way -- needs to be removed from the calling methods.
-- (void)request:(User *)user requestTemplate:(NSString *)requestTemplate urlTemplate:(NSString *)urlTemplate filter:(NSString *)filter delegate:(id)delegate {
-	m_Delegate = delegate;
-	
-    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-
-	self.error = NO;
-	self.currentUser = user;
-	
-    NSString *soapMessage = [NSString stringWithFormat:requestTemplate, user.userName, user.password, user.account];
-	//NSLog(@"XML request: %@", soapMessage);
-	
-	NSString *urlString = [NSString stringWithFormat:urlTemplate, user.stack];
-	NSURL *url = [NSURL URLWithString:urlString];
-	
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-	NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
-	
-	[theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-	[theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
-	[theRequest setHTTPMethod:@"POST"];
-	[theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-	
-	if (theConnection) {
-		self.workInProgress = YES;
-		webData = [NSMutableData data];
-	} else {
-		NSLog(@"theConnection is NULL");
-		self.error = YES;
-	}
-}
-
-
-// The new way.
-- (void)request:(User *)user message:(NSString *)soapMessage urlTemplate:(NSString *)urlTemplate delegate:(id)delegate {
-	m_Delegate = delegate;
-
-    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-    //NSLog(@"XML request: %@", soapMessage);
-
-    self.error = NO;
-	self.currentUser = user;
-	
-	NSString *urlString = [NSString stringWithFormat:urlTemplate, user.stack];
-	NSURL *url = [NSURL URLWithString:urlString];
-	
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-	NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
-	
-	[theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-	[theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
-	[theRequest setHTTPMethod:@"POST"];
-	[theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-	
-	if (theConnection) {
-		self.workInProgress = YES;
-		webData = [NSMutableData data];
-	} else {
-		NSLog(@"theConnection is NULL");
-		self.error = YES;
-	}
-}
 
 -(void)abortDownload {
 	if (self.workInProgress == YES) {
@@ -130,7 +59,6 @@
 		self.workInProgress = NO;
 	}
 }
-
 
 #pragma mark -
 #pragma mark XML parser methods

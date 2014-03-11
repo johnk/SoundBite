@@ -20,17 +20,22 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
     if (user == [self currentUser]) {
         NSLog(@"SBLists: user has not changed");
     } else {
-		NSString *soapMessage = [NSString stringWithFormat:klistListsRequestTemplate, [user userName], [user password], [user account]];
-        //NSLog(@"SBLists request: %@", soapMessage);
         self.currentUser = user;
-        sbSoap = [[SBSoap2 alloc] init];
-        [sbSoap request:user message:soapMessage urlTemplate:klistListsUrlTemplate delegate:delegate];
+        self.sbSoap = [[SBSoap2 alloc] init];
+        self.sbSoap.currentUser = user;
+        
+        NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kContactManagementService];
+        NSString *soapBody = [NSString stringWithFormat:klistLists, user.account];
+        NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:soapBody];
+        
+        [self.sbSoap sbSoapSendRequest:url request:request delegate:delegate];
+        
         NSLog(@"SBLists: initiated request");
     }
 }
 
 - (NSInteger)count {
-	NSString *xpath = @"/Envelope/Body/listListsResponse/return/Data[IsDeleted='false']";
+	NSString *xpath = @"/Envelope/Body/listListsResponse/return/data[isDeleted='false']";
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBLists: %d lists", [nodes count]);
     //for (GDataXMLElement *node in nodes) {
@@ -40,7 +45,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
 }
 
 - (NSString *)nameForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/Data[IsDeleted='false'][%d]/Name";
+	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/data[isDeleted='false'][%d]/name";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -49,7 +54,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
 }
 
 - (NSString *)internalIdForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/Data[IsDeleted='false'][%d]/InternalId";
+	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/data[isDeleted='false'][%d]/internalId";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -59,7 +64,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
 
 // This should start working in Engage 10.5.
 - (NSString *)sizeForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/Data[IsDeleted='false'][%d]/Attributes[Name='size']/Value";
+	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/data[isDeleted='false'][%d]/attributes[name='size']/value";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];
@@ -77,7 +82,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
 }
 
 - (NSString *)descriptionForRow:(NSInteger)row {
-	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/Data[IsDeleted='false'][%d]/Description";
+	NSString *xpathTemplate = @"/Envelope/Body/listListsResponse/return/data[isDeleted='false'][%d]/description";
 	NSString *xpath = [NSString stringWithFormat:xpathTemplate, row+1];
     //NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [sbSoap.doc nodesForXPath:xpath error:nil];

@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *stackField;
 @property (weak, nonatomic) IBOutlet UITextField *accountField;
 
-@property (nonatomic, retain) SBSoap2 *sbSoap;
+//@property (nonatomic, retain) SBSoap2 *sbSoap;
 
 @end
 

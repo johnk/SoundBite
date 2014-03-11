@@ -31,9 +31,6 @@
 - (void)sbSoapSendRequest:(NSURL *)url request:(NSString *)request delegate:(id)delegate;
 
 - (void)setDelegate:(id)new_delegate;
-- (void)request:(User *)user requestTemplate:(NSString *)requestTemplate urlTemplate:(NSString *)urlTemplate delegate:(id)delegate;
-- (void)request:(User *)user message:(NSString *)soapMessage urlTemplate:(NSString *)urlTemplate delegate:(id)delegate;
-//- (void)request:(User *)user requestTemplate:(NSString *)requestTemplate urlTemplate:(NSString *)urlTemplate filter:(NSString *)filter delegate:(id)delegate;
 - (void)abortDownload;
 - (NSString *)removeXMLNamespaces:(NSString *)xmlWithNS;
 

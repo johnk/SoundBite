@@ -27,7 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    //self.edgesForExtendedLayout = UIRectEdgeNone;
+    //self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.refreshButtonColor = [self.refreshButton tintColor];
 
     self.refreshSCTimer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(reloadSC:) userInfo:nil repeats:YES];
