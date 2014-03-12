@@ -13,10 +13,7 @@
 #import "SBList.h"
 
 
-@interface SBLists : NSObject {
-	SBSoap2 *sbSoap;
-    User *__unsafe_unretained currentUser;
-}
+@interface SBLists : NSObject
 
 @property (nonatomic, strong) SBSoap2 *sbSoap;
 @property (nonatomic, unsafe_unretained) User *currentUser;

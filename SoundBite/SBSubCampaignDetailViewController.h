@@ -18,7 +18,12 @@
 @property (nonatomic, strong) SBSoap2 *sbSoap;
 @property (nonatomic, strong) NSTimer *refreshSCTimer;
 @property (nonatomic, strong) UIColor *refreshButtonColor;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scPlayButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scPauseButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scStopButton;
 
 - (void)dataIsReady:(SBSoap2 *)sbSoap;
 

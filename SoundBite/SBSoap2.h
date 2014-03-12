@@ -12,13 +12,7 @@
 #import "SBSoapXML.h"
 
 
-@interface SBSoap2 : NSObject {
-	//@private id m_Delegate;
-	//@private NSURLConnection *theConnection;
-	id m_Delegate;
-	NSURLConnection *theConnection;
-	NSMutableData *webData;
-}
+@interface SBSoap2 : NSObject
 
 @property (nonatomic, strong) User *currentUser;
 @property BOOL error;

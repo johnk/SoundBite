@@ -22,7 +22,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
         self.sbSoap = [[SBSoap2 alloc] init];
         self.sbSoap.currentUser = user;
         
-        NSURL *url = [SBSoap2 sbSoapCreateURL:(user.stack) service:kCampaignManagementService];
+        NSURL *url = [SBSoap2 sbSoapCreateURL:user.stack service:kCampaignManagementService];
         NSString *soapBody = [NSString stringWithFormat:klistCampaigns, user.account];
         NSString *request = [SBSoap2 sbSoapCreateRequest:user soapBody:soapBody];
         

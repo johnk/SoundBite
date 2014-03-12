@@ -9,7 +9,11 @@
 #import "SBSoap2.h"
 
 
-@implementation SBSoap2
+@implementation SBSoap2 {
+	id m_Delegate;
+	NSURLConnection *theConnection;
+	NSMutableData *webData;
+}
 
 + (NSURL *)sbSoapCreateURL:(NSString *)stack service:(NSString *)service {
 	return [NSURL URLWithString:[NSString stringWithFormat:kSBSoapURL, stack, service]];

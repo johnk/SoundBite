@@ -11,27 +11,26 @@
 #import "User.h"
 #import "SBSoap2.h"
 
-
-@interface SBSubCampaigns : NSObject {
-	SBSoap2 *sbSoap;
-    User *__unsafe_unretained currentUser;
-    NSString *currentCampaign;
-}
+@interface SBSubCampaigns : NSObject
 
 @property (nonatomic, strong) SBSoap2 *sbSoap;
 @property (nonatomic, unsafe_unretained) User *currentUser;
 @property (nonatomic, strong) NSString *currentCampaign;
 @property (nonatomic) NSUInteger currentRow;
+@property (nonatomic, strong) NSString *currentInternalId;
 
 CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 //+ (SBSubCampaigns *)sharedSBSubCampaigns;
 
 - (void)loadForUser:(User *)user withDelegate:(id)delegate;
 
+- (void)changeScStatus:(NSString *)newStatus;
+
 // Methods for sub-campaign info
 
 - (NSInteger)count;
 - (NSString *)nameForRow:(NSInteger)row;
+- (NSString *)internalIdForRow:(NSInteger)row;
 - (NSString *)statusForRow:(NSInteger)row;
 - (NSString *)attemptedCountForRow:(NSInteger)row;
 //- (NSString *)notAttemptedCountForRow:(NSInteger)row;

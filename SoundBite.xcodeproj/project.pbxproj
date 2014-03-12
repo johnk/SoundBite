@@ -13,6 +13,12 @@
 		304894BC1729D165000E8568 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B71729D165000E8568 /* libsqlite3.dylib */; };
 		304894BD1729D165000E8568 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B81729D165000E8568 /* libz.dylib */; };
 		304894BE1729D165000E8568 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B91729D165000E8568 /* Twitter.framework */; };
+		30979F0918CF855500BFEA3A /* 471-play2.png in Resources */ = {isa = PBXBuildFile; fileRef = 30979F0318CF855500BFEA3A /* 471-play2.png */; };
+		30979F0A18CF855500BFEA3A /* 471-play2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30979F0418CF855500BFEA3A /* 471-play2@2x.png */; };
+		30979F0B18CF855500BFEA3A /* 472-pause2.png in Resources */ = {isa = PBXBuildFile; fileRef = 30979F0518CF855500BFEA3A /* 472-pause2.png */; };
+		30979F0C18CF855500BFEA3A /* 472-pause2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30979F0618CF855500BFEA3A /* 472-pause2@2x.png */; };
+		30979F0D18CF855500BFEA3A /* 473-stop2.png in Resources */ = {isa = PBXBuildFile; fileRef = 30979F0718CF855500BFEA3A /* 473-stop2.png */; };
+		30979F0E18CF855500BFEA3A /* 473-stop2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30979F0818CF855500BFEA3A /* 473-stop2@2x.png */; };
 		520A0B6F1723185C00FF07BB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520A0B6E1723185C00FF07BB /* CFNetwork.framework */; };
 		520A0B711723187600FF07BB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520A0B701723187600FF07BB /* CoreLocation.framework */; };
 		520A0B751723189400FF07BB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520A0B741723189300FF07BB /* MobileCoreServices.framework */; };
@@ -98,6 +104,12 @@
 		304894B71729D165000E8568 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		304894B81729D165000E8568 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		304894B91729D165000E8568 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		30979F0318CF855500BFEA3A /* 471-play2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "471-play2.png"; sourceTree = "<group>"; };
+		30979F0418CF855500BFEA3A /* 471-play2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "471-play2@2x.png"; sourceTree = "<group>"; };
+		30979F0518CF855500BFEA3A /* 472-pause2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "472-pause2.png"; sourceTree = "<group>"; };
+		30979F0618CF855500BFEA3A /* 472-pause2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "472-pause2@2x.png"; sourceTree = "<group>"; };
+		30979F0718CF855500BFEA3A /* 473-stop2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "473-stop2.png"; sourceTree = "<group>"; };
+		30979F0818CF855500BFEA3A /* 473-stop2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "473-stop2@2x.png"; sourceTree = "<group>"; };
 		30AC574218C8AFCD00038C24 /* SBSoapXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSoapXML.h; sourceTree = "<group>"; };
 		520A0B6E1723185C00FF07BB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		520A0B701723187600FF07BB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -329,6 +341,12 @@
 		52CD1FE216878EC3004877E2 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				30979F0318CF855500BFEA3A /* 471-play2.png */,
+				30979F0418CF855500BFEA3A /* 471-play2@2x.png */,
+				30979F0518CF855500BFEA3A /* 472-pause2.png */,
+				30979F0618CF855500BFEA3A /* 472-pause2@2x.png */,
+				30979F0718CF855500BFEA3A /* 473-stop2.png */,
+				30979F0818CF855500BFEA3A /* 473-stop2@2x.png */,
 				52A247B716A2F97100D34B16 /* 18-envelope.png */,
 				52A247AC16A2F89C00D34B16 /* 18-envelope@2x.png */,
 				52A247B816A2F97100D34B16 /* 22-skull-n-bones.png */,
@@ -369,8 +387,8 @@
 		52EA1B511688D9FE00C80C42 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				52EA1B4E1688D9F200C80C42 /* SBSoap2.h */,
 				30AC574218C8AFCD00038C24 /* SBSoapXML.h */,
+				52EA1B4E1688D9F200C80C42 /* SBSoap2.h */,
 				52EA1B4F1688D9F200C80C42 /* SBSoap2.m */,
 				52EA1B541688DC3400C80C42 /* User.h */,
 				52EA1B551688DC3400C80C42 /* User.m */,
@@ -446,10 +464,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				52CD1FBD1687506C004877E2 /* InfoPlist.strings in Resources */,
+				30979F0918CF855500BFEA3A /* 471-play2.png in Resources */,
 				52CD1FC51687506C004877E2 /* Default.png in Resources */,
 				52CD1FC71687506C004877E2 /* Default@2x.png in Resources */,
 				52CD1FC91687506C004877E2 /* Default-568h@2x.png in Resources */,
 				52CD1FCC1687506C004877E2 /* MainStoryboard_iPhone.storyboard in Resources */,
+				30979F0A18CF855500BFEA3A /* 471-play2@2x.png in Resources */,
+				30979F0C18CF855500BFEA3A /* 472-pause2@2x.png in Resources */,
 				52CD1FCF1687506C004877E2 /* MainStoryboard_iPad.storyboard in Resources */,
 				52CD1FEC16878EFE004877E2 /* brick.png in Resources */,
 				52CD1FED16878EFE004877E2 /* email.png in Resources */,
@@ -477,6 +498,7 @@
 				52A247BE16A2F97100D34B16 /* 32-iphone.png in Resources */,
 				52A247BF16A2F97100D34B16 /* 66-microphone.png in Resources */,
 				52A247C016A2F97100D34B16 /* 75-phone.png in Resources */,
+				30979F0E18CF855500BFEA3A /* 473-stop2@2x.png in Resources */,
 				52A247C316A2FA4800D34B16 /* 243-globe.png in Resources */,
 				52A247C416A2FA4800D34B16 /* 243-globe@2x.png in Resources */,
 				52D2E10516A639BD003ED1FE /* 06-magnify.png in Resources */,
@@ -486,8 +508,10 @@
 				52D2E10916A639BD003ED1FE /* 203-spiderweb.png in Resources */,
 				52D2E10A16A639BD003ED1FE /* 203-spiderweb@2x.png in Resources */,
 				52D2E10B16A639BD003ED1FE /* 401-globe.png in Resources */,
+				30979F0B18CF855500BFEA3A /* 472-pause2.png in Resources */,
 				52D2E10C16A639BD003ED1FE /* 401-globe@2x.png in Resources */,
 				52D2E10D16A639BD003ED1FE /* Icon-Small-50.png in Resources */,
+				30979F0D18CF855500BFEA3A /* 473-stop2.png in Resources */,
 				52D2E10E16A639BD003ED1FE /* Icon-Small.png in Resources */,
 				52D2E10F16A639BD003ED1FE /* Icon-Small@2x.png in Resources */,
 			);

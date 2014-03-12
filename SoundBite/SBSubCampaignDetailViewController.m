@@ -142,7 +142,9 @@
     if (indexPath.section == 0) {
 		SBSubCampaignDetailCell *cell = (SBSubCampaignDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"SubCampaignDetailCell" forIndexPath:indexPath];
 	
-        cell.scStatus.text = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
+        NSString * scStatus = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
+        [self setScButtonsForStatus:scStatus];
+        cell.scStatus.text = scStatus;
         
         cell.scPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
         cell.scPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
@@ -267,5 +269,49 @@
     // self.scStatus.textColor = [UIColor redColor];
     [[SBSubCampaigns sharedSBSubCampaigns] loadForUser:[[SBSubCampaigns sharedSBSubCampaigns] currentUser] withDelegate:self];
 }
+
+- (void)setScButtonsForStatus:(NSString *)status {
+    if ([status isEqualToString:kscStatusLoading]) {
+        self.scPlayButton.enabled = NO;
+        self.scPauseButton.enabled = NO;
+        self.scStopButton.enabled = NO;
+    } else if ([status isEqualToString:kscStatusRunning]) {
+        self.scPlayButton.enabled = NO;
+        self.scPauseButton.enabled = YES;
+        self.scStopButton.enabled = YES;
+    } else if ([status isEqualToString:kscStatusPaused]) {
+        self.scPlayButton.enabled = YES;
+        self.scPauseButton.enabled = NO;
+        self.scStopButton.enabled = YES;
+    } else if ([status isEqualToString:kscStatusPending]) {
+        self.scPlayButton.enabled = NO;
+        self.scPauseButton.enabled = YES;
+        self.scStopButton.enabled = YES;
+    } else if ([status isEqualToString:kscStatusStopping]) {
+        self.scPlayButton.enabled = NO;
+        self.scPauseButton.enabled = NO;
+        self.scStopButton.enabled = NO;
+    } else {
+        self.scPlayButton.enabled = NO;
+        self.scPauseButton.enabled = NO;
+        self.scStopButton.enabled = NO;
+    }
+}
+
+- (IBAction)scPlay:(UIBarButtonItem *)sender {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    [[SBSubCampaigns sharedSBSubCampaigns] changeScStatus:kscStatusRunning];
+}
+
+- (IBAction)scPause:(UIBarButtonItem *)sender {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    [[SBSubCampaigns sharedSBSubCampaigns] changeScStatus:kscStatusPaused];
+}
+
+- (IBAction)scStop:(UIBarButtonItem *)sender {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    [[SBSubCampaigns sharedSBSubCampaigns] changeScStatus:kscStatusStopping];
+}
+
 
 @end

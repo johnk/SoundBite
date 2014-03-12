@@ -11,7 +11,7 @@
 
 @implementation User
 
-- (id)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *) newAccount {
+- (id)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *)newAccount {
 	if (!(self = [super init])) return nil;
 	self.userName = newUserName;
 	self.password = newPassword;

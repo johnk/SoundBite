@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5051" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -16,6 +16,7 @@
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="dkM-hq-4V3">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="12" kind="relationship" relationship="rootViewController" id="19"/>
@@ -775,8 +776,25 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Pause" id="8Ze-bO-FcM"/>
-                        <barButtonItem title="Stop" id="uWT-Ir-Uli"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="jVg-Ej-7lR"/>
+                        <barButtonItem systemItem="play" id="8Ze-bO-FcM">
+                            <connections>
+                                <action selector="scPlay:" destination="4Zs-8C-P7o" id="BXp-j2-mxz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Arg-Ii-QGS"/>
+                        <barButtonItem systemItem="pause" id="uWT-Ir-Uli">
+                            <connections>
+                                <action selector="scPause:" destination="4Zs-8C-P7o" id="5cb-Tm-0wR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="JWg-Ai-YBH"/>
+                        <barButtonItem systemItem="stop" id="OHK-IC-xEj">
+                            <connections>
+                                <action selector="scStop:" destination="4Zs-8C-P7o" id="Hon-IB-g2t"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="EJJ-Bb-Q4h"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Sub-campaign" id="8hj-RP-Ixf">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zWh-6e-0Me">
@@ -789,6 +807,9 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="refreshButton" destination="zWh-6e-0Me" id="zsb-99-CDy"/>
+                        <outlet property="scPauseButton" destination="uWT-Ir-Uli" id="diX-DD-foF"/>
+                        <outlet property="scPlayButton" destination="8Ze-bO-FcM" id="cuf-ns-PO0"/>
+                        <outlet property="scStopButton" destination="OHK-IC-xEj" id="er0-z0-rjy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLj-eZ-ykG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -926,6 +947,7 @@
         <image name="script.png" width="16" height="16"/>
         <image name="user.png" width="16" height="16"/>
     </resources>
+    <color key="tintColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
