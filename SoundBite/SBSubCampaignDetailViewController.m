@@ -144,7 +144,7 @@
 	
         NSString * scStatus = [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row];
         [self setScButtonsForStatus:scStatus];
-        cell.scStatus.text = scStatus;
+        //cell.scStatus.text = scStatus;
         
         cell.scPctAttempted.text = [NSString stringWithFormat:@"%.f%%", percentAttempted * 100];
         cell.scPctDelivered.text = [NSString stringWithFormat:@"%.f%%", percentDelivered * 100];
@@ -234,24 +234,24 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0)
-        return 250;
+        return 220;
     else
         return 66;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    NSUInteger currentUser = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
+    NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
 
     switch (section) {
         case 0:
             //self.campaignName.text = [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
-            return [[SBSubCampaigns sharedSBSubCampaigns] nameForRow:currentUser];
+            //return [[SBSubCampaigns sharedSBSubCampaigns] nameForRow:row];
+            return [NSString stringWithFormat:@"%@ (%@)", [[SBSubCampaigns sharedSBSubCampaigns] nameForRow:row], [[SBSubCampaigns sharedSBSubCampaigns] statusForRow:row]];
             break;
         
         case 1:
         {
-            NSUInteger row = [[SBSubCampaigns sharedSBSubCampaigns] currentRow];
             NSUInteger passCount = [[SBSubCampaigns sharedSBSubCampaigns] countPassesForSub:row];
             NSString *passHeader = [NSString stringWithFormat:@"Passes (%lu)", (unsigned long)passCount];
             return passHeader;
