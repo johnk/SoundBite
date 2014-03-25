@@ -39,6 +39,8 @@
 
 - (void)dataIsReady:(SBSoap2 *)sbSoapReady {
 	NSLog(@"SubCampaign data is ready");
+    [self.refreshControl endRefreshing];
+
 	if (sbSoapReady.error) {
         User *user = [[SBSubCampaigns sharedSBSubCampaigns] currentUser];
 		NSString *msg = nil;
@@ -263,8 +265,18 @@
     // return [[SBSubCampaigns sharedSBSubCampaigns] currentCampaign];
 }
 
+- (IBAction)refreshSC:(UIRefreshControl *)sender {
+	NSLog(@"SubCampaignDetailViewController: refreshSC");
+    [self.refreshControl beginRefreshing];
+    [self.refreshButton setTintColor:[UIColor darkGrayColor]];
+    // self.scStatus.textColor = [UIColor redColor];
+    [[SBSubCampaigns sharedSBSubCampaigns] loadForUser:[[SBSubCampaigns sharedSBSubCampaigns] currentUser] withDelegate:self];
+}
+
+// This and the refresh button may go away...?
 - (IBAction)reloadSC:(id)sender {
 	NSLog(@"SubCampaignDetailViewController: reloadSC");
+    [self.refreshControl beginRefreshing];
     [self.refreshButton setTintColor:[UIColor darkGrayColor]];
     // self.scStatus.textColor = [UIColor redColor];
     [[SBSubCampaigns sharedSBSubCampaigns] loadForUser:[[SBSubCampaigns sharedSBSubCampaigns] currentUser] withDelegate:self];

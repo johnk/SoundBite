@@ -797,6 +797,12 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="nvq-2c-Hvd">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshSC:" destination="4Zs-8C-P7o" eventType="valueChanged" id="99C-jq-4uE"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
                         <outlet property="refreshButton" destination="zWh-6e-0Me" id="zsb-99-CDy"/>
                         <outlet property="scPauseButton" destination="uWT-Ir-Uli" id="diX-DD-foF"/>
