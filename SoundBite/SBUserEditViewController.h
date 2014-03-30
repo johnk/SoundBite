@@ -9,20 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "SBSoap2.h"
+#import "SBStacksViewController.h"
 
 @protocol SBUserEditViewControllerDelegate;
 
-@interface SBUserEditViewController : UITableViewController
+@interface SBUserEditViewController : UITableViewController <SBStacksViewControllerDelegate>
 
 @property (strong, nonatomic) User *user;
 @property BOOL editMode;
 @property BOOL validated;
 @property (weak, nonatomic) id<SBUserEditViewControllerDelegate>delegate;
+@property (nonatomic, strong) NSString *stack;
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *stackField;
 @property (weak, nonatomic) IBOutlet UITextField *accountField;
+
 
 //@property (nonatomic, retain) SBSoap2 *sbSoap;
 

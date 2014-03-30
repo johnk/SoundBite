@@ -167,8 +167,7 @@
 }
 */
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
     
     if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
@@ -178,22 +177,49 @@
 		mainMenuViewController.user = (self.users.userArray)[self.currentUser];
         
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
-        SBUserEditViewController *userEditViewController = segue.destinationViewController;
+        //SBUserEditViewController *userEditViewController = segue.destinationViewController;
+        //[self.users addNewUser];
+        //self.currentUser = [self.users count] - 1;
+        //NSLog(@"adding new user with index %i", self.currentUser);
+        
+        //userEditViewController.user = (self.users.userArray)[self.currentUser];
+        //userEditViewController.editMode = NO;
+        //userEditViewController.delegate = self;
+        
         [self.users addNewUser];
         self.currentUser = [self.users count] - 1;
         NSLog(@"adding new user with index %i", self.currentUser);
         
-        userEditViewController.user = (self.users.userArray)[self.currentUser];
-        userEditViewController.editMode = NO;
-        userEditViewController.delegate = self;
+        SBUserEditViewController *vc;
+        NSLog(@"vc is %@", [segue destinationViewController]);
         
+        if ([[segue destinationViewController] isKindOfClass:[UINavigationController class]]) {
+            vc = (SBUserEditViewController *)[[segue destinationViewController] topViewController];
+        } else {
+            vc = (SBUserEditViewController *)[segue destinationViewController];
+        }
+        
+        NSLog(@"vc is %@", vc);
+        vc.user = (self.users.userArray)[self.currentUser];
+        vc.editMode = YES;
+        vc.delegate = self;
+
     } else if ([[segue identifier] isEqualToString:@"ShowEditUser"]) {
         NSLog(@"editing user %d", self.currentUser);
         
-        SBUserEditViewController *userEditViewController = segue.destinationViewController;
-        userEditViewController.user = (self.users.userArray)[self.currentUser];
-        userEditViewController.editMode = YES;
-        userEditViewController.delegate = self;
+        SBUserEditViewController *vc;
+        NSLog(@"vc is %@", [segue destinationViewController]);
+        
+        if ([[segue destinationViewController] isKindOfClass:[UINavigationController class]]) {
+            vc = (SBUserEditViewController *)[[segue destinationViewController] topViewController];
+        } else {
+            vc = (SBUserEditViewController *)[segue destinationViewController];
+        }
+        
+        NSLog(@"vc is %@", vc);
+        vc.user = (self.users.userArray)[self.currentUser];
+        vc.editMode = YES;
+        vc.delegate = self;
     }
 }
 

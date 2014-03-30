@@ -26,11 +26,13 @@
     [super viewDidLoad];
     
     self.validated = NO;
+    
 	if (self.editMode) {
 		self.navigationItem.title = @"Edit User";
 		self.userNameField.text = self.user.userName;
 		self.passwordField.text = self.user.password;
 		self.stackField.text = self.user.stack;
+        self.stack = self.user.stack;
 		self.accountField.text = self.user.account;
 	} else {
         //TODO: BUG The title is not getting set...
@@ -132,6 +134,29 @@
     
     self.validated = NO;
     [self.delegate userDidDismissUserEditViewController:self];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
+    NSLog(@"row = %d", [indexPath row]);
+    
+    if ([indexPath row] == 2) {
+        [self performSegueWithIdentifier:@"ShowStacks" sender:self];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowStacks"]) {
+        SBStacksViewController *stacksViewController = segue.destinationViewController;
+        stacksViewController.delegate = self;
+        stacksViewController.stack = self.stack;
+    }
+}
+
+- (void)stacksViewController:(SBStacksViewController *)controller didSelectStack:(NSString *)stack {
+    self.stack = stack;
+    self.stackField.text = stack;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

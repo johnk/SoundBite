@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>stackURL</key>
+	<string>https://%@.soundbite.com/SOAPAPI2/%@</string>
+	<key>stacks</key>
+	<array>
+		<string>service2</string>
+		<string>service3</string>
+		<string>service4</string>
+		<string>service5</string>
+		<string>service6</string>
+		<string>service7</string>
+		<string>uat1</string>
+	</array>
+</dict>
+</plist>
