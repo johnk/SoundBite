@@ -130,43 +130,6 @@
     [self performSegueWithIdentifier:@"ShowEditUser" sender:self];
 }
 
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-    
-    if ([sender isKindOfClass:[UITableViewCell class]]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        if (indexPath) {
-            if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
-                NSLog(@"going to main menu for user %i", self.currentUser);
-
-                SBMainMenuViewController *mainMenuViewController = segue.destinationViewController;
-                mainMenuViewController.user = (self.users.userArray)[self.currentUser];
-                        
-            } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {        
-                SBUserEditViewController *userEditViewController = segue.destinationViewController;
-                [self.users addNewUser];
-                self.currentUser = [self.users count] - 1;
-                NSLog(@"adding new user with index %i", self.currentUser);
-                
-                userEditViewController.user = (self.users.userArray)[self.currentUser];
-                userEditViewController.editMode = NO;
-                userEditViewController.delegate = self;
-                
-            } else if ([[segue identifier] isEqualToString:@"ShowEditUser"]) {
-                NSLog(@"editing user %d", self.currentUser);
-
-                SBUserEditViewController *userEditViewController = segue.destinationViewController;
-                userEditViewController.user = (self.users.userArray)[self.currentUser];
-                userEditViewController.editMode = YES;
-                userEditViewController.delegate = self;
-            }
-        }
-    }
-}
-*/
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
     
@@ -177,15 +140,6 @@
 		mainMenuViewController.user = (self.users.userArray)[self.currentUser];
         
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
-        //SBUserEditViewController *userEditViewController = segue.destinationViewController;
-        //[self.users addNewUser];
-        //self.currentUser = [self.users count] - 1;
-        //NSLog(@"adding new user with index %i", self.currentUser);
-        
-        //userEditViewController.user = (self.users.userArray)[self.currentUser];
-        //userEditViewController.editMode = NO;
-        //userEditViewController.delegate = self;
-        
         [self.users addNewUser];
         self.currentUser = [self.users count] - 1;
         NSLog(@"adding new user with index %i", self.currentUser);

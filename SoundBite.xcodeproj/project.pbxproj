@@ -453,6 +453,11 @@
 				CLASSPREFIX = SB;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "John Keyes";
+				TargetAttributes = {
+					52CD1FAD1687506B004877E2 = {
+						DevelopmentTeam = BXHQ5RD2ZD;
+					};
+				};
 			};
 			buildConfigurationList = 52CD1FA81687506B004877E2 /* Build configuration list for PBXProject "SoundBite" */;
 			compatibilityVersion = "Xcode 3.2";
