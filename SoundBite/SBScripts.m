@@ -34,7 +34,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
 - (NSInteger)count {
 	NSString *xpath = @"/Envelope/Body/listScriptsResponse/return/data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBScripts: %d scripts", [nodes count]);
+    NSLog(@"SBScripts: %lu scripts", (unsigned long)[nodes count]);
     //for (GDataXMLElement *node in nodes) {
     //    NSLog(@"%@", node.stringValue);
     //}
@@ -58,14 +58,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     if (nodes.count >0) {
         if ([[nodes[0] stringValue] length] > 0) {
-            NSLog(@"SBScripts: Version for row %d is %@", row, [nodes[0] stringValue]);
+            NSLog(@"SBScripts: Version for row %ld is %@", (long)row, [nodes[0] stringValue]);
             return [nodes[0] stringValue];
         } else {
-            NSLog(@"SBScripts: Version for row %d is empty", row);
+            NSLog(@"SBScripts: Version for row %ld is empty", (long)row);
             return @" - ";
         }
     }
-    NSLog(@"SBScripts: Version for row %d is missing", row);
+    NSLog(@"SBScripts: Version for row %ld is missing", (long)row);
     return @" - ";
 }
 
@@ -77,14 +77,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBScripts);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     if (nodes.count >0) {
         if ([[nodes[0] stringValue] length] > 0) {
-            NSLog(@"SBScripts: Description for row %d is %@", row, [nodes[0] stringValue]);
+            NSLog(@"SBScripts: Description for row %ld is %@", (long)row, [nodes[0] stringValue]);
             return [nodes[0] stringValue];
         } else {
-            NSLog(@"SBScripts: Description for row %d is empty", row);
+            NSLog(@"SBScripts: Description for row %ld is empty", (long)row);
             return @"";
         }
     }
-    NSLog(@"SBScripts: Description for row %d is missing", row);
+    NSLog(@"SBScripts: Description for row %ld is missing", (long)row);
     return @"";
 }
 

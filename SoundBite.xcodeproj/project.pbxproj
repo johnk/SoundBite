@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		304894B41729D097000E8568 /* libUAirshipPush-1.3.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B31729D097000E8568 /* libUAirshipPush-1.3.3.a */; };
+		302801641A016FF900A18E90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302801631A016FF900A18E90 /* LaunchScreen.storyboard */; };
+		302801661A01706900A18E90 /* Genesys-logo-cropped.png in Resources */ = {isa = PBXBuildFile; fileRef = 302801651A01706900A18E90 /* Genesys-logo-cropped.png */; };
 		304894BA1729D165000E8568 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B51729D165000E8568 /* Accounts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		304894BB1729D165000E8568 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B61729D165000E8568 /* CoreTelephony.framework */; };
 		304894BC1729D165000E8568 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 304894B71729D165000E8568 /* libsqlite3.dylib */; };
@@ -101,7 +102,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		304894B31729D097000E8568 /* libUAirshipPush-1.3.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libUAirshipPush-1.3.3.a"; sourceTree = "<group>"; };
+		302801631A016FF900A18E90 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		302801651A01706900A18E90 /* Genesys-logo-cropped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Genesys-logo-cropped.png"; sourceTree = "<group>"; };
 		304894B51729D165000E8568 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		304894B61729D165000E8568 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		304894B71729D165000E8568 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -242,7 +244,6 @@
 				52EA1B531688DB5C00C80C42 /* libxml2.dylib in Frameworks */,
 				52CD1FB31687506B004877E2 /* UIKit.framework in Frameworks */,
 				52CD1FB51687506C004877E2 /* Foundation.framework in Frameworks */,
-				304894B41729D097000E8568 /* libUAirshipPush-1.3.3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +278,6 @@
 				304894B61729D165000E8568 /* CoreTelephony.framework */,
 				52CD1FB41687506B004877E2 /* Foundation.framework */,
 				304894B71729D165000E8568 /* libsqlite3.dylib */,
-				304894B31729D097000E8568 /* libUAirshipPush-1.3.3.a */,
 				304894B81729D165000E8568 /* libz.dylib */,
 				520A0B741723189300FF07BB /* MobileCoreServices.framework */,
 				520A0B78172318B100FF07BB /* Security.framework */,
@@ -295,6 +295,7 @@
 				52EA1B491688D9B900C80C42 /* CWLSynthesizeSingleton.h */,
 				52CD1FC11687506C004877E2 /* SBAppDelegate.h */,
 				52CD1FC21687506C004877E2 /* SBAppDelegate.m */,
+				302801631A016FF900A18E90 /* LaunchScreen.storyboard */,
 				52CD1FCA1687506C004877E2 /* MainStoryboard_iPhone.storyboard */,
 				52CD1FCD1687506C004877E2 /* MainStoryboard_iPad.storyboard */,
 				526F69F21688EB5500D1D11E /* SBUsersViewController.h */,
@@ -351,6 +352,7 @@
 		52CD1FE216878EC3004877E2 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				302801651A01706900A18E90 /* Genesys-logo-cropped.png */,
 				30979F0318CF855500BFEA3A /* 471-play2.png */,
 				30979F0418CF855500BFEA3A /* 471-play2@2x.png */,
 				30979F0518CF855500BFEA3A /* 472-pause2.png */,
@@ -484,6 +486,7 @@
 				52CD1FBD1687506C004877E2 /* InfoPlist.strings in Resources */,
 				30979F0918CF855500BFEA3A /* 471-play2.png in Resources */,
 				52CD1FC51687506C004877E2 /* Default.png in Resources */,
+				302801661A01706900A18E90 /* Genesys-logo-cropped.png in Resources */,
 				52CD1FC71687506C004877E2 /* Default@2x.png in Resources */,
 				52CD1FC91687506C004877E2 /* Default-568h@2x.png in Resources */,
 				52CD1FCC1687506C004877E2 /* MainStoryboard_iPhone.storyboard in Resources */,
@@ -519,6 +522,7 @@
 				52A247C016A2F97100D34B16 /* 75-phone.png in Resources */,
 				30979F0E18CF855500BFEA3A /* 473-stop2@2x.png in Resources */,
 				52A247C316A2FA4800D34B16 /* 243-globe.png in Resources */,
+				302801641A016FF900A18E90 /* LaunchScreen.storyboard in Resources */,
 				52A247C416A2FA4800D34B16 /* 243-globe@2x.png in Resources */,
 				52D2E10516A639BD003ED1FE /* 06-magnify.png in Resources */,
 				52D2E10616A639BD003ED1FE /* 06-magnify@2x.png in Resources */,
@@ -688,6 +692,7 @@
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "SoundBite/SoundBite-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -706,6 +711,7 @@
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "SoundBite/SoundBite-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

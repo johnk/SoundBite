@@ -77,7 +77,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign];
     NSLog(@"SBSubCampaigns xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBSubCampaigns: %d subcampaigns", [nodes count]);
+    NSLog(@"SBSubCampaigns: %lu subcampaigns", (unsigned long)[nodes count]);
     /*
      for (GDataXMLElement *node in nodes) {
      NSLog(@"%@", node.stringValue);
@@ -87,7 +87,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 }
 
 - (NSString *)nameForRow:(NSInteger)row {
- 	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/subCampaign/externalId", self.currentCampaign, row+1];
+ 	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%ld]/subCampaign/externalId", self.currentCampaign, row+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBSubCampaigns: sub-campaign=%@", [nodes[0] stringValue]);
@@ -95,7 +95,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
 }
 
 - (NSString *)internalIdForRow:(NSInteger)row {
- 	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%d]/subCampaign/internalId", self.currentCampaign, row+1];
+ 	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listSubCampaignStatesResponse/return/data[subCampaign/campaign/externalId='%@'][%ld]/subCampaign/internalId", self.currentCampaign, row+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBSubCampaigns: sub-campaign internalId=%@", [nodes[0] stringValue]);
@@ -165,7 +165,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSString *xpath = [NSString stringWithFormat:xpathTemplate, self.currentCampaign, row+1];
     NSLog(@"SBSubCampaigns xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBSubCampaigns: %d passes", [nodes count]);
+    NSLog(@"SBSubCampaigns: %lu passes", (unsigned long)[nodes count]);
     return [nodes count];
 }
 
@@ -190,7 +190,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     NSString *channelType = [nodes[0] stringValue];
-    NSLog(@"pass channel: %d", channelType.integerValue);
+    NSLog(@"pass channel: %ld", (long)channelType.integerValue);
     return channelType.integerValue;
 }
 
@@ -232,7 +232,7 @@ Get the nth pass for the mth sub-campaign of the campaign named 'demo'
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
 
-	NSLog(@"Found %d nodes:", [nodes count]);
+	NSLog(@"Found %lu nodes:", (unsigned long)[nodes count]);
 	for (GDataXMLElement *node in nodes) {
 		NSLog(@"%@", node.stringValue);
 		

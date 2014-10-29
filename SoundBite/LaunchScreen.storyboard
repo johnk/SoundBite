@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="USh-eW-2Ue">
+            <objects>
+                <viewController storyboardIdentifier="LaunchScreen" id="HYO-aX-CnI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZPB-KN-ceB"/>
+                        <viewControllerLayoutGuide type="bottom" id="b5L-qv-fqQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sIS-fZ-zac">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Genesys-logo-cropped.png" translatesAutoresizingMaskIntoConstraints="NO" id="gTF-Ty-1WQ">
+                                <rect key="frame" x="198" y="272" width="204" height="56"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pls-Ce-haE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="395" y="248"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Genesys-logo-cropped.png" width="141" height="34"/>
+    </resources>
+</document>

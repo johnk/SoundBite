@@ -55,7 +55,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBCampaigns);
 
 	// /Envelope/Body/listCampaignsResponse/return/Data[<row>]/ExternalId
 	
-	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listCampaignsResponse/return/data[%d]/externalId", row+1];
+	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/listCampaignsResponse/return/data[%ld]/externalId", row+1];
     NSLog(@"xpath: %@", xpath);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     NSLog(@"SBCampaigns: campaign=%@", [nodes[0] stringValue]);

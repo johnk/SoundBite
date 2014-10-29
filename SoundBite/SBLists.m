@@ -34,7 +34,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
 - (NSInteger)count {
 	NSString *xpath = @"/Envelope/Body/listListsResponse/return/data[isDeleted='false']";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBLists: %d lists", [nodes count]);
+    NSLog(@"SBLists: %lu lists", (unsigned long)[nodes count]);
     //for (GDataXMLElement *node in nodes) {
     //    NSLog(@"%@", node.stringValue);
     //}
@@ -67,14 +67,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     if (nodes.count >0) {
         if ([[nodes[0] stringValue] length] > 0) {
-            NSLog(@"SBLists: Size for row %d is %@", row, [nodes[0] stringValue]);
+            NSLog(@"SBLists: Size for row %ld is %@", (long)row, [nodes[0] stringValue]);
             return [nodes[0] stringValue];
         } else {
-            NSLog(@"SBLists: Size for row %d is empty", row);
+            NSLog(@"SBLists: Size for row %ld is empty", (long)row);
             return @" - ";
         }
     }
-    NSLog(@"SBLists: Size for row %d is missing", row);
+    NSLog(@"SBLists: Size for row %ld is missing", (long)row);
     return @" - ";
 }
 
@@ -85,14 +85,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBLists);
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     if (nodes.count >0) {
         if ([[nodes[0] stringValue] length] > 0) {
-            NSLog(@"SBLists: Description for row %d is %@", row, [nodes[0] stringValue]);
+            NSLog(@"SBLists: Description for row %ld is %@", (long)row, [nodes[0] stringValue]);
             return [nodes[0] stringValue];
         } else {
-            NSLog(@"SBLists: Description for row %d is empty", row);
+            NSLog(@"SBLists: Description for row %ld is empty", (long)row);
             return @"";
         }
     }
-    NSLog(@"SBLists: Description for row %d is missing", row);
+    NSLog(@"SBLists: Description for row %ld is missing", (long)row);
     return @"";
 }
 

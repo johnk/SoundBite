@@ -27,7 +27,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBStacks);
 }
 
 - (NSInteger)count {
-    NSLog(@"stacks count %d", [self.sbStacks count]);
+    NSLog(@"stacks count %lu", (unsigned long)[self.sbStacks count]);
     return [self.sbStacks count];
 }
 
@@ -45,18 +45,18 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBStacks);
     
     // read property list into memory as an NSData object
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-    NSString *errorDesc = nil;
+    NSError *error;
     NSPropertyListFormat format;
     
     // convert static property list into dictionary object
-    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
     if (!temp) {
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        NSLog(@"Error reading plist: %@, format: %lu", error.localizedDescription, format);
     }
     
     // assign values
-    _sbStackURL = temp[@"stackURL"];
-    _sbStacks = [NSMutableArray arrayWithArray:temp[@"stacks"]];
+    self.sbStackURL = temp[@"stackURL"];
+    self.sbStacks = [NSMutableArray arrayWithArray:temp[@"stacks"]];
 }
 
 @end

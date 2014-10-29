@@ -35,7 +35,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-    NSLog(@"row = %d", [indexPath row]);
+    NSLog(@"row = %ld", (long)[indexPath row]);
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

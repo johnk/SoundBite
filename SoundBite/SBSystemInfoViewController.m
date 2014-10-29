@@ -83,7 +83,7 @@
 	NSString *xpath = @"/Envelope/Body/showSystemInfoResponse/return/data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     
-    NSLog(@"ShowSystmInfoViewController: %d sysinfo attributes", [nodes count]);
+    NSLog(@"ShowSystmInfoViewController: %lu sysinfo attributes", (unsigned long)[nodes count]);
     
     //for (GDataXMLElement *node in nodes) {
     //    NSLog(@"%@", node.stringValue);
@@ -99,12 +99,12 @@
         
 	NSUInteger row = [indexPath row];
 
-	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/data[%d]/name", row+1];
+	NSString *xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/data[%lu]/name", row+1];
 	NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     cell.textLabel.text = [nodes[0] stringValue];
 	//cell.nameLabel.text = [nodes[0] stringValue];
 	
-	xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/data[%d]/value", row+1];
+	xpath = [NSString stringWithFormat:@"/Envelope/Body/showSystemInfoResponse/return/data[%lu]/value", row+1];
     nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
     cell.detailTextLabel.text = [nodes[0] stringValue];
 	

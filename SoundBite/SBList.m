@@ -35,7 +35,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBList);
 - (NSInteger)count {
 	NSString *xpath = @"/Envelope/Body/listListsResponse/return/Data";
     NSArray *nodes = [self.sbSoap.doc nodesForXPath:xpath error:nil];
-    NSLog(@"SBList: %d list (should be just one)", [nodes count]);
+    NSLog(@"SBList: %lu list (should be just one)", (unsigned long)[nodes count]);
     return [nodes count];
 }
 

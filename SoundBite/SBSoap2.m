@@ -34,7 +34,7 @@
 	// self.currentUser = user;
 		
 	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-	NSString *msgLength = [NSString stringWithFormat:@"%d", [request length]];
+	NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[request length]];
 	
 	[theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
 	[theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
@@ -88,7 +88,7 @@
 	if (self.workInProgress == YES) {
 		self.workInProgress = NO;
 		
-		NSLog(@"DONE. Received Bytes: %d", [webData length]);
+		NSLog(@"DONE. Received Bytes: %lu", (unsigned long)[webData length]);
 		NSString *theXMLNS = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
 		
 		// remove the namespaces
@@ -189,7 +189,7 @@
 																				  withTemplate:@"</$1>"]];
     //NSLog(@"***** tmpString4: %@", tmpString4);
 
-    NSLog(@"removeXMLNamespaces: XML shrunk from %d to %d bytes", [xmlWithNS length], [tmpString4 length]);
+    NSLog(@"removeXMLNamespaces: XML shrunk from %lu to %lu bytes", (unsigned long)[xmlWithNS length], (unsigned long)[tmpString4 length]);
           
 	return tmpString4;
 }

@@ -32,10 +32,13 @@
         self.users = appDelegate.users;
     }
 
+    /* TODO: rework how sizes are handled */
+    /*
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
+    */
     [super awakeFromNib];
 }
 
@@ -114,7 +117,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-    NSLog(@"row = %d", [indexPath row]);
+    NSLog(@"row = %ld", (long)[indexPath row]);
     
     self.currentUser = [indexPath row];
     [self performSegueWithIdentifier:@"ShowMainMenu" sender:self];
@@ -124,7 +127,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
-    NSLog(@"row = %d", [indexPath row]);
+    NSLog(@"row = %ld", (long)[indexPath row]);
     
     self.currentUser = [indexPath row];
     [self performSegueWithIdentifier:@"ShowEditUser" sender:self];
@@ -134,7 +137,7 @@
     NSLog(@"%s [Line %d]", __PRETTY_FUNCTION__, __LINE__);
     
     if ([[segue identifier] isEqualToString:@"ShowMainMenu"]) {
-        NSLog(@"going to main menu for user %i", self.currentUser);
+        NSLog(@"going to main menu for user %li", (long)self.currentUser);
         
         SBMainMenuViewController *mainMenuViewController = segue.destinationViewController;
 		mainMenuViewController.user = (self.users.userArray)[self.currentUser];
@@ -142,7 +145,7 @@
     } else if ([[segue identifier] isEqualToString:@"ShowAddUser"]) {
         [self.users addNewUser];
         self.currentUser = [self.users count] - 1;
-        NSLog(@"adding new user with index %i", self.currentUser);
+        NSLog(@"adding new user with index %li", (long)self.currentUser);
         
         SBUserEditViewController *vc;
         NSLog(@"vc is %@", [segue destinationViewController]);
@@ -159,7 +162,7 @@
         vc.delegate = self;
 
     } else if ([[segue identifier] isEqualToString:@"ShowEditUser"]) {
-        NSLog(@"editing user %d", self.currentUser);
+        NSLog(@"editing user %ld", (long)self.currentUser);
         
         SBUserEditViewController *vc;
         NSLog(@"vc is %@", [segue destinationViewController]);
