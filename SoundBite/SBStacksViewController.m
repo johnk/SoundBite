@@ -14,7 +14,7 @@
 
 @implementation SBStacksViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -48,7 +48,7 @@
     //NSDictionary *stackDict = [[[SBStacks sharedSBStacks] sbStacks] objectAtIndex:[indexPath row]];
 	//self.currentStackValue = stackDict[@"value"];
     
-    self.stack = [[[SBStacks sharedSBStacks] sbStacks] objectAtIndex:[indexPath row]];
+    self.stack = [[SBStacks sharedSBStacks] sbStacks][[indexPath row]];
     self.stackIndex = [indexPath row];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -72,7 +72,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StacksCell" forIndexPath:indexPath];
     
     NSUInteger row = [indexPath row];
-    NSString *stackForRow = [[[SBStacks sharedSBStacks] sbStacks] objectAtIndex:row];
+    NSString *stackForRow = [[SBStacks sharedSBStacks] sbStacks][row];
     
     //if (row == self.currentStack) {
     //    cell.accessoryType = UITableViewCellAccessoryCheckmark;

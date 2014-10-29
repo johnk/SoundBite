@@ -14,11 +14,11 @@
 @property (nonatomic, strong) NSMutableArray *userArray;
 
 - (void)load;
-- (NSUInteger)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger count;
 - (void)addNewUser;
 - (void)removeLastUser;
 - (void)save;
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 @end

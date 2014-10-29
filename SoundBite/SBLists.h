@@ -22,7 +22,7 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBLists)
 //+ (SBLists *)sharedSBLists;
 
 - (void)loadForUser:(User *)user withDelegate:(id)delegate;
-- (NSInteger)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger count;
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)internalIdForRow:(NSInteger)row;
 - (NSString *)sizeForRow:(NSInteger)row;

@@ -16,8 +16,8 @@
 @property (nonatomic, strong) NSString *stack;
 @property (nonatomic, strong) NSString *account;
 
-- (id)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *)newAccount;
+- (instancetype)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *)newAccount NS_DESIGNATED_INITIALIZER;
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 @end

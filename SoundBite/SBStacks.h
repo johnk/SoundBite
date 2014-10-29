@@ -16,6 +16,6 @@
 
 CWL_DECLARE_SINGLETON_FOR_CLASS(SBStacks)
 
-- (NSInteger)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger count;
 
 @end

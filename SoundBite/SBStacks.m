@@ -33,7 +33,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBStacks);
 
 - (void)initStacks {
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *documentsPath = paths[0];
     // get the path to the plist file
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"EngageProperties.plist"];
     
@@ -55,8 +55,8 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBStacks);
     }
     
     // assign values
-    _sbStackURL = [temp objectForKey:@"stackURL"];
-    _sbStacks = [NSMutableArray arrayWithArray:[temp objectForKey:@"stacks"]];
+    _sbStackURL = temp[@"stackURL"];
+    _sbStacks = [NSMutableArray arrayWithArray:temp[@"stacks"]];
 }
 
 @end

@@ -63,7 +63,7 @@
 	[coder encodeObject:self.userArray forKey:@"UserArray"];
 }
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (instancetype)initWithCoder:(NSCoder *)coder {
 	if (self = [super init]) {
 		self.userArray = [coder decodeObjectForKey:@"UserArray"];
 	}

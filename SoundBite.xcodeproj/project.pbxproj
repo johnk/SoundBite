@@ -681,6 +681,7 @@
 		52CD1FD91687506C004877E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = /Users/jkeyes/Dropbox/Developer/SoundBite;
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -699,6 +700,7 @@
 		52CD1FDA1687506C004877E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundBite/SoundBite-Prefix.pch";

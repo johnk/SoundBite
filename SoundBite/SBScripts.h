@@ -21,7 +21,7 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBScripts)
 //+ (SBScripts *)sharedSBScripts;
 
 - (void)loadForUser:(User *)user withDelegate:(id)delegate;
-- (NSInteger)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger count;
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)versionForRow:(NSInteger)row;
 - (NSString *)descriptionForRow:(NSInteger)row;

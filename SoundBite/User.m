@@ -11,7 +11,7 @@
 
 @implementation User
 
-- (id)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *)newAccount {
+- (instancetype)initWithUserOnStack:(NSString *)newStack name:(NSString *)newUserName password:(NSString *)newPassword account:(NSString *)newAccount {
 	if (!(self = [super init])) return nil;
 	self.userName = newUserName;
 	self.password = newPassword;
@@ -30,7 +30,7 @@
 	[coder encodeObject:self.account forKey:@"Account"];
 }
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (instancetype)initWithCoder:(NSCoder *)coder {
 	if ((self = [super init])) {
 		self.userName = [coder decodeObjectForKey:@"UserName"];
 		self.password = [coder decodeObjectForKey:@"Password"];

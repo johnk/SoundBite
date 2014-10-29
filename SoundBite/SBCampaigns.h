@@ -21,7 +21,7 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBCampaigns)
 //+ (SBCampaigns *)sharedSBCampaigns;
 
 - (void)loadForUser:(User *)sbUser withDelegate:(id)delegate;
-- (NSInteger)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger count;
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)startDateForRow:(NSInteger)row;
 - (NSString *)endDateForRow:(NSInteger)row;

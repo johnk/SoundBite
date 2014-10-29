@@ -28,7 +28,7 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 
 // Methods for sub-campaign info
 
-- (NSInteger)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger count;
 - (NSString *)nameForRow:(NSInteger)row;
 - (NSString *)internalIdForRow:(NSInteger)row;
 - (NSString *)statusForRow:(NSInteger)row;
@@ -48,6 +48,6 @@ CWL_DECLARE_SINGLETON_FOR_CLASS(SBSubCampaigns)
 - (NSString *)passStatusForSub:(NSInteger)row pass:(NSInteger)pass;
 - (NSDictionary *)getAttributesForSub:(NSInteger)row pass:(NSInteger)pass;
 
-- (NSString *)description;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *description;
 
 @end
