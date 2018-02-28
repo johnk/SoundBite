@@ -51,7 +51,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SBStacks);
     // convert static property list into dictionary object
     NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
     if (!temp) {
-        NSLog(@"Error reading plist: %@, format: %lu", error.localizedDescription, format);
+        NSLog(@"Error reading plist: %@, format: %lu", error.localizedDescription, (unsigned long)format);
     }
     
     // assign values
