@@ -7,22 +7,10 @@
 //
 
 #import "SBAppDelegate.h"
-//#import <Parse/Parse.h>
-//#import <KinveyKit/KinveyKit.h>
-//#import <Crashlytics/Crashlytics.h>
 
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[Crashlytics startWithAPIKey:@"f97a100754daa03bbc6ca11a030651edb3525d96"];
-    
-    //[Parse setApplicationId:@"ZQxmGStpZUSotI9SicbVTDFT6ijmgdBEK0cVFFlN"
-    //              clientKey:@"bibzPHujakziOMbpZkNLYByfrYahJwjZMvlaRZhX"];
-    
-    //[Parse setApplicationId:@"z8un4S6cyUhGLYh2oZn9vRo5ReU8O4j1P0wYH8WJ"
-    //              clientKey:@"XYH6liNYNsKmEa3IPusqdEkhyZZFqYgjGyy0YIIE"];
-    
-    //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Register for push notifications
     //[application registerForRemoteNotificationTypes:
@@ -45,8 +33,8 @@
     
     //NSDictionary* pushOptions = @{
     //                              KCS_PUSH_IS_ENABLED_KEY : @"YES",
-    //                              KCS_PUSH_KEY_KEY : @"Z2tmFTPgSxi6zq-N7XRBeg",
-    //                              KCS_PUSH_SECRET_KEY : @"K-RtCoNqQymN8a5Fwd582Q",
+    //                              KCS_PUSH_KEY_KEY : @"xxxxx",
+    //                              KCS_PUSH_SECRET_KEY : @"xxxxx",
     //                              KCS_PUSH_MODE_KEY : KCS_PUSH_DEVELOPMENT //or KCS_PUSH_PRODUCTION for production push
     //
     //                          };
